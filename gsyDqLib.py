@@ -56,27 +56,29 @@ def date_time_now():
 def cal_ABDQ(locInt_Samples, locDbl_base_freq, locDbl_harmonic_order, locDbl_pll_order):
     """Calculates the Clarke Transform (amplitude invariant) and the Park Transform.
     
-    Returns the time, theta, Clarke's alpha component, Clarke's beta component,
-    Park's d component, Park's q component, 
-    the rotating d axis' projection on the x, y axes,
-    the rotating q axis' projection on the x, y axes,
-    the d component's projection on the x, y axes,
-    the q component's projection on the x, y axes.
+    Returns the following arrays:
+        |  time, theta, 
+        |  Clarke's *α* component, Clarke's *β* component,   
+        |  Park's *d* component, Park's *q* component, 
+        |  the rotating *d* axis' projection on the x, y axes,
+        |  the rotating *q* axis' projection on the x, y axes,
+        |  the d component's projection on the x, y axes,
+        |  the q component's projection on the x, y axes.
     
 
     Parameters
     ----------
     locInt_Samples : int
         The number of samples to be taken during one base period.
-        
+    ..
     locDbl_base_freq : float
-        The base frequency of the system, e.g., 50 or 60.
-        
+        The base frequency of the system, e.g., 50 or 60 (Hz).
+    ..        
     locDbl_harmonic_order : float
         The order of harmonic to be used to calculate Clarke and Park from. 1st harmonic
         is the fundamental. Interharmonics are allowed, e.g., 1.3 order. abs() is applied
         on this parameter.
-    
+    ..
     locDbl_pll_order : float
         The parameter decides the PLL's rotational direction and frequency. The parameter's sign, 
         i.e., positve or negative, decides the rotational direction. Positive means anti-clockwise.
@@ -84,55 +86,55 @@ def cal_ABDQ(locInt_Samples, locDbl_base_freq, locDbl_harmonic_order, locDbl_pll
         frequency that the PLL is rotating.
         
         E.g. : 
-            1    means the PLL is rotating anti-clockwise and at 1 times the base frequency.
-            2.7  means the PLL is rotating anti-clockwise and at 2.7 times the base frequency.
-            -2   means the PLL is rotating clock-wise and at 2 times the base frequency.            
-            -3.3 means the PLL is rotating clock-wise and at 3.3 times the base frequency.
+            |  1    means the PLL is rotating anti-clockwise and at 1 times the base frequency.            
+            |  2.7  means the PLL is rotating anti-clockwise and at 2.7 times the base frequency.            
+            |  -2   means the PLL is rotating clock-wise and at 2 times the base frequency.                        
+            |  -3.3 means the PLL is rotating clock-wise and at 3.3 times the base frequency.
     
-
+    ..
     Returns
     -------
     locTime : array 
         1d array according to the base frequency and the samples taken within the base period.
-        
+    ..
     locTheta : array
-        Angel calculated according to the time array and the base frequency. θ = 2πft.
-        
+        Angel calculated according to the time array and the base frequency. *θ = 2πft*.
+    ..
     locAlpha_vector : array
-        α component of the amplitude invariant Clarke Transform.
-    
+        *α* component of the amplitude invariant Clarke Transform.
+    ..
     locBeta_vector : array
-        β component of the amplitude invariant Clarke Transform.
-    
+        *β* component of the amplitude invariant Clarke Transform.
+    ..
     locD_vector : array
-        d component of the Park Transform.
-    
+        *d* component of the Park Transform.
+    ..
     locQ_vector : array
-        q component of the Park Transform.
-    
+        *q* component of the Park Transform.
+    ..
     locD_ax_on_x : array
-        The rotating d axis' projection on the x axis.
-    
+        The rotating *d* axis' projection on the x axis.
+    ..
     locD_ax_on_y : array
-        The rotating d axis' projection on the y axis.
-    
+        The rotating *d* axis' projection on the y axis.
+    ..
     locQ_ax_on_x : array
-        The rotating q axis' projection on the x axis.
-    
+        The rotating *q* axis' projection on the x axis.
+    ..
     locQ_ax_on_y : array
-        The rotating q axis' projection on the y axis.
-    
+        The rotating *q* axis' projection on the y axis.
+    ..
     locD_vector_on_x : array
-        d component's projection on the x axis.
-    
+        *d* component's projection on the x axis.
+    ..
     locD_vector_on_y : array
-        d component's projection on the y axis.
-    
+        *d* component's projection on the y axis.
+    ..
     locQ_vector_on_x : array
-        q component's projection on the x axis.
-    
+        *q* component's projection on the x axis.
+    ..
     locQ_vector_on_y : array
-        q component's projection on the y axis.
+        *q* component's projection on the y axis.
 
     Examples
     --------
@@ -293,9 +295,75 @@ def find_pll_direction(locDbl_base_freq, locDbl_pll_order):
 # <Function: find input Harmonic sequence and the frequencies of Clarke and Park transforms>
 # =============================================================================
 def find_sequences(locDbl_base_freq, locDbl_harmonic_order, locDbl_pll_order):
+    """Decide the input harmonic sequence (zero, positive, negative). Calculate
+    the frequencies of the input harmonic, the Clarke components, the Park components.
+    Calculate the periods of the Clarke components and the Park components.
+
+    Conversion frequencies to periods could lead to zero divition. To deal with this,
+    if the frequency is zero, then the period would be set to zero.
     
+    The sequence of the input harmonic is calculated by:  
+        locInt_remainder = np.mod(locDbl_harmonic_order, 3)
+            
+    |  If locInt_remainder == 0, then it is a zero sequence.
+    |  If locInt_remainder == 1, then it is a positive sequence.
+    |  If locInt_remainder == 2, then it is a negative sequence.
     
+    If locInt_remainder is not an integer, i.e., it is a decimal number, then
+    the input harmonic is an interharmonic and the definition of sequence does not 
+    apply.
     
+    For Clarke Transform components, their frequencies are always equal to the
+    input harmonic. For positive sequneces, *α* leads *β* by 90°. 
+    For negative sequneces, *α* lags *β* by 90°.
+        
+    For Park Transform components, their frequencies are related to how the input
+    harmonic rotates and how the PLL rotates. The rule is, the frequencies of the 
+    Park Transform components are equal to the relative angular frequency between
+    the input harmonic and the PLL. The phases between *d* and *q* are the same
+    as the corresponding *α* and *β*. I.e., if *α* leads *β*, then *d* leads *q*
+    and vice versa.
+    
+    Note that the aforementioned rule is only true when locInt_remainder
+    is an integer. For interharmonics, this rule does not apply.
+    
+    E.g.:        
+        |  locDbl_harmonic_order = 1 (positive sequence)
+        |  locDbl_pll_order      = 1
+        |  The relative angular frequency is (1 - 1)·*ω* = 0, thus *d*, *q* are DC
+        |  
+        |  locDbl_harmonic_order = 2 (negative sequence)
+        |  locDbl_pll_order      = 1
+        |  The relative angular frequency is (-2 - 1)·*ω* = -3, thus *d*, *q* are
+           of 3 times the base frequency and *d* lags *q* by 90°.
+        |
+        |  Note that this function would take abs() on locDbl_harmonic_order and then
+           calcualte its sequence and then to automatically assign the right sign
+           to it to calculate the Park components' frequencies. 
+        |   
+        |  Therefore there is no need to input a negative number for a negative 
+           sequence. The abs() would get rid of it anyway.
+
+    Parameters
+    ----------
+    locDbl_base_freq : float
+        Description of arg1
+    ..
+    locDbl_harmonic_order : str
+        Description of arg2
+        
+    locDbl_pll_order : float
+
+    Returns
+    -------
+    bool
+        Description of return value
+
+    Examples
+    --------
+    >>> func(1, "a")
+    True
+    """    
     
     locDbl_harmonic_order = abs(locDbl_harmonic_order)
     
