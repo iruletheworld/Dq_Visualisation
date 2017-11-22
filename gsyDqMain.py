@@ -16,18 +16,20 @@ import os
 import win32api
 import win32con
 import threading
-#import atexit
 
 
 from numpy import sin, cos
 from matplotlib.widgets import Button, TextBox
 from tkinter import filedialog
+from time import sleep
 
 # custom module
 from gsyDqLib import date_time_now, cal_ABDQ, find_pll_direction
 from gsyDqLib import find_sequences, set_font_size
-from gsyDqLib import read_ini, collect_tb, write_ini, load_ffmpeg
+from gsyDqLib import collect_tb, load_ffmpeg
 from gsyDqLib import check_file_saved, save_animation_to_disk
+
+from gsyINI import read_ini_to_tb, write_ini
 
 # matplotlib font settings
 mpl.rcParams['font.family'] = 'serif'
@@ -37,7 +39,7 @@ mpl.rcParams['mathtext.fontset'] = 'cm'
 
 # <Function: save the help text as a txt file>
 # =============================================================================
-def save_help(event, locStr_help):
+def save_txt(event, locStr_help):
     
     locRoot = tk.Tk()
     
@@ -76,9 +78,9 @@ def save_help(event, locStr_help):
     
     # prompt finish message
     win32api.MessageBox(None, 
-                        'Help file save finished.' 
+                        'Text file save finished.' 
                         + '\n' + '\n' + help_file_path, 
-                        'Help file save finished',
+                        'Text file save finished',
                         win32con.MB_ICONINFORMATION)
 # =============================================================================
 # </Function: save the help text as a txt file>
@@ -152,16 +154,16 @@ CONST_DPI = 100
 CONST_STR_COPYRIGHT = ('\u00a9 $Dr. GAO, \ Siyu. 2017$'                   
                        + '\n' + '$siyu.gao@outlook.com$') 
 
-CONST_STR_VER = '1.0'
+CONST_STR_VER = '1.1'
 
 CONST_STR_HELP = u'''
 This program is intended to visualise the Clarke and Park transforms. 
                   
 Written by : Dr. GAO, Siyu
-Version : 1.0
+Version : 1.1
                   
 Input Harmonic Order : 
-This sets the order of harmonic to be analysed. 1st order is the fundamental. This input needs to be an integer.
+This sets the order of harmonic to be analysed. 1st order is the fundamental. This input needs to be a float.
 
 PLL Order : 
 This sets the angular velocity of the PLL as multiples of the fundamental frequency. This input needs to be a float.
@@ -216,7 +218,7 @@ button_save_help = Button(ax_button_save_help, 'Save as txt', color='gold')
 button_save_help.label.set_family('Arial')
 button_save_help.label.set_fontweight('bold')
     
-button_save_help.on_clicked(lambda x: save_help(x, CONST_STR_HELP))
+button_save_help.on_clicked(lambda x: save_txt(x, CONST_STR_HELP))
 # =============================================================================
 # </Help figure>
 
@@ -320,14 +322,14 @@ str_cwd = os.getcwd()
 
 str_ini_file_path = os.path.join(str_cwd, CONST_INI_FILENAME)
 
-bool_ini_exist = read_ini(str_ini_file_path, list_textbox)
+bool_ini_exist, config = read_ini_to_tb(str_ini_file_path, list_textbox)
 
 if bool_ini_exist == True:
     
     try:
         
-        int_harmonic_order = int(textbox_input_harmonic.text)
-        int_harmonic_order = abs(int_harmonic_order)
+        dbl_harmonic_order = float(textbox_input_harmonic.text)
+        dbl_harmonic_order = abs(dbl_harmonic_order)
         
         dbl_pll_order = float(textbox_pll_order.text)
         
@@ -356,7 +358,7 @@ if bool_ini_exist == True:
     except:
         
         # default settings
-        int_harmonic_order = 1
+        dbl_harmonic_order = 1
         dbl_pll_order = 1        
         dbl_base_freq = 50
         dbl_base_period = 1 / dbl_base_freq
@@ -370,7 +372,7 @@ else:
         dbl_base_freq = 50
         dbl_base_period = 1 / dbl_base_freq
         dbl_pll_order = 1
-        int_harmonic_order = 1
+        dbl_harmonic_order = 1
         int_samples = 200
         int_fps = 30
         str_ffmpeg_path = ''
@@ -383,7 +385,7 @@ d_ax_on_x, d_ax_on_y,
 q_ax_on_x, q_ax_on_y, 
 d_vector_on_x, d_vector_on_y, 
 q_vector_on_x, q_vector_on_y) = cal_ABDQ(int_samples, dbl_base_freq, 
-                                         int_harmonic_order, dbl_pll_order)
+                                         dbl_harmonic_order, dbl_pll_order)
 
 
 str_freq_pll = find_pll_direction(dbl_base_freq, dbl_pll_order)
@@ -392,9 +394,9 @@ str_freq_pll = find_pll_direction(dbl_base_freq, dbl_pll_order)
  str_freq_clarke, 
  str_freq_park, 
  dbl_period_clarke, 
- dbl_period_park) = find_sequences(dbl_base_freq, int_harmonic_order, dbl_pll_order)
+ dbl_period_park) = find_sequences(dbl_base_freq, dbl_harmonic_order, dbl_pll_order)
 
-dbl_font_size = set_font_size(int_harmonic_order)
+dbl_font_size = set_font_size(dbl_harmonic_order)
 
 
 # <Coordinate 1>
@@ -413,7 +415,7 @@ plt.axis([-3, 3, -3, 3])
 ax1.grid(visible=True, zorder=0)
 
 # static, unit circle
-ax1.plot(cos(theta), sin(theta), linewidth=3, zorder=3)
+ax1.plot(cos(theta), sin(theta), linewidth=2, color='k',zorder=3, linestyle=':')
 
 # static, alpha axis and label
 ax1.annotate("",
@@ -470,6 +472,10 @@ ax1_str_info = ax1.text(-2.1, -2.8, '',
 ax1_text_pll_locked = ax1.text(0, 2.7, '',
                                fontsize=12, color='red', ha='center', va='top',
                                bbox=dict(facecolor='white', edgecolor='white'))
+
+# to be animated, ellipse
+ax1_ellipse, = ax1.plot([], [], 
+                        color='blue', linewidth=3)
 
 # to be animated, d axis
 ax1_d_ax_pos = ax1.annotate('',
@@ -535,6 +541,8 @@ ax1_help_line_d, = ax1.plot([], [],
 
 ax1_help_line_q, = ax1.plot([], [], 
                             color='blue', linewidth=3, linestyle='--')
+
+
 # =============================================================================
 # </Coordinate 1>
 
@@ -548,7 +556,13 @@ Set up Coordinate 2, alpha vs time and beta vs time
 ax2 = plt.subplot(2, 2, 2)
 
 ax2.set_xlim([0, dbl_base_period])
-ax2.set_ylim([-1.1, 1.1])
+
+# find the maximum of all data points
+ylim_max = max(max(alpha_vector), max(beta_vector), max(d_vector), max(q_vector)) + 0.05
+
+ylim_min = -1 * ylim_max
+
+ax2.set_ylim([ylim_min, ylim_max])
 
 # static, horizontal middle line
 ax2.axhline(y=0, color='k', lw=3)
@@ -608,7 +622,8 @@ Set up Coordinate 3, d vs time and q vs time
 ax3 = plt.subplot(2, 2, 4)
 
 ax3.set_xlim([0, dbl_base_period])
-ax3.set_ylim([-1.1, 1.1])
+#ax3.set_ylim([-1.1, 1.1])
+ax3.set_ylim([ylim_min, ylim_max])
 
 # static, horizontal middle line
 ax3.axhline(y=0, color='k', lw=3)
@@ -743,6 +758,10 @@ def init():
     ax1_help_line_q.set_xdata([])
     ax1_help_line_q.set_ydata([])
     
+    # for interharmonics
+    ax1_ellipse, = ax1.plot([], [], 
+                        color='pink', linewidth=3, linestyle=':')
+    
     # ax2 period helping lines
     for item in ax2_period_lines:
         item.set_xdata([])
@@ -802,6 +821,7 @@ def init():
                 ax1_alpha_arrow, ax1_beta_arrow, ax1_harmonic_arrow,
                 ax1_d_vector_arrow, ax1_q_vector_arrow,
                 ax1_help_line_alpha, ax1_help_line_beta, ax1_help_line_d,
+                ax1_ellipse,
                 ax2_alpha_vs_time, ax2_beta_vs_time,            
                 ax2_alpha_help_line, ax2_beta_help_line,
                 ax3_d_vs_time, ax3_q_vs_time,
@@ -821,7 +841,7 @@ def animate(item):
     str_harmonic_theta = (r'$\theta_{Harmonic} = $' 
                           + ('${:0.3f}'
                              .format(2 * 180 
-                                     * int_harmonic_order * dbl_base_freq * time[item])) 
+                                     * dbl_harmonic_order * dbl_base_freq * time[item])) 
                           + '^{\circ}$')
     
     str_pll_theta = (r'$\theta_{PLL} = $' 
@@ -910,6 +930,10 @@ def animate(item):
     # update ax1 origin dot
     ax1_origin = ax1.scatter(0, 0, marker='o', color='black', lw=4)
     
+    # update the ellipse                    
+    ax1_ellipse.set_xdata(alpha_vector[0:item])
+    ax1_ellipse.set_ydata(beta_vector[0:item])
+    
     # update ax2 period helping lines    
     if (dbl_period_clarke != 0):
         
@@ -923,7 +947,7 @@ def animate(item):
         for j in np.arange(0, round(dbl_base_period/dbl_period_clarke), 1):
             
             ax2_period_lines[j].set_xdata([(j+1)*dbl_period_clarke, (j+1)*dbl_period_clarke])
-            ax2_period_lines[j].set_ydata([-1.1, 1.1])
+            ax2_period_lines[j].set_ydata([ylim_min, ylim_max])
             
     else:
         
@@ -933,7 +957,7 @@ def animate(item):
             j.set_xdata([])
             j.set_ydata([])
         
-    dbl_font_size = set_font_size(int_harmonic_order)
+    dbl_font_size = set_font_size(dbl_harmonic_order)
     
     # update ax2 period helping text
     if (dbl_period_clarke != 0):
@@ -996,7 +1020,7 @@ def animate(item):
         for j in np.arange(0, round(dbl_base_period/dbl_period_park), 1):
             
             ax3_period_lines[j].set_xdata([(j+1)*dbl_period_park, (j+1)*dbl_period_park])
-            ax3_period_lines[j].set_ydata([-1.1, 1.1])
+            ax3_period_lines[j].set_ydata([ylim_min, ylim_max])
             
     else:
         # clear all lines
@@ -1046,7 +1070,7 @@ def animate(item):
     ax3_q_vs_time.set_ydata(q_vector[0:item])
     
     # update ax3 helping lines    
-    int_remainder = np.mod(int_harmonic_order, 3)
+    int_remainder = np.mod(dbl_harmonic_order, 3)
     
     str_ax1_pll_locked_on = (r'$The \ PLL \ is \ locked \ on,$'
                              + '\n' 
@@ -1057,7 +1081,7 @@ def animate(item):
                              + r'$thus \ the \ d \ and \ q \ components \ are \ DC$')
     
     # if positive sequences and PLL locked on
-    if (int_remainder == 1) and ((int_harmonic_order - dbl_pll_order) == 0):
+    if (int_remainder == 1) and ((dbl_harmonic_order - dbl_pll_order) == 0):
         ax3_d_help_line.set_xdata(0)
         ax3_d_help_line.set_ydata(0)
         
@@ -1068,7 +1092,7 @@ def animate(item):
         ax3_text_pll_locked.set_text(str_ax3_pll_locked_on)
         
     # if negative sequnces and PLL locked on
-    elif (int_remainder == 2) and ((int_harmonic_order + dbl_pll_order) == 0):
+    elif (int_remainder == 2) and ((dbl_harmonic_order + dbl_pll_order) == 0):
         ax3_d_help_line.set_xdata(0)
         ax3_d_help_line.set_ydata(0)
         
@@ -1110,6 +1134,7 @@ def animate(item):
                ax1_q_ax_pos, ax1_q_ax_neg, ax1_q_label,
                ax1_help_line_alpha, ax1_help_line_beta, 
                ax1_help_line_d, ax1_help_line_q,
+               ax1_ellipse,
                ax1_alpha_arrow, ax1_beta_arrow, ax1_harmonic_arrow,
                ax1_d_vector_arrow, ax1_q_vector_arrow,
                ax1_origin, 
@@ -1132,7 +1157,7 @@ def video_play(event):
     global str_ini_file_path
     
     global dbl_base_freq, dbl_base_period
-    global int_samples, int_harmonic_order, dbl_pll_order, int_fps
+    global int_samples, dbl_harmonic_order, dbl_pll_order, int_fps
     
     global time, theta
     global alpha_vector, beta_vector
@@ -1150,6 +1175,8 @@ def video_play(event):
     
     global str_freq_pll
     
+    global ylim_min, ylim_max
+    
     global ax2
     global ax3
     
@@ -1166,24 +1193,24 @@ def video_play(event):
     
     try:
         
-        int_harmonic_order = int(textbox_input_harmonic.text)
+        dbl_harmonic_order = float(textbox_input_harmonic.text)
     
-        int_harmonic_order = abs(int_harmonic_order)
+        dbl_harmonic_order = abs(dbl_harmonic_order)
         
     except ValueError:  
         
         win32api.MessageBox(None, 
-                            r'This input must be a integer.' 
+                            r'This input must be a float.' 
                             + '\n' 
                             + r'Absolute values are taken for negative numbers', 
-                            'Not a integer',
+                            'Not a float',
                             win32con.MB_ICONERROR)
         
         textbox_input_harmonic.set_val('')
                 
         return None
     
-    if np.mod(int_harmonic_order, 3) == 0:
+    if np.mod(dbl_harmonic_order, 3) == 0:
         
         win32api.MessageBox(None, 'You have selected a zero sequence,' 
                             + '\n' + 'whose alpha, beta, d and q components'
@@ -1264,14 +1291,19 @@ def video_play(event):
     q_ax_on_x, q_ax_on_y, 
     d_vector_on_x, d_vector_on_y, 
     q_vector_on_x, q_vector_on_y) = cal_ABDQ(int_samples, dbl_base_freq, 
-                                                int_harmonic_order, 
+                                                dbl_harmonic_order, 
                                                 dbl_pll_order)
     
     (str_freq_harmonic, 
      str_freq_clarke, 
      str_freq_park, 
      dbl_period_clarke, 
-     dbl_period_park) = find_sequences(dbl_base_freq, int_harmonic_order, dbl_pll_order)
+     dbl_period_park) = find_sequences(dbl_base_freq, dbl_harmonic_order, dbl_pll_order)
+    
+    # find the maximum of all data points
+    ylim_max = max(max(alpha_vector), max(beta_vector), max(d_vector), max(q_vector)) + 0.05
+    
+    ylim_min = -1 * ylim_max
     
     str_freq_pll = find_pll_direction(dbl_base_freq, dbl_pll_order)
     
@@ -1279,11 +1311,17 @@ def video_play(event):
     
     ax1_text_freq_pll.set_text(str_freq_pll)
     
+#    if dbl_harmonic_order.is_integer() == False:
+#        
+#        ax1.plot(alpha_vector, beta_vector, color='pink')
+    
     ax2.set_xlim([0, dbl_base_period])
+    ax2.set_ylim([ylim_min, ylim_max])
     
     ax2Legend.set_title(str_freq_clarke)
     
     ax3.set_xlim([0, dbl_base_period])
+    ax3.set_ylim([ylim_min, ylim_max])
     
     ax3Legend.set_title(str_freq_park)
     
@@ -1294,10 +1332,11 @@ def video_play(event):
     ani.event_source.stop()
     plt.pause(0.5)  # allow time to update
     ani.event_source.start()
-    
-    
+        
     # save user configurations
     locStr_ini = collect_tb(list_textbox)   # collect all the content of the text boxes
+    
+    locStr_ini = '[User configurations]\n' + locStr_ini
     
     write_ini(str_ini_file_path, locStr_ini)    # write them to INI file
 # =============================================================================
@@ -1320,7 +1359,16 @@ def video_save(event, locObj_animation,
                locTextbox_fps, locTextbox_ffmpeg_path, 
                locList_textbox, locList_button, locIni_file_path):
     
-    locObj_animation.event_source.stop() 
+    # save user configurations
+    locStr_ini = collect_tb(locList_textbox)   # collect all the content of the text boxes
+    
+    locStr_ini = '[User configurations]\n' + locStr_ini
+    
+    write_ini(locIni_file_path, locStr_ini)    # write them to INI file
+    
+#    sleep(1)
+    
+#    locObj_animation.event_source.stop() 
     
     # prompt save video message box, yes/no
     locBool_save = win32api.MessageBox(None,('Do you want to save the video?' 
@@ -1337,12 +1385,16 @@ def video_save(event, locObj_animation,
                                         + win32con.MB_ICONINFORMATION)
     
     
+    
+#    sleep(1)
         
     # if yes, save the video
     if locBool_save == win32con.IDYES:
         
         # hide text box       
         for item in locList_textbox:
+            
+            print(date_time_now() + 'Hiding textboxes')
             
             item.ax.patch.set_visible(False)
             item.text_disp.set_visible(False)
@@ -1351,6 +1403,8 @@ def video_save(event, locObj_animation,
         
         # hide buttons        
         for item in locList_button:
+            
+            print(date_time_now() + 'Hiding buttons')
             
             item.ax.patch.set_visible(False)
             item.label.set_visible(False)
@@ -1436,22 +1490,27 @@ def video_save(event, locObj_animation,
             
             locStr_video_path = locStr_video_path + '.mp4'
             
-        locStr_video_temp_path = locStr_video_path + '_temp_' + str(int(np.random.rand() * 1e12)) + '.mp4'
+        locStr_video_temp_path = (locStr_video_path + '_temp_'
+                                  + str(int(np.random.rand() * 1e12)) 
+                                  + '.mp4')
         
         # this thread checks whether the video is saved or not
         thread_checker = threading.Thread(target=check_file_saved, 
                                           args=(locStr_video_path,))
         
         # this thread saves the animation to the harddrive
-        thread_worker = threading.Thread(target=save_animation_to_disk, 
-                                         args=(locObj_animation, 
-                                               locStr_video_temp_path,
-                                               locStr_video_path,
-                                               locFFwriter,))
+# =============================================================================
+#         thread_worker = threading.Thread(target=save_animation_to_disk, 
+#                                          args=(locObj_animation, 
+#                                                locStr_video_temp_path,
+#                                                locStr_video_path,
+#                                                locFFwriter))
+# =============================================================================
         
+#        save_animation_to_disk(locObj_animation, locStr_video_temp_path,locStr_video_path,locFFwriter)
         
         # close the main figure
-        plt.close(locObj_animation._fig)
+#        plt.close(locObj_animation._fig)
         
         try:
             
@@ -1459,8 +1518,12 @@ def video_save(event, locObj_animation,
             
             thread_checker.start()
             
-            thread_worker.start()
+            save_animation_to_disk(locObj_animation, locStr_video_temp_path,locStr_video_path,locFFwriter)
             
+#            thread_checker.start()
+            
+#            thread_worker.start()
+#            
 #            locObj_animation.save(locStr_video_path, writer=locFFwriter)
             
         except:
@@ -1474,10 +1537,12 @@ def video_save(event, locObj_animation,
             
             return None
         
-        # save user configurations
-        locStr_ini = collect_tb(locList_textbox)   # collect all the content of the text boxes
-        
-        write_ini(locIni_file_path, locStr_ini)    # write them to INI file
+# =============================================================================
+#         # save user configurations
+#         locStr_ini = collect_tb(locList_textbox)   # collect all the content of the text boxes
+#         
+#         write_ini(locIni_file_path, locStr_ini)    # write them to INI file
+# =============================================================================
                         
         # prompt finish message
 # =============================================================================
@@ -1538,6 +1603,10 @@ button_play.on_clicked(video_play)
 
 button_stop.on_clicked(lambda x: video_stop(x, ani)) 
 
+list_textbox = [textbox_input_harmonic, textbox_pll_order, 
+                textbox_samples, textbox_fps, textbox_base_freq,
+                textbox_ffmpeg_path]
+
 button_save_video.on_clicked(lambda x: video_save(x, ani, textbox_fps,
                                                   textbox_ffmpeg_path, 
                                                   list_textbox, list_button, 
@@ -1552,6 +1621,4 @@ button_browse.on_clicked(lambda x: load_ffmpeg_on_clicked(x, ani,
 
 
 # this needs to be the last
-fig_main.show()
-
-#atexit.register(exit_message)
+plt.show()
