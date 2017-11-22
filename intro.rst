@@ -25,12 +25,13 @@ Park Transform
 .. math::
 	\left[\begin{matrix} d \\ q \\ Zero \end{matrix}\right] = \left[\begin{matrix} \cos\theta & \sin\theta & 0 \\ -\sin\theta & \cos\theta & 0 \\ 0 & 0 & 1 \end{matrix}\right] \left[\begin{matrix} \alpha \\ \beta \\ Zero \end{matrix}\right]
 	
-	
+User Interface
+----------------------------------------
 .. figure:: images/Visualisation_of_Clarke_and_Park_Transforms.svg
    :height: 450
    :width: 800
-   
-|  **UI apperance.**
+   :alt: The user interface
+
 |
 |  **Input Harmonic Oder :**
 |    The order of harmonic to be analysed. Should be a positive number (unsigned float)		
