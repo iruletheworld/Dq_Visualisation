@@ -21,7 +21,7 @@ import threading
 from numpy import sin, cos
 from matplotlib.widgets import Button, TextBox
 from tkinter import filedialog
-from time import sleep
+#from time import sleep
 
 # custom module
 from gsyDqLib import date_time_now, cal_ABDQ, find_pll_direction

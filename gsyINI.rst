@@ -1,5 +1,5 @@
 Support Library : gsyINI
-============
+========================
 
 .. automodule:: gsyINI
     :members:

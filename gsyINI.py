@@ -4,14 +4,14 @@ Custom module for INI file read/write.
 
 Author : Dr. Gao, Siyu
 
-Version : 1.0
+Version : 0.1.0
 
 Last Modified : 2017-11-22
 
 Created : 2017-11-22
 
 Function 1 :
-    ------
+------------
     .. code:: python
     
         read_ini_to_tb(locStr_ini_file_path, locList_textbox)
@@ -20,7 +20,7 @@ Function 1 :
     the given matplotlib textboxes.
 
 Function 2 :
-    ------
+------------
     .. code:: python
     
         write_ini(locStr_ini_file_path, locStr_ini)

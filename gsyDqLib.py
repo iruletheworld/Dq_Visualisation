@@ -4,7 +4,7 @@ Custom module for supporting gsyDqMain.py
 
 Author : Dr. Gao, Siyu
 
-Version : 1.1
+Version : 0.1.1
 
 Last modified : 2017-11-22
 
