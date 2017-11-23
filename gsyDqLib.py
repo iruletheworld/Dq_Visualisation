@@ -2,11 +2,24 @@
 """
 Custom module for supporting gsyDqMain.py
 
-Author : Dr. Gao, Siyu
+Author : 高斯羽 博士 (Dr. Gao, Siyu)
 
 Version : 0.1.1
 
-Last modified : 2017-11-22
+Last modified : 2017-11-23
+
+List of functions
+----------------------
+
+* cal_ABDQ_
+* check_file_saved_
+* collect_tb_
+* date_time_now_
+* find_pll_direction_
+* find_sequences_
+* load_ffmpeg_
+* save_animation_to_disk_
+* set_font_size_
 
 """
 
@@ -26,7 +39,10 @@ from time import gmtime, strftime, sleep
 # <Function: get system time and date>
 # =============================================================================
 def date_time_now():
-    """Return the system date and time as a string.
+    """
+    .. _date_time_now :
+    
+    Return the system date and time as a string.
 
     Return format: 'yyyy-mm-dd, HH:MM:SS:'
 
@@ -58,7 +74,10 @@ def date_time_now():
 # <Function: Calculate Clarke and Park transforms>
 # =============================================================================
 def cal_ABDQ(locInt_Samples, locDbl_base_freq, locDbl_harmonic_order, locDbl_pll_order):
-    """Calculates the Clarke Transform (amplitude invariant) and the Park Transform.
+    """
+    .. _cal_ABDQ :
+    
+    Calculates the Clarke Transform (amplitude invariant) and the Park Transform.
     
     Returns the following arrays:
         |  time, theta, 
@@ -71,7 +90,7 @@ def cal_ABDQ(locInt_Samples, locDbl_base_freq, locDbl_harmonic_order, locDbl_pll
     
 
     Parameters
-    ----------
+    --------------
     locInt_Samples : int
         The number of samples to be taken during one base period.
     
@@ -102,7 +121,7 @@ def cal_ABDQ(locInt_Samples, locDbl_base_freq, locDbl_harmonic_order, locDbl_pll
         1d array according to the base frequency and the samples taken within the base period.
     
     locTheta : array
-        Angel calculated according to the time array and the base frequency. *θ = 2πft*.
+        Angel calculated according to the time array and the base frequency. (:math:`θ = 2πft`).
     
     locAlpha_vector : array
         *α* component of the amplitude invariant Clarke Transform.
@@ -142,13 +161,16 @@ def cal_ABDQ(locInt_Samples, locDbl_base_freq, locDbl_harmonic_order, locDbl_pll
 
     Examples
     --------
-    >>> (time, theta, 
-     alpha_vector, beta_vector, 
-    d_vector, q_vector,
-    d_ax_on_x, d_ax_on_y, 
-    q_ax_on_x, q_ax_on_y, 
-    d_vector_on_x, d_vector_on_y, 
-    q_vector_on_x, q_vector_on_y) = cal_ABDQ(200, 50, 1, 1)
+    
+    .. code:: python
+    
+        (time, theta, 
+         alpha_vector, beta_vector, 
+        d_vector, q_vector,
+        d_ax_on_x, d_ax_on_y, 
+        q_ax_on_x, q_ax_on_y, 
+        d_vector_on_x, d_vector_on_y, 
+        q_vector_on_x, q_vector_on_y) = cal_ABDQ(200, 50, 1, 1)
     """
 
     locDbl_harmonic_order = abs(locDbl_harmonic_order)
@@ -229,7 +251,10 @@ def cal_ABDQ(locInt_Samples, locDbl_base_freq, locDbl_harmonic_order, locDbl_pll
 # <Function: find PLL rotational direction>
 # =============================================================================
 def find_pll_direction(locDbl_base_freq, locDbl_pll_order):
-    """Determin the PLL is rotating anti-clockwise (positive) or clockwise (negative).
+    """
+    .. _find_pll_direction :
+    
+    Determin the PLL is rotating anti-clockwise (positive) or clockwise (negative).
 
     Return a formatted string.
 
@@ -299,7 +324,10 @@ def find_pll_direction(locDbl_base_freq, locDbl_pll_order):
 # <Function: find input Harmonic sequence and the frequencies of Clarke and Park transforms>
 # =============================================================================
 def find_sequences(locDbl_base_freq, locDbl_harmonic_order, locDbl_pll_order):
-    """Decide the input harmonic sequence (zero, positive, negative). Calculate
+    """
+    .. _find_sequences :    
+    
+    Decide the input harmonic sequence (zero, positive, negative). Calculate
     the frequencies of the input harmonic, the Clarke components, the Park components.
     Calculate the periods of the Clarke components and the Park components.
 
@@ -570,7 +598,10 @@ def find_sequences(locDbl_base_freq, locDbl_harmonic_order, locDbl_pll_order):
 # <Function: set period font size>
 # =============================================================================
 def set_font_size(locDbl_harmonic_order):
-    """Decrese the font size with increased harmonic order.
+    """
+    .. _set_font_size :
+    
+    Decrese the font size with increased harmonic order.
 
     A deadband is included (between 4 pt and 10 pt).
     
@@ -627,9 +658,11 @@ def set_font_size(locDbl_harmonic_order):
 # <Function: collect text boxes for write ini later>
 # =============================================================================
 def collect_tb(locList_textbox):
+    """
+    .. _collect_tb :
     
-    """Collect the input textboxes' labels and texts, replace some chars in the 
-    labels and form a big string delimited by a line break.
+    Collect the input textboxes' labels and texts, replace some chars in the 
+    labels and form a big string delimited by line breaks.
 
     Bascially, this function is used to form the mainbody of an INI file.
     
@@ -637,7 +670,7 @@ def collect_tb(locList_textbox):
     strings. The colon (":") would be replaced by "=".
     
     If a textbox's label is "I am god:" and its text is "I rule the world." Then
-    this function would turn it into 'Iamgod=I rule the world\\n'.
+    this function would turn it into 'Iamgod=I rule the world\\\\n'.
 
     Parameters
     ----------
@@ -650,7 +683,7 @@ def collect_tb(locList_textbox):
         Formatted string for INI elements.
         
         E.g.:
-            'InputHarmonicOrder=1.3\\\\nInputPLLOrder=1\\\\nSamples=200\\\\nFPS=30\\\\nBaseFreq=50\\\\nFFmpegpath='
+            'InputHarmonicOrder=1.3\\\\nInputPLLOrder=1\\\\nSamples=200\\\\nFPS=30\\\\nBaseFreq=50\\\\nFFmpegpath=\\\\n'
 
     Examples
     --------
@@ -687,9 +720,11 @@ def collect_tb(locList_textbox):
 # =============================================================================
 # <Function: load ffmpeg.exe>
 # =============================================================================
-def load_ffmpeg():
+def load_ffmpeg():    
+    """
+    .. _load_ffmpeg :
     
-    """This function prompts a file open dialog to allow the user to select the 
+    This function prompts a file open dialog to allow the user to select the 
     FFmpeg binary ("ffmpeg.exe") and ONLY this binary.
 
     This is to prevent selection error.
@@ -732,10 +767,12 @@ def load_ffmpeg():
 # =============================================================================
 # <Function: check whther the file exists periodically>
 # =============================================================================
-def check_file_saved(locStr_file_path, locInt_timeout=36000):
+def check_file_saved(locStr_file_path, locInt_timeout=36000):    
+    """
+    .. _check_file_saved :
     
-    """This function checks whether the file specificed in the given path exists
-    or not every two seconds until the file exists or the function is timeout.
+    This function checks whether the file specificed in the given path exists
+    or not every two seconds until the file exists or the function is timeouted.
     The default timeout time is 36000 seconds (10 hours). Note that when timeout,
     this function would only return a boolean "False" and would not do anything else.
 
@@ -755,7 +792,7 @@ def check_file_saved(locStr_file_path, locInt_timeout=36000):
 
     Returns
     -------
-    bool
+    **bool**
         Return True when file path is a file. Return False on timeout.
 
     Examples
@@ -828,9 +865,11 @@ def check_file_saved(locStr_file_path, locInt_timeout=36000):
 # <Function: save the animation to harddrive>    
 # =============================================================================
 def save_animation_to_disk(locObj_animation, locStr_video_temp_path, 
-                           locStr_video_path, locFFwriter):
+                           locStr_video_path, locFFwriter):    
+    """
+    .. _save_animation_to_disk :
     
-    """This function saves the matplotlib animation object as an animation to the 
+    This function saves the matplotlib animation object as an animation to the 
     harddrive.
 
     It would firstly save the video using the temporary path, and then rename
@@ -867,7 +906,7 @@ def save_animation_to_disk(locObj_animation, locStr_video_temp_path,
 
     Returns
     -------
-    bool
+    **bool**
         If no exception, returns True. If exception, returns False.
 
     Examples

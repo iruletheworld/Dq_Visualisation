@@ -12,6 +12,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import tkinter as tk
+import tkinter.messagebox as msgbox
 import os
 import win32api
 import win32con
@@ -37,7 +38,7 @@ mpl.rcParams['font.serif'] = 'Times New Roman'
 mpl.rcParams['mathtext.fontset'] = 'cm'
         
 
-# <Function: save the help text as a txt file>
+# <Function: save the text as a txt file>
 # =============================================================================
 def save_txt(event, locStr_help):
     
@@ -77,13 +78,16 @@ def save_txt(event, locStr_help):
     help_file.close()
     
     # prompt finish message
-    win32api.MessageBox(None, 
-                        'Text file save finished.' 
-                        + '\n' + '\n' + help_file_path, 
-                        'Text file save finished',
-                        win32con.MB_ICONINFORMATION)
+    locRoot = tk.Tk()
+    
+    locRoot.withdraw()
+    
+    msgbox.showinfo('Text file save finished', 
+                    'Text file save finished.' + '\n' + '\n' + help_file_path)
+    
+    locRoot.destroy()
 # =============================================================================
-# </Function: save the help text as a txt file>
+# </Function: save the text as a txt file>
 
 
 # <Function: make the animation>
@@ -1199,12 +1203,16 @@ def video_play(event):
         
     except ValueError:  
         
-        win32api.MessageBox(None, 
-                            r'This input must be a float.' 
-                            + '\n' 
-                            + r'Absolute values are taken for negative numbers', 
-                            'Not a float',
-                            win32con.MB_ICONERROR)
+        locRoot = tk.Tk()
+    
+        locRoot.withdraw()
+        
+        msgbox.showerror('Not a float', 
+                         r'This input must be a float.' 
+                         + '\n' 
+                         + r'Absolute values are taken for negative numbers')
+        
+        locRoot.destroy()
         
         textbox_input_harmonic.set_val('')
                 
@@ -1212,11 +1220,18 @@ def video_play(event):
     
     if np.mod(dbl_harmonic_order, 3) == 0:
         
-        win32api.MessageBox(None, 'You have selected a zero sequence,' 
-                            + '\n' + 'whose alpha, beta, d and q components'
-                            + '\n' + 'are zero.', 
-                            'Zero sequences need 3D coordinates',
-                            win32con.MB_ICONERROR)
+        locRoot = tk.Tk()
+    
+        locRoot.withdraw()
+        
+        msgbox.showerror('Zero sequences need 3D coordinates', 
+                         'You have selected a zero sequence,' 
+                         + '\n' 
+                         + 'whose alpha, beta, d and q components' 
+                         + '\n' 
+                         + 'are zero.')
+        
+        locRoot.destroy()
         
         return None
     
@@ -1226,9 +1241,14 @@ def video_play(event):
         
     except ValueError:
         
-        win32api.MessageBox(None, 'This input must be a float', 
-                            'Not a float',
-                            win32con.MB_ICONERROR)
+        locRoot = tk.Tk()
+    
+        locRoot.withdraw()
+        
+        msgbox.showerror('Not a float', 
+                         'This input must be a float')
+        
+        locRoot.destroy()
         
         textbox_pll_order.set_val('')
                         
@@ -1365,24 +1385,40 @@ def video_save(event, locObj_animation,
     locStr_ini = '[User configurations]\n' + locStr_ini
     
     write_ini(locIni_file_path, locStr_ini)    # write them to INI file
-    
-#    sleep(1)
-    
-#    locObj_animation.event_source.stop() 
-    
+     
     # prompt save video message box, yes/no
-    locBool_save = win32api.MessageBox(None,('Do you want to save the video?' 
-                                             + '\n'
-                                             + '\n' + 'This will take a while.'
-                                             + '\n' + 'No progress will be shown.'
-                                             + '\n' + 'You have to wait.'
-                                             + '\n' 
-                                             + '\n' + 'You will get a message when finished.'
-                                             + '\n' 
-                                             + '\n' + 'Also, you need to restart the program afterwards.'),
-                                        'Save video', 
-                                        win32con.MB_YESNO 
-                                        + win32con.MB_ICONINFORMATION)
+    
+    locStr_message = ('Do you want to save the video?' 
+                      + '\n' + 'This will take a while.'
+                      + '\n' + 'No progress will be shown.'
+                      + '\n' + 'You have to wait.'
+                      + '\n' 
+                      + '\n' + 'You will get a message when finished.'
+                      + '\n' 
+                      + '\n' + 'Also, you need to restart the program afterwards.')
+    
+    locRoot = tk.Tk()
+    
+    locRoot.withdraw()
+    
+    locBool_save = msgbox.askyesno('Save video', locStr_message)
+    
+    locRoot.destroy()
+    
+# =============================================================================
+#     locBool_save = win32api.MessageBox(None,('Do you want to save the video?' 
+#                                              + '\n'
+#                                              + '\n' + 'This will take a while.'
+#                                              + '\n' + 'No progress will be shown.'
+#                                              + '\n' + 'You have to wait.'
+#                                              + '\n' 
+#                                              + '\n' + 'You will get a message when finished.'
+#                                              + '\n' 
+#                                              + '\n' + 'Also, you need to restart the program afterwards.'),
+#                                         'Save video', 
+#                                         win32con.MB_YESNO 
+#                                         + win32con.MB_ICONINFORMATION)
+# =============================================================================
     
     
     
@@ -1603,9 +1639,11 @@ button_play.on_clicked(video_play)
 
 button_stop.on_clicked(lambda x: video_stop(x, ani)) 
 
-list_textbox = [textbox_input_harmonic, textbox_pll_order, 
-                textbox_samples, textbox_fps, textbox_base_freq,
-                textbox_ffmpeg_path]
+# =============================================================================
+# list_textbox = [textbox_input_harmonic, textbox_pll_order, 
+#                 textbox_samples, textbox_fps, textbox_base_freq,
+#                 textbox_ffmpeg_path]
+# =============================================================================
 
 button_save_video.on_clicked(lambda x: video_save(x, ani, textbox_fps,
                                                   textbox_ffmpeg_path, 

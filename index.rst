@@ -3,12 +3,13 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Clarke Transform and Park Transform Visualisation's documentation!
+Visualisation for Clarke Transform and Park Transform
 =============================================================================
 Visualisation for Clarke Transform and Park Transform
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
+   :numbered:
    
    intro
    gsyDqLib

@@ -1,7 +1,11 @@
 Introduction
 ============
 
-The purpose of this project is to visualise the Clarke Transform and the Park Transform.
+The purpose of this project is to visualise the Clarke Transform and the Park Transform. 
+
+A much heavier project to visualise the symmetrical components of three-phase 
+inputs (:math:`a_{\pm}, b_{\pm}, c_{\pm}, Zero`), the Clarke Transform (:math:`\alpha_{\pm}, \beta_{\pm}, Zero`)
+and the Park Transform (:math:`d_{\pm}, q_{\pm}, Zero`) is on the way.
 
 Three-Phase Inputs
 ----------------------------------------
@@ -12,19 +16,65 @@ Three-Phase Inputs
 	\left[\begin{matrix} a \\ b \\ c \end{matrix}\right] = \left[\begin{matrix} \cos(n \cdot \omega t) \\ \cos[n \cdot (\omega t - \frac{2}{3} \pi)] \\ \cos[n \cdot (\omega t + \frac{2}{3} \pi)] \end{matrix}\right]
 
 .. math::
-	where, n >= 0
+	where, n \geqslant 0
 
+.. note::
+    |  :math:`f` is the system's base frequency.
+    |  :math:`\omega` is the corresponding angular velocity.
+    |  :math:`n` is the harmonic order.
+    |  :math:`t` is the time.
+    |  
+    |  When :math:`n = 0 + 3k, k = 0, 1, 2, 3, \cdots ,` the three-phase inputs are said to be the **Zero Sequences**
+    |  When :math:`n = 1 + 3k, k = 0, 1, 2, 3, \cdots ,` the three-phase inputs are said to be the **Positive Sequences**
+    |  When :math:`n = 2 + 3k, k = 0, 1, 2, 3, \cdots ,` the three-phase inputs are said to be the **Negative Sequences**
+    
 
 Clarke Transform (amplitude invariant)
 ----------------------------------------
 .. math::
 	\left[\begin{matrix} \alpha \\ \beta \\ Zero \end{matrix}\right] = \frac{2}{3} \left[\begin{matrix} 1 & -\frac{1}{2} & -\frac{1}{2} \\ 0 & \frac{\sqrt{3}}{2} & -\frac{\sqrt{3}}{2} \\ \frac{1}{2} & \frac{1}{2} & \frac{1}{2} \end{matrix}\right] \left[\begin{matrix} a \\ b \\ c \end{matrix}\right]
+    
+.. note::
+    |  For **Zero Sequences** :math:`\alpha` and :math:`\beta` components are zero.
+    |  For **Positive Sequences** :math:`\alpha` **leads** :math:`\beta` by :math:`90^{\circ}`.
+    |  For **Negative Sequences** :math:`\alpha` **lags** :math:`\beta` by :math:`90^{\circ}`.
+    |
+    |  The Clarke Transform does not alter the frequency. I.e., if the three-phase input frequency is 50 Hz, the frequencies of the Clarke components would still be 50 Hz.
+    |  
+    |  Interharmonics are not of any sequence because they are not evenly space by :math:`120^{\circ}`.
+    
 
 Park Transform
 ----------------------------------------
 .. math::
 	\left[\begin{matrix} d \\ q \\ Zero \end{matrix}\right] = \left[\begin{matrix} \cos\theta & \sin\theta & 0 \\ -\sin\theta & \cos\theta & 0 \\ 0 & 0 & 1 \end{matrix}\right] \left[\begin{matrix} \alpha \\ \beta \\ Zero \end{matrix}\right]
 	
+.. note::
+    |  For **Zero Sequences** :math:`d` and :math:`q` components are zero.
+    |  For **Positive Sequences** :math:`d` **leads** :math:`q` by :math:`90^{\circ}`.
+    |  For **Negative Sequences** :math:`d` **lags** :math:`q` by :math:`90^{\circ}`.
+    |  
+    |  The Park Transform does not alter the phase difference between the components. I.e., if :math:`\alpha` leads :math:`\beta`, then :math:`d` would still lead :math:`q`.
+    |  However, the Park Transform changes the frequencies. This change is related to the **sequence** of the three-phase inputs. 
+    |  
+    |  For **Positive Sequences**, the frequencies of the :math:`d` and :math:`q` components would be reduced by 1 order of the base frequency. 
+    |  
+    |  For **Negative Sequences**, the frequencies of the :math:`d` and :math:`q` components would be increased by 1 order of the base frequency. 
+    |  
+    
+      Examples :
+        |  The :math:`d` and :math:`q` components of the 1st order harmonic (the fundamental, Positive Sequences) would be DC components :
+        |
+        |  :math:`f_{Park} = (+1 - 1) \cdot f_{base} = 0`
+        |
+        |  where :math:`+1` means (**Positive Sequence** and once the base frequency).
+        |  
+        |  The :math:`d` and :math:`q` components of the 2nd order harmonic (Negative Sequences) would 3 times the base frequency : 
+        |
+        |  :math:`f_{Park} = (-2 - 1) \cdot f_{base} = -3 \cdot f_{base}`
+        |
+        |  where :math:`-2` means (**Negative Sequence** and twice the base frequency) and the minus sign means :math:`d` lags :math:`q`.
+    
 User Interface
 ----------------------------------------
 .. figure:: images/Visualisation_of_Clarke_and_Park_Transforms.svg
@@ -32,7 +82,9 @@ User Interface
    :width: 800
    :alt: The user interface
 
-|
+List of User Configurations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 |  **Input Harmonic Oder :**
 |    The order of harmonic to be analysed. Should be a positive number (unsigned float)		
 |
@@ -53,3 +105,22 @@ User Interface
 
 .. note::
    Zero Sequences are not plotted since their :math:`\alpha, \beta, d` and :math:`q` components are zero. Also, they need 3D coordinates.
+   
+List of Dynamic Information
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+|  **Information for the input harmonic :**
+|    These pieces of information are displayed in the left top corner, inside the red box. 
+|    They include: the harmonic frequency, the sequence of the input harmonic, the rotational direction of this input harmonic.
+|  
+|  **Information for the PLL :**
+|    These pieces of information are displayed in the left top middle corner, inside the blue box. 
+|    They include: frequency of the PLL and the rotational direction of the PLL.
+|  
+|  **Information for the Clarke Transform :**
+|    These pieces of information are displayed in the right top corner. 
+|    They include: frequency of the Clarke components and the phase relation between them.
+|  
+|  **Information for the Park Transform :**
+|    These pieces of information are displayed in the right middle corner. 
+|    They include: frequency of the Park components and the phase relation between them.

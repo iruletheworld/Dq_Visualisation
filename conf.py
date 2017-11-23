@@ -54,8 +54,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'gsyDqVisualisation'
-copyright = '2017, Dr. GAO, Siyu'
+project = 'Visualisation for the Clarkeand the Park Transforms'
+copyright = '2017, Dr. GAO, Siyu. 高斯羽 博士'
 author = 'Dr. GAO, Siyu'
 
 # The version info for the project you're documenting, acts as replacement for
