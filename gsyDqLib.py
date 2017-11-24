@@ -2,20 +2,35 @@
 """
 Custom module for supporting gsyDqMain.py
 
-Author : Dr. Gao, Siyu
+Author : 高斯羽 博士 (Dr. GAO, Siyu)
 
-Version : 1.1
+Version : 0.1.2
 
-Last modified : 2017-11-22
+Last modified : 2017-11-24
+
+List of functions
+----------------------
+
+* cal_ABDQ_
+* check_file_saved_
+* collect_tb_
+* date_time_now_
+* find_pll_direction_
+* find_sequences_
+* load_ffmpeg_
+* save_animation_to_disk_
+* set_font_size_
+
+Function definitions
+----------------------
 
 """
 
 import numpy as np
 import tkinter as tk
+import tkinter.messagebox as msgbox
 import sys
 import os
-import win32api
-import win32con
 import time
 
 from numpy import sin, cos, pi
@@ -25,8 +40,12 @@ from time import gmtime, strftime, sleep
 # =============================================================================
 # <Function: get system time and date>
 # =============================================================================
+
 def date_time_now():
-    """Return the system date and time as a string.
+    """
+    .. _date_time_now :
+    
+    Return the system date and time as a string.
 
     Return format: 'yyyy-mm-dd, HH:MM:SS:'
 
@@ -38,7 +57,7 @@ def date_time_now():
     -------
     locStr_time_date : str
         Formatted system date time string in 'yyyy-mm-dd, HH:MM:SS:'. 
-        The last colon is intended for print to the console (or making logs).
+        The last colon is intended for printing to the console (or making logs).
 
     Examples
     --------
@@ -49,6 +68,7 @@ def date_time_now():
     locStr_time_date = strftime('%Y-%m-%d, %H:%M:%S:', gmtime())
     
     return locStr_time_date
+
 # =============================================================================
 # </Function: get system time and date>
 # =============================================================================
@@ -57,8 +77,12 @@ def date_time_now():
 # =============================================================================
 # <Function: Calculate Clarke and Park transforms>
 # =============================================================================
+    
 def cal_ABDQ(locInt_Samples, locDbl_base_freq, locDbl_harmonic_order, locDbl_pll_order):
-    """Calculates the Clarke Transform (amplitude invariant) and the Park Transform.
+    """
+    .. _cal_ABDQ :
+    
+    Calculates the Clarke Transform (amplitude invariant) and the Park Transform.
     
     Returns the following arrays:
         |  time, theta, 
@@ -71,7 +95,7 @@ def cal_ABDQ(locInt_Samples, locDbl_base_freq, locDbl_harmonic_order, locDbl_pll
     
 
     Parameters
-    ----------
+    --------------
     locInt_Samples : int
         The number of samples to be taken during one base period.
     
@@ -90,9 +114,12 @@ def cal_ABDQ(locInt_Samples, locDbl_base_freq, locDbl_harmonic_order, locDbl_pll
         frequency that the PLL is rotating.
         
         E.g. : 
-            |  1    means the PLL is rotating anti-clockwise and at 1 times the base frequency.            
+            |  1    means the PLL is rotating anti-clockwise and at 1 times the base frequency.     
+            |  
             |  2.7  means the PLL is rotating anti-clockwise and at 2.7 times the base frequency.            
+            |  
             |  -2   means the PLL is rotating clock-wise and at 2 times the base frequency.                        
+            |  
             |  -3.3 means the PLL is rotating clock-wise and at 3.3 times the base frequency.
     
     
@@ -102,7 +129,7 @@ def cal_ABDQ(locInt_Samples, locDbl_base_freq, locDbl_harmonic_order, locDbl_pll
         1d array according to the base frequency and the samples taken within the base period.
     
     locTheta : array
-        Angel calculated according to the time array and the base frequency. *θ = 2πft*.
+        Angel calculated according to the time array and the base frequency. (:math:`θ = 2πft`).
     
     locAlpha_vector : array
         *α* component of the amplitude invariant Clarke Transform.
@@ -142,13 +169,16 @@ def cal_ABDQ(locInt_Samples, locDbl_base_freq, locDbl_harmonic_order, locDbl_pll
 
     Examples
     --------
-    >>> (time, theta, 
-     alpha_vector, beta_vector, 
-    d_vector, q_vector,
-    d_ax_on_x, d_ax_on_y, 
-    q_ax_on_x, q_ax_on_y, 
-    d_vector_on_x, d_vector_on_y, 
-    q_vector_on_x, q_vector_on_y) = cal_ABDQ(200, 50, 1, 1)
+    
+    .. code:: python
+    
+        (time, theta, 
+         alpha_vector, beta_vector, 
+        d_vector, q_vector,
+        d_ax_on_x, d_ax_on_y, 
+        q_ax_on_x, q_ax_on_y, 
+        d_vector_on_x, d_vector_on_y, 
+        q_vector_on_x, q_vector_on_y) = cal_ABDQ(200, 50, 1, 1)
     """
 
     locDbl_harmonic_order = abs(locDbl_harmonic_order)
@@ -220,6 +250,7 @@ def cal_ABDQ(locInt_Samples, locDbl_base_freq, locDbl_harmonic_order, locDbl_pll
             locQ_ax_on_x, locQ_ax_on_y, 
             locD_vector_on_x, locD_vector_on_y, 
             locQ_vector_on_x, locQ_vector_on_y)
+    
 # =============================================================================
 # </Function: Calculate Clarke and Park transforms>
 # =============================================================================
@@ -228,10 +259,14 @@ def cal_ABDQ(locInt_Samples, locDbl_base_freq, locDbl_harmonic_order, locDbl_pll
 # =============================================================================
 # <Function: find PLL rotational direction>
 # =============================================================================
+    
 def find_pll_direction(locDbl_base_freq, locDbl_pll_order):
-    """Determin the PLL is rotating anti-clockwise (positive) or clockwise (negative).
+    """
+    .. _find_pll_direction :
+    
+    Determin the PLL is rotating anti-clockwise (positive) or clockwise (negative).
 
-    Return a formatted string.
+    Returns a formatted string.
 
     Parameters
     ----------
@@ -290,6 +325,7 @@ def find_pll_direction(locDbl_base_freq, locDbl_pll_order):
         sys.exit('Fatal Error. Source: find_pll_direction()')
         
     return locStr_freq_pll
+
 # =============================================================================
 # </Function: find PLL rotational direction>
 # =============================================================================
@@ -298,27 +334,35 @@ def find_pll_direction(locDbl_base_freq, locDbl_pll_order):
 # =============================================================================
 # <Function: find input Harmonic sequence and the frequencies of Clarke and Park transforms>
 # =============================================================================
+    
 def find_sequences(locDbl_base_freq, locDbl_harmonic_order, locDbl_pll_order):
-    """Decide the input harmonic sequence (zero, positive, negative). Calculate
+    """
+    .. _find_sequences :    
+    
+    Decides the input harmonic sequence (zero, positive, negative). Calculates
     the frequencies of the input harmonic, the Clarke components, the Park components.
-    Calculate the periods of the Clarke components and the Park components.
+    Calculates the periods of the Clarke components and the Park components.
 
-    Conversion frequencies to periods could lead to zero divition. To deal with this,
+    Converting frequencies to periods could lead to zero divition. To deal with this,
     if the frequency is zero, then the period would be set to zero.
     
     The sequence of the input harmonic is calculated by:  
+        
+    .. code:: python
+    
         locInt_remainder = np.mod(locDbl_harmonic_order, 3)
             
-    |  If locInt_remainder == 0, then it is a zero sequence.
-    |  If locInt_remainder == 1, then it is a positive sequence.
-    |  If locInt_remainder == 2, then it is a negative sequence.
+    |  **If locInt_remainder == 0, then it is a zero sequence.**
+    |  **If locInt_remainder == 1, then it is a positive sequence.**
+    |  **If locInt_remainder == 2, then it is a negative sequence.**
+    |  
     
     If locInt_remainder is not an integer, i.e., it is a decimal number, then
-    the input harmonic is an interharmonic and the definition of sequence does not 
-    apply.
+    the input harmonic is an interharmonic and the definition of sequences does 
+    not apply.
     
     For Clarke Transform components, their frequencies are always equal to the
-    input harmonic. For positive sequneces, *α* leads *β* by 90°. 
+    input harmonic's. For positive sequneces, *α* leads *β* by 90°. 
     For negative sequneces, *α* lags *β* by 90°.
         
     For Park Transform components, their frequencies are related to how the input
@@ -334,11 +378,11 @@ def find_sequences(locDbl_base_freq, locDbl_harmonic_order, locDbl_pll_order):
     E.g.:        
         |  locDbl_harmonic_order = 1 (positive sequence)
         |  locDbl_pll_order      = 1
-        |  The relative angular frequency is (1 - 1)·*ω* = 0, thus *d*, *q* are DC
+        |  The relative angular frequency is :math:`(1 - 1)·*ω* = 0`, thus *d*, *q* are DC
         |  
         |  locDbl_harmonic_order = 2 (negative sequence)
         |  locDbl_pll_order      = 1
-        |  The relative angular frequency is (-2 - 1)·*ω* = -3, thus *d*, *q* are
+        |  The relative angular frequency is :math:`(-2 - 1)·*ω* = -3`, thus *d*, *q* are
            of 3 times the base frequency and *d* lags *q* by 90°.
         |
         |  Note that this function would take abs() on locDbl_harmonic_order and then
@@ -360,11 +404,12 @@ def find_sequences(locDbl_base_freq, locDbl_harmonic_order, locDbl_pll_order):
         The PLL rotational direction and frequency as multiples of the base
         frequency.
         
-        E.g., 
-        1 (locked on to the fundamental), 1.3 (anti-clockwise 
-        at 1.3 times the base frequency), -2 (locked on the 2nd harmonic,
-        negative sign due to 2nd harmonic is a negative sequence),
-        -3.6 (clockwise at 3.6 times the base frequency)
+        E.g.,: 
+            |  1 (locked on to the fundamental)
+            |  1.3 (anti-clockwise at 1.3 times the base frequency)
+            |  -2 (locked on the 2nd harmonic, negative sign due to 2nd harmonic
+                   is a negative sequence)
+            |  -3.6 (clockwise at 3.6 times the base frequency)
 
     Returns
     -------
@@ -374,10 +419,10 @@ def find_sequences(locDbl_base_freq, locDbl_harmonic_order, locDbl_pll_order):
     locStr_freq_clarke : str
         string containing information of the Clarke components' frequencies
     ..        
-    locStr_freq_park :str
+    locStr_freq_park : str
         string containing information of the Park components' frequencies
     ..    
-    locDbl_period_clarke :  float
+    locDbl_period_clarke : float
         Period of the Clarke components
     ..        
     locDbl_period_park : float
@@ -561,6 +606,7 @@ def find_sequences(locDbl_base_freq, locDbl_harmonic_order, locDbl_pll_order):
         
     return (locStr_freq_harmonic, locStr_freq_clarke, locStr_freq_park, 
             locDbl_period_clarke, locDbl_period_park)
+    
 # =============================================================================
 # </Function: find input Harmonic sequence and the frequencies of Clarke and Park transforms>
 # =============================================================================
@@ -569,16 +615,27 @@ def find_sequences(locDbl_base_freq, locDbl_harmonic_order, locDbl_pll_order):
 # =============================================================================
 # <Function: set period font size>
 # =============================================================================
+    
 def set_font_size(locDbl_harmonic_order):
-    """Decrese the font size with increased harmonic order.
+    """
+    .. _set_font_size :
+    
+    Decrese the font size with increased harmonic order.
 
     A deadband is included (between 4 pt and 10 pt).
     
     Equation for calculation:
+        
+    .. code:: python
+        
         locDbl_font_size = -0.5 * abs(locDbl_harmonic_order) + 11    
         
     If the input harmonic order is bigger than 15, the font size would be set
     to 1e-6.
+    
+    .. figure:: images/set_font_size.svg
+       :width: 500
+       :alt: Font size vs Input harmonic order
 
     Parameters
     ----------
@@ -618,6 +675,7 @@ def set_font_size(locDbl_harmonic_order):
         locDbl_font_size = 1.0e-6
     
     return locDbl_font_size
+
 # =============================================================================
 # </Function: set period font size>
 # =============================================================================
@@ -626,10 +684,13 @@ def set_font_size(locDbl_harmonic_order):
 # =============================================================================
 # <Function: collect text boxes for write ini later>
 # =============================================================================
-def collect_tb(locList_textbox):
     
-    """Collect the input textboxes' labels and texts, replace some chars in the 
-    labels and form a big string delimited by a line break.
+def collect_tb(locList_textbox):
+    """
+    .. _collect_tb :
+    
+    Collect the input textboxes' labels and texts, replace some chars in the 
+    labels and form a big string delimited by line breaks.
 
     Bascially, this function is used to form the mainbody of an INI file.
     
@@ -637,7 +698,7 @@ def collect_tb(locList_textbox):
     strings. The colon (":") would be replaced by "=".
     
     If a textbox's label is "I am god:" and its text is "I rule the world." Then
-    this function would turn it into 'Iamgod=I rule the world\\n'.
+    this function would turn it into 'Iamgod=I rule the world\\\\n'.
 
     Parameters
     ----------
@@ -650,7 +711,7 @@ def collect_tb(locList_textbox):
         Formatted string for INI elements.
         
         E.g.:
-            'InputHarmonicOrder=1.3\\\\nInputPLLOrder=1\\\\nSamples=200\\\\nFPS=30\\\\nBaseFreq=50\\\\nFFmpegpath='
+            'InputHarmonicOrder=1.3\\\\nInputPLLOrder=1\\\\nSamples=200\\\\nFPS=30\\\\nBaseFreq=50\\\\nFFmpegpath=\\\\n'
 
     Examples
     --------
@@ -679,6 +740,7 @@ def collect_tb(locList_textbox):
     print(date_time_now() + 'Collection complete')   
     
     return locStr_textbox
+
 # =============================================================================
 # </Function: collect text boxes for write ini later>
 # =============================================================================
@@ -687,9 +749,12 @@ def collect_tb(locList_textbox):
 # =============================================================================
 # <Function: load ffmpeg.exe>
 # =============================================================================
-def load_ffmpeg():
+
+def load_ffmpeg():    
+    """
+    .. _load_ffmpeg :
     
-    """This function prompts a file open dialog to allow the user to select the 
+    This function prompts a file open dialog to allow the user to select the 
     FFmpeg binary ("ffmpeg.exe") and ONLY this binary.
 
     This is to prevent selection error.
@@ -701,7 +766,8 @@ def load_ffmpeg():
     Returns
     -------
     locStr_ffmpeg_path : str
-        The path of the FFmpeg binary.
+        The path of the FFmpeg binary. If the select file path does not end with
+        "ffmpeg.exe" or "ffmpeg", this would be an empty string.
 
     Examples
     --------
@@ -723,7 +789,16 @@ def load_ffmpeg():
     # destroy tk main window
     locRoot.destroy()   
     
-    return locStr_ffmpeg_path
+    if locStr_ffmpeg_path.endswith(('ffmpeg.exe', 'ffmpeg')):
+            
+        return locStr_ffmpeg_path
+    
+    else:
+        
+        locStr_ffmpeg_path = ''
+        
+        return locStr_ffmpeg_path
+
 # =============================================================================
 # </Function: load ffmpeg.exe>
 # =============================================================================
@@ -732,11 +807,14 @@ def load_ffmpeg():
 # =============================================================================
 # <Function: check whther the file exists periodically>
 # =============================================================================
-def check_file_saved(locStr_file_path, locInt_timeout=36000):
     
-    """This function checks whether the file specificed in the given path exists
-    or not every two seconds until the file exists or the function is timeout.
-    The default timeout time is 36000 seconds (10 hours). Note that when timeout,
+def check_file_saved(locStr_file_path, locInt_timeout=36000):    
+    """
+    .. _check_file_saved :
+    
+    This function checks whether the file specificed in the given path exists
+    or not every two seconds until the file exists or the function is timeouted.
+    The default timeout time is 36000 seconds (10 hours). Note that when timeouted,
     this function would only return a boolean "False" and would not do anything else.
 
     This function is intended to be used with threadings. I.e., one thread saves
@@ -747,7 +825,7 @@ def check_file_saved(locStr_file_path, locInt_timeout=36000):
 
     Parameters
     ----------
-    locStr_file_path : int
+    locStr_file_path : str
         The file path to be checked (the real one). 
         
     locInt_timeout : int
@@ -818,7 +896,8 @@ def check_file_saved(locStr_file_path, locInt_timeout=36000):
             sleep(2)
     # while-loop end
             
-    return True            
+    return True       
+     
 # =============================================================================
 # </Function: check whther the file exists periodically>    
 # =============================================================================
@@ -827,10 +906,13 @@ def check_file_saved(locStr_file_path, locInt_timeout=36000):
 # =============================================================================
 # <Function: save the animation to harddrive>    
 # =============================================================================
-def save_animation_to_disk(locObj_animation, locStr_video_temp_path, 
-                           locStr_video_path, locFFwriter):
     
-    """This function saves the matplotlib animation object as an animation to the 
+def save_animation_to_disk(locObj_animation, locStr_video_temp_path, 
+                           locStr_video_path, locFFwriter):    
+    """
+    .. _save_animation_to_disk :
+    
+    This function saves the matplotlib animation object as an animation to the 
     harddrive.
 
     It would firstly save the video using the temporary path, and then rename
@@ -861,9 +943,7 @@ def save_animation_to_disk(locObj_animation, locStr_video_temp_path,
         
     locFFwriter : object, matplotlib video writer object
         The intened video writer object. See matplolib's documentation for 
-        details:
-        
-        https://goo.gl/oUCEVH
+        details: https://goo.gl/oUCEVH
 
     Returns
     -------
@@ -943,10 +1023,16 @@ def save_animation_to_disk(locObj_animation, locStr_video_temp_path,
         print(date_time_now() + 'Time taken : ' +  ('%d:%02d:%02d' % (hour, minute, second)))
         
         # prompt finish message
-        win32api.MessageBox(None, ('Video save finished.' 
-                                   + '\n' + '\n' + locStr_video_path), 
-                            'Video save finished', 
-                            win32con.MB_ICONINFORMATION)
+        locRoot = tk.Tk()
+    
+        locRoot.withdraw()
+        
+        msgbox.showinfo('Video save finished', 
+                         'Video save finished.' 
+                         + '\n' 
+                         + '\n' + locStr_video_path)
+        
+        locRoot.destroy()
             
         return True
             
@@ -964,14 +1050,20 @@ def save_animation_to_disk(locObj_animation, locStr_video_temp_path,
         print(date_time_now() + 'Fatal error while trying to save the animation')
         
         # prompt fail message
-        win32api.MessageBox(None, ('Video save failed.' 
-                                   + '\n'
-                                   + '\n' + 'Source: "save_animation_to_disk"'),
-                            'Video save failed', 
-                            win32con.MB_ICONERROR)
         
+        locRoot = tk.Tk()
+    
+        locRoot.withdraw()
+        
+        msgbox.showerror('Video save failed', 
+                         'Video save failed.' 
+                         + '\n'
+                         + '\n' + 'Source: "save_animation_to_disk"')
+        
+        locRoot.destroy()
+                        
         return False
+    
 # =============================================================================
 # </Function: save the animation to harddrive>    
 # =============================================================================
-        

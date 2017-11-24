@@ -5,94 +5,155 @@ Created on Fri Nov 17 16:03:51 2017
 @author: BachDesktop
 """
 
-import numpy as np
 import matplotlib as mpl
-
-#import cmath
 
 import matplotlib.pyplot as plt
 
-from gsyTransforms import cal_symm, cal_clarke, cal_park
+import numpy as np
 
-from numpy import pi, sin, cos, sqrt
+from gsyDqLib import set_font_size
 
-# matplotlib setup
-mpl.rcParams['font.family'] = 'serif'
-mpl.rcParams['text.usetex'] = True
-#mpl.rcParams['text.latex.preview'] = True
-mpl.rcParams['text.latex.preamble'] = [r'\boldmath']
-mpl.rcParams['font.weight'] = 'bold'
+size = np.arange(-1, 20, 0.01)
 
-time_end = 0.08
+font_size = []
 
-time = np.linspace( 0, time_end, (10 ** 5) )
+for i in size:
+    
+    font_size.append(set_font_size(i))
 
-# angular freq
-omega = 2 * np.pi * 50
+plt.plot(size, font_size)
 
-theta = omega * time
+plt.xlim([0, 20])
 
-n = 1.3
+plt.xlabel('Input harmonic order', fontweight='bold', fontsize=15)
 
-phase_a = n * (theta) 
-phase_b = n * (theta - (2 / 3 * pi)) 
-phase_c = n * (theta + (2 / 3 * pi)) 
+plt.ylabel('Font size', fontweight='bold', fontsize=15)
 
-a = ( cos(phase_a) + 1j * sin(phase_a) ) * 1.7
+plt.grid()
 
-b = ( cos(phase_b) + 1j * sin(phase_b) ) * 1.2
-
-c = ( cos(phase_c) + 1j * sin(phase_c) ) * 2.8
-
-a_pos, b_pos, c_pos, a_neg, b_neg, c_neg, zero = cal_symm(a, b, c)
-
-plt.subplot(411)
-
-plt.plot(time, a, color='r')
-plt.plot(time, b, color='g')
-plt.plot(time, c, color='b')
-
-ylim_max =  3
-ylim_min = -1 * ylim_max
-
-
-plt.xlim([0, time_end])
-plt.ylim([ylim_min, ylim_max])
-
-plt.grid(True)
-
-plt.subplot(412)
-
-plt.plot(time, a_pos, color='r')
-plt.plot(time, b_pos, color='g')
-plt.plot(time, c_pos, color='b')
-
-plt.xlim([0, time_end])
-plt.ylim([ylim_min, ylim_max])
-
-plt.grid(True)
-
-plt.subplot(413)
-
-plt.plot(time, a_neg, color='r')
-plt.plot(time, b_neg, color='g')
-plt.plot(time, c_neg, color='b')
-
-plt.xlim([0, time_end])
-plt.ylim([ylim_min, ylim_max])
-
-plt.grid(True)
-
-plt.subplot(414)
-
-plt.plot(time, zero)
-
-plt.xlim([0, time_end])
-plt.ylim([ylim_min, ylim_max])
-
-plt.grid(True)
+plt.tight_layout()
 
 plt.show()
+
+# =============================================================================
+# import glob
+# import os
+# 
+# for filename in glob.iglob('./**/*.html', recursive=True):
+#     print(filename)
+#     
+#     if filename.endswith(os.path.join(os.sep , 'index.html')):
+#         
+#         os.startfile(filename)
+# =============================================================================
+    
+
+# =============================================================================
+# #https://goo.gl/rnMnt4
+# import os
+# import sys
+# a = sys.executable
+# 
+# index = a.rfind(os.sep)
+# 
+# a = a[(index + 1):]
+# 
+# if a == 'pythonw.exe':
+#     print('Running in Python IDLE')
+# else:
+#     print('Running in Command line')
+# =============================================================================
+    
+# =============================================================================
+# import numpy as np
+# import matplotlib as mpl
+# 
+# #import cmath
+# 
+# import matplotlib.pyplot as plt
+# 
+# from gsyTransforms import cal_symm, cal_clarke, cal_park
+# 
+# from numpy import pi, sin, cos, sqrt
+# 
+# # matplotlib setup
+# mpl.rcParams['font.family'] = 'serif'
+# mpl.rcParams['text.usetex'] = True
+# #mpl.rcParams['text.latex.preview'] = True
+# mpl.rcParams['text.latex.preamble'] = [r'\boldmath']
+# mpl.rcParams['font.weight'] = 'bold'
+# 
+# time_end = 0.08
+# 
+# time = np.linspace( 0, time_end, (10 ** 5) )
+# 
+# # angular freq
+# omega = 2 * np.pi * 50
+# 
+# theta = omega * time
+# 
+# n = 1.3
+# 
+# phase_a = n * (theta) 
+# phase_b = n * (theta - (2 / 3 * pi)) 
+# phase_c = n * (theta + (2 / 3 * pi)) 
+# 
+# a = ( cos(phase_a) + 1j * sin(phase_a) ) * 1.7
+# 
+# b = ( cos(phase_b) + 1j * sin(phase_b) ) * 1.2
+# 
+# c = ( cos(phase_c) + 1j * sin(phase_c) ) * 2.8
+# 
+# a_pos, b_pos, c_pos, a_neg, b_neg, c_neg, zero = cal_symm(a, b, c)
+# 
+# plt.subplot(411)
+# 
+# plt.plot(time, a, color='r')
+# plt.plot(time, b, color='g')
+# plt.plot(time, c, color='b')
+# 
+# ylim_max =  3
+# ylim_min = -1 * ylim_max
+# 
+# 
+# plt.xlim([0, time_end])
+# plt.ylim([ylim_min, ylim_max])
+# 
+# plt.grid(True)
+# 
+# plt.subplot(412)
+# 
+# plt.plot(time, a_pos, color='r')
+# plt.plot(time, b_pos, color='g')
+# plt.plot(time, c_pos, color='b')
+# 
+# plt.xlim([0, time_end])
+# plt.ylim([ylim_min, ylim_max])
+# 
+# plt.grid(True)
+# 
+# plt.subplot(413)
+# 
+# plt.plot(time, a_neg, color='r')
+# plt.plot(time, b_neg, color='g')
+# plt.plot(time, c_neg, color='b')
+# 
+# plt.xlim([0, time_end])
+# plt.ylim([ylim_min, ylim_max])
+# 
+# plt.grid(True)
+# 
+# plt.subplot(414)
+# 
+# plt.plot(time, zero)
+# 
+# plt.xlim([0, time_end])
+# plt.ylim([ylim_min, ylim_max])
+# 
+# plt.grid(True)
+# 
+# plt.show()
+# =============================================================================
 
 # =============================================================================
 # quad = np.exp(-1j * np.pi/2)

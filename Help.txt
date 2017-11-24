@@ -31,11 +31,11 @@ Play :
 This button would refresh the video. Any updates made to the input fileds would be applied.
 
 Save video :
-This button would trigger the video to be saved. NO progress would be displayed due to the use of
-maplotlib's built-in save function. A message would be prompted when the save is finished.
+This button would trigger the video to be saved. Only limited progress would be displayed 
+due to the use of maplotlib's built-in save function. A message would be prompted when the save is finished.
 The codec FFmpeg is required. It's free to download and use. The FFmpeg binary (ffmpeg.exe) is required. 
 It's usually located in the "bin" folder. The video length equals Samples divided by FPS.
 
 Browse : 
 This button would allow you to browse for the FFmpeg binary.
-The path would be saved to an ini file and loaded on next program start-up.
+The path would be saved to an INI file and loaded on next program start-up.
