@@ -3,16 +3,15 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Dynamic Visualisation for Clarke Transform and Park Transform
+Visualisation for Clarke Transform and Park Transform
 =============================================================================
-Dynamic Visualisation for Clarke Transform and Park Transform
+Visualisation for Clarke Transform and Park Transform
 
 .. toctree::
    :maxdepth: 3
    :numbered:
    
    intro
-   gsyDqMain
    gsyDqLib
    gsyINI
 

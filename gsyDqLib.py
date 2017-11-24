@@ -25,6 +25,7 @@ List of functions
 
 import numpy as np
 import tkinter as tk
+import tkinter.messagebox as msgbox
 import sys
 import os
 import win32api
@@ -1013,4 +1014,61 @@ def save_animation_to_disk(locObj_animation, locStr_video_temp_path,
 # =============================================================================
 # </Function: save the animation to harddrive>    
 # =============================================================================
+
+
+# =============================================================================
+# <Function: save the text as a txt file>
+# =============================================================================
+def save_txt(event, locStr_help):
+    
+    locRoot = tk.Tk()
+    
+    locRoot.withdraw()
+    
+    help_file_path = filedialog.asksaveasfilename(initialdir=os.getcwd(),
+                                                  title="Save as txt",
+                                                  filetypes = (("Text files","*.txt"),
+                                                               ("all files","*.*")))
         
+    locRoot.destroy()
+    
+    # if user cancelled, exit
+    if len(help_file_path) == 0:
+        
+        return False
+    
+    else:
+        
+        pass
+    
+    if (help_file_path.endswith('.txt') == True) or (help_file_path.endswith('.TXT') == True):
+        
+        pass
+    
+    else:
+        
+        help_file_path = help_file_path + '.txt'
+        
+        
+    help_file = open(help_file_path, 'w')
+    
+    help_file.write(locStr_help)
+    
+    help_file.close()
+    
+    # prompt finish message
+    locRoot = tk.Tk()
+    
+    locRoot.withdraw()
+    
+    msgbox.showinfo('Text file save finished', 
+                    'Text file save finished.' + '\n' + '\n' + help_file_path)
+    
+    locRoot.destroy()
+    
+    return True
+# =============================================================================
+# </Function: save the text as a txt file>
+# =============================================================================
+
+

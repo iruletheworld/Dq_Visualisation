@@ -1,11 +1,12 @@
 Introduction
-============
-
-The purpose of this project is to visualise the Clarke Transform and the Park Transform. 
-
-A much heavier project to visualise the symmetrical components of three-phase 
-inputs (:math:`a_{\pm}, b_{\pm}, c_{\pm}, Zero`), the Clarke Transform (:math:`\alpha_{\pm}, \beta_{\pm}, Zero`)
-and the Park Transform (:math:`d_{\pm}, q_{\pm}, Zero`) is on the way.
+=============
+    The purpose of this project is to dynamically visualise the Clarke Transform 
+    and the Park Transform (animation). 
+    
+    A much heavier project to dynamically visualise the symmetrical components of 
+    three-phase inputs (:math:`a_{\pm}, b_{\pm}, c_{\pm}, Zero`), the Clarke Transform
+    (:math:`\alpha_{\pm}, \beta_{\pm}, Zero`) and the Park Transform 
+    (:math:`d_{\pm}, q_{\pm}, Zero`) is on the way.
 
 Three-Phase Inputs
 ----------------------------------------
@@ -24,9 +25,11 @@ Three-Phase Inputs
     |  :math:`n` is the harmonic order.
     |  :math:`t` is the time.
     |  
-    |  When :math:`n = 0 + 3k, k = 0, 1, 2, 3, \cdots ,` the three-phase inputs are said to be the **Zero Sequences**
-    |  When :math:`n = 1 + 3k, k = 0, 1, 2, 3, \cdots ,` the three-phase inputs are said to be the **Positive Sequences**
-    |  When :math:`n = 2 + 3k, k = 0, 1, 2, 3, \cdots ,` the three-phase inputs are said to be the **Negative Sequences**
+    |  When :math:`n = 0 + 3k, k = 0, 1, 2, 3, \cdots ,` the three-phase inputs are said to be the **Zero Sequences**.
+    |  
+    |  When :math:`n = 1 + 3k, k = 0, 1, 2, 3, \cdots ,` the three-phase inputs are said to be the **Positive Sequences**.
+    |  
+    |  When :math:`n = 2 + 3k, k = 0, 1, 2, 3, \cdots ,` the three-phase inputs are said to be the **Negative Sequences**.
     
 
 Clarke Transform (amplitude invariant)
@@ -64,7 +67,7 @@ Park Transform
     
       Examples :
         |  The :math:`d` and :math:`q` components of the 1st order harmonic (the fundamental, Positive Sequences) would be DC components :
-        |
+        |  
         |  :math:`f_{Park} = (+1 - 1) \cdot f_{base} = 0`
         |
         |  where :math:`+1` means (**Positive Sequence** and once the base frequency).
@@ -73,8 +76,12 @@ Park Transform
         |
         |  :math:`f_{Park} = (-2 - 1) \cdot f_{base} = -3 \cdot f_{base}`
         |
-        |  where :math:`-2` means (**Negative Sequence** and twice the base frequency) and the minus sign means :math:`d` lags :math:`q`.
-    
+        |  where ":math:`-2`" means (**Negative Sequence** and twice the base frequency) 
+           and ":math:`-3`" means :math:`d` lags :math:`q` and the frequency of the 
+           Park components is 3 times the base frequency.
+
+|  
+
 User Interface
 ----------------------------------------
 .. figure:: images/Visualisation_of_Clarke_and_Park_Transforms.svg
@@ -82,8 +89,12 @@ User Interface
    :width: 800
    :alt: The user interface
 
+|  
+
 List of User Configurations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    It is recommended to stop the animation before making changes to the input fields. 
+    Otherwise the UI may not be register the focus.
 
 |  **Input Harmonic Oder :**
 |    The order of harmonic to be analysed. Should be a positive number (unsigned float)		
@@ -102,12 +113,18 @@ List of User Configurations
 |
 |  **FFmpeg path :**
 |	 Path of the FFmpeg binary (string).
+|  
 
 .. note::
-   Zero Sequences are not plotted since their :math:`\alpha, \beta, d` and :math:`q` components are zero. Also, they need 3D coordinates.
+   Zero Sequences are not plotted since their :math:`\alpha, \beta, d` and :math:`q` components are zero. 
+   Also, they need 3D coordinates.
+   
+   The input fields, the buttons and the corresponding labels are hidden in the saved videos.
    
 List of Dynamic Information
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    The following information would change dynamically with changes made to the user configurations.
 
 |  **Information for the input harmonic :**
 |    These pieces of information are displayed in the left top corner, inside the red box. 
@@ -124,3 +141,14 @@ List of Dynamic Information
 |  **Information for the Park Transform :**
 |    These pieces of information are displayed in the right middle corner. 
 |    They include: frequency of the Park components and the phase relation between them.
+|
+
+Demonstration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. raw:: html
+
+    <video width="100%" height="100%" src=".\demo1.mp4" autoplay loop></video>
+    
+    <video width="100%" height="100%" src=".\demo2.mp4" autoplay loop></video>
+    
+    <video width="100%" height="100%" src=".\demo3.mp4" autoplay loop></video>
