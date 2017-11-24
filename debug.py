@@ -5,29 +5,32 @@ Created on Fri Nov 17 16:03:51 2017
 @author: BachDesktop
 """
 
-#https://goo.gl/rnMnt4
+import glob
 import os
-import sys
-a = sys.executable
+
+for filename in glob.iglob('./**/*.html', recursive=True):
+    print(filename)
+    
+    if filename.endswith(os.path.join(os.sep , 'index.html')):
+        
+        os.startfile(filename)
+    
+
 # =============================================================================
-# m = '\\'
-# m = m[0]
-# while True:
-#     b = len(a)
-#     c = a[(b - 1)]
-#     if c == m:
-#         break
-#     a = a[:(b - 1)]
+# #https://goo.gl/rnMnt4
+# import os
+# import sys
+# a = sys.executable
+# 
+# index = a.rfind(os.sep)
+# 
+# a = a[(index + 1):]
+# 
+# if a == 'pythonw.exe':
+#     print('Running in Python IDLE')
+# else:
+#     print('Running in Command line')
 # =============================================================================
-
-index = a.rfind(os.sep)
-
-a = a[(index + 1):]
-
-if a == 'pythonw.exe':
-    print('Running in Python IDLE')
-else:
-    print('Running in Command line')
     
 # =============================================================================
 # import numpy as np

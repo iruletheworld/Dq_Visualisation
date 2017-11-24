@@ -4,7 +4,7 @@ Custom module for INI file read/write.
 
 Author : 高斯羽 博士 (Dr. GAO, Siyu)
 
-Version : 0.1.1
+Version : 0.1.2
 
 Last Modified : 2017-11-24
 
@@ -77,7 +77,7 @@ def read_ini(locStr_ini_file_path):
         
         print(date_time_now() + 'Read INI file complete')
         
-        return True, locConfig
+        return (True, locConfig)
         
     except:
         
@@ -85,7 +85,7 @@ def read_ini(locStr_ini_file_path):
         
         locConfig = 0
         
-        return False, locConfig
+        return (False, locConfig)
 # =============================================================================
 # </Read INI file by line return the strings as a list>
 # =============================================================================
@@ -158,7 +158,7 @@ def read_ini_to_tb(locStr_ini_file_path, locList_textbox):
         # if read INI fale, exit this function
         if bool_ini == False:
             
-            return False
+            return (False, locConfig)
         
         # get of the line break for each line
         locConfig = [item.strip('\n') for item in locConfig]
@@ -202,7 +202,7 @@ def read_ini_to_tb(locStr_ini_file_path, locList_textbox):
                     pass
         # double for-loop end
             
-        return True, locConfig
+        return (True, locConfig)
             
     except:
         
@@ -210,7 +210,7 @@ def read_ini_to_tb(locStr_ini_file_path, locList_textbox):
         
         locConfig = 0
         
-        return False, locConfig
+        return (False, locConfig)
 # =============================================================================
 # </Function: read ini file and put the configs to text boxes>
 # =============================================================================

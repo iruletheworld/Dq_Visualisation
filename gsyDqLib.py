@@ -4,7 +4,7 @@ Custom module for supporting gsyDqMain.py
 
 Author : 高斯羽 博士 (Dr. GAO, Siyu)
 
-Version : 0.1.1
+Version : 0.1.2
 
 Last modified : 2017-11-24
 
@@ -31,8 +31,6 @@ import tkinter as tk
 import tkinter.messagebox as msgbox
 import sys
 import os
-import win32api
-import win32con
 import time
 
 from numpy import sin, cos, pi
@@ -42,6 +40,7 @@ from time import gmtime, strftime, sleep
 # =============================================================================
 # <Function: get system time and date>
 # =============================================================================
+
 def date_time_now():
     """
     .. _date_time_now :
@@ -69,6 +68,7 @@ def date_time_now():
     locStr_time_date = strftime('%Y-%m-%d, %H:%M:%S:', gmtime())
     
     return locStr_time_date
+
 # =============================================================================
 # </Function: get system time and date>
 # =============================================================================
@@ -77,6 +77,7 @@ def date_time_now():
 # =============================================================================
 # <Function: Calculate Clarke and Park transforms>
 # =============================================================================
+    
 def cal_ABDQ(locInt_Samples, locDbl_base_freq, locDbl_harmonic_order, locDbl_pll_order):
     """
     .. _cal_ABDQ :
@@ -246,6 +247,7 @@ def cal_ABDQ(locInt_Samples, locDbl_base_freq, locDbl_harmonic_order, locDbl_pll
             locQ_ax_on_x, locQ_ax_on_y, 
             locD_vector_on_x, locD_vector_on_y, 
             locQ_vector_on_x, locQ_vector_on_y)
+    
 # =============================================================================
 # </Function: Calculate Clarke and Park transforms>
 # =============================================================================
@@ -254,6 +256,7 @@ def cal_ABDQ(locInt_Samples, locDbl_base_freq, locDbl_harmonic_order, locDbl_pll
 # =============================================================================
 # <Function: find PLL rotational direction>
 # =============================================================================
+    
 def find_pll_direction(locDbl_base_freq, locDbl_pll_order):
     """
     .. _find_pll_direction :
@@ -319,6 +322,7 @@ def find_pll_direction(locDbl_base_freq, locDbl_pll_order):
         sys.exit('Fatal Error. Source: find_pll_direction()')
         
     return locStr_freq_pll
+
 # =============================================================================
 # </Function: find PLL rotational direction>
 # =============================================================================
@@ -327,6 +331,7 @@ def find_pll_direction(locDbl_base_freq, locDbl_pll_order):
 # =============================================================================
 # <Function: find input Harmonic sequence and the frequencies of Clarke and Park transforms>
 # =============================================================================
+    
 def find_sequences(locDbl_base_freq, locDbl_harmonic_order, locDbl_pll_order):
     """
     .. _find_sequences :    
@@ -593,6 +598,7 @@ def find_sequences(locDbl_base_freq, locDbl_harmonic_order, locDbl_pll_order):
         
     return (locStr_freq_harmonic, locStr_freq_clarke, locStr_freq_park, 
             locDbl_period_clarke, locDbl_period_park)
+    
 # =============================================================================
 # </Function: find input Harmonic sequence and the frequencies of Clarke and Park transforms>
 # =============================================================================
@@ -601,6 +607,7 @@ def find_sequences(locDbl_base_freq, locDbl_harmonic_order, locDbl_pll_order):
 # =============================================================================
 # <Function: set period font size>
 # =============================================================================
+    
 def set_font_size(locDbl_harmonic_order):
     """
     .. _set_font_size :
@@ -653,6 +660,7 @@ def set_font_size(locDbl_harmonic_order):
         locDbl_font_size = 1.0e-6
     
     return locDbl_font_size
+
 # =============================================================================
 # </Function: set period font size>
 # =============================================================================
@@ -661,6 +669,7 @@ def set_font_size(locDbl_harmonic_order):
 # =============================================================================
 # <Function: collect text boxes for write ini later>
 # =============================================================================
+    
 def collect_tb(locList_textbox):
     """
     .. _collect_tb :
@@ -716,6 +725,7 @@ def collect_tb(locList_textbox):
     print(date_time_now() + 'Collection complete')   
     
     return locStr_textbox
+
 # =============================================================================
 # </Function: collect text boxes for write ini later>
 # =============================================================================
@@ -724,6 +734,7 @@ def collect_tb(locList_textbox):
 # =============================================================================
 # <Function: load ffmpeg.exe>
 # =============================================================================
+
 def load_ffmpeg():    
     """
     .. _load_ffmpeg :
@@ -763,6 +774,7 @@ def load_ffmpeg():
     locRoot.destroy()   
     
     return locStr_ffmpeg_path
+
 # =============================================================================
 # </Function: load ffmpeg.exe>
 # =============================================================================
@@ -771,6 +783,7 @@ def load_ffmpeg():
 # =============================================================================
 # <Function: check whther the file exists periodically>
 # =============================================================================
+    
 def check_file_saved(locStr_file_path, locInt_timeout=36000):    
     """
     .. _check_file_saved :
@@ -859,7 +872,8 @@ def check_file_saved(locStr_file_path, locInt_timeout=36000):
             sleep(2)
     # while-loop end
             
-    return True            
+    return True       
+     
 # =============================================================================
 # </Function: check whther the file exists periodically>    
 # =============================================================================
@@ -868,6 +882,7 @@ def check_file_saved(locStr_file_path, locInt_timeout=36000):
 # =============================================================================
 # <Function: save the animation to harddrive>    
 # =============================================================================
+    
 def save_animation_to_disk(locObj_animation, locStr_video_temp_path, 
                            locStr_video_path, locFFwriter):    
     """
@@ -986,10 +1001,16 @@ def save_animation_to_disk(locObj_animation, locStr_video_temp_path,
         print(date_time_now() + 'Time taken : ' +  ('%d:%02d:%02d' % (hour, minute, second)))
         
         # prompt finish message
-        win32api.MessageBox(None, ('Video save finished.' 
-                                   + '\n' + '\n' + locStr_video_path), 
-                            'Video save finished', 
-                            win32con.MB_ICONINFORMATION)
+        locRoot = tk.Tk()
+    
+        locRoot.withdraw()
+        
+        msgbox.showinfo('Video save finished', 
+                         'Video save finished.' 
+                         + '\n' 
+                         + '\n' + locStr_video_path)
+        
+        locRoot.destroy()
             
         return True
             
@@ -1007,71 +1028,20 @@ def save_animation_to_disk(locObj_animation, locStr_video_temp_path,
         print(date_time_now() + 'Fatal error while trying to save the animation')
         
         # prompt fail message
-        win32api.MessageBox(None, ('Video save failed.' 
-                                   + '\n'
-                                   + '\n' + 'Source: "save_animation_to_disk"'),
-                            'Video save failed', 
-                            win32con.MB_ICONERROR)
         
+        locRoot = tk.Tk()
+    
+        locRoot.withdraw()
+        
+        msgbox.showerror('Video save failed', 
+                         'Video save failed.' 
+                         + '\n'
+                         + '\n' + 'Source: "save_animation_to_disk"')
+        
+        locRoot.destroy()
+                        
         return False
+    
 # =============================================================================
 # </Function: save the animation to harddrive>    
 # =============================================================================
-
-
-# =============================================================================
-# <Function: save the text as a txt file>
-# =============================================================================
-def save_txt(event, locStr_help):
-    
-    locRoot = tk.Tk()
-    
-    locRoot.withdraw()
-    
-    help_file_path = filedialog.asksaveasfilename(initialdir=os.getcwd(),
-                                                  title="Save as txt",
-                                                  filetypes = (("Text files","*.txt"),
-                                                               ("all files","*.*")))
-        
-    locRoot.destroy()
-    
-    # if user cancelled, exit
-    if len(help_file_path) == 0:
-        
-        return False
-    
-    else:
-        
-        pass
-    
-    if (help_file_path.endswith('.txt') == True) or (help_file_path.endswith('.TXT') == True):
-        
-        pass
-    
-    else:
-        
-        help_file_path = help_file_path + '.txt'
-        
-        
-    help_file = open(help_file_path, 'w')
-    
-    help_file.write(locStr_help)
-    
-    help_file.close()
-    
-    # prompt finish message
-    locRoot = tk.Tk()
-    
-    locRoot.withdraw()
-    
-    msgbox.showinfo('Text file save finished', 
-                    'Text file save finished.' + '\n' + '\n' + help_file_path)
-    
-    locRoot.destroy()
-    
-    return True
-# =============================================================================
-# </Function: save the text as a txt file>
-# =============================================================================
-
-

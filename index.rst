@@ -14,7 +14,9 @@ Dynamic Visualisation for Clarke Transform and Park Transform
    intro
    gsyDqMain
    gsyDqLib
+   gsyIO
    gsyINI
+   
 
 
 Indices and tables

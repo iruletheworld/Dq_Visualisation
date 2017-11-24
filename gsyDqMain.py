@@ -4,7 +4,7 @@ Main script for dynamic visualisation of Clarke and Park Transforms.
 
 Author : 高斯羽 博士 (Dr. GAO, Siyu)
 
-Version : 0.1.1
+Version : 0.1.2
 
 Last modified : 2017-11-24
 
@@ -31,9 +31,10 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import tkinter as tk
 import tkinter.messagebox as msgbox
+import threading
 import os
 import sys
-import threading
+
 
 from numpy import sin, cos
 from matplotlib.widgets import Button, TextBox
@@ -46,7 +47,8 @@ from gsyDqLib import find_pll_direction, find_sequences
 from gsyDqLib import set_font_size
 from gsyDqLib import collect_tb, load_ffmpeg
 from gsyDqLib import check_file_saved, save_animation_to_disk
-from gsyDqLib import save_txt
+
+from gsyIO import save_txt_on_event, search_file_and_start
 
 from gsyINI import read_ini_to_tb, write_ini
 
@@ -68,6 +70,8 @@ CONST_WIDTH = 1280
 CONST_HEIGHT = 720
 
 CONST_DPI = 100
+
+CONST_STR_DOCT_FILENAME = 'index.html'
 
 CONST_STR_COPYRIGHT = ('\u00a9 $Dr. GAO, \ Siyu. 2017$'                   
                        + '\n' + '$siyu.gao@outlook.com$') 
@@ -107,14 +111,14 @@ Play :
 This button would refresh the video. Any updates made to the input fileds would be applied.
 
 Save video :
-This button would trigger the video to be saved. NO progress would be displayed due to the use of
-maplotlib's built-in save function. A message would be prompted when the save is finished.
+This button would trigger the video to be saved. Only limited progress would be displayed 
+due to the use of maplotlib's built-in save function. A message would be prompted when the save is finished.
 The codec FFmpeg is required. It's free to download and use. The FFmpeg binary (ffmpeg.exe) is required. 
 It's usually located in the "bin" folder. The video length equals Samples divided by FPS.
 
 Browse : 
 This button would allow you to browse for the FFmpeg binary.
-The path would be saved to an ini file and loaded on next program start-up.
+The path would be saved to an INI file and loaded on next program start-up.
 '''
 
 print(date_time_now() + 'Started')
@@ -138,7 +142,7 @@ button_save_help = Button(ax_button_save_help, 'Save as txt', color='gold')
 button_save_help.label.set_family('Arial')
 button_save_help.label.set_fontweight('bold')
     
-button_save_help.on_clicked(lambda x: save_txt(x, CONST_STR_HELP))
+button_save_help.on_clicked(lambda x: save_txt_on_event(x, CONST_STR_HELP))
 
 # =============================================================================
 # </Help figure>
@@ -233,13 +237,19 @@ ax_button_browse = plt.axes([0.91, 0.005, 0.05, 0.03])
 button_browse = Button(ax_button_browse, 'Browse', color='lightgrey')
 
 # button, display help
-ax_button_help = plt.axes([0.4, 0.005, 0.08, 0.07])
+ax_button_help = plt.axes([0.4, 0.04, 0.08, 0.03])
 button_help = Button(ax_button_help, 'Help', color='lime')
 button_help.label.set_fontsize(12)
 
+# button, open documentation
+ax_button_doct = plt.axes([0.4, 0.005, 0.08, 0.03])
+button_doct = Button(ax_button_doct, 'DOCT', color='skyblue')
+button_doct.label.set_fontsize(12)
+
 # set buttons' font family and font weight
 list_button = [button_stop, button_play, 
-               button_save_video, button_help,
+               button_save_video, 
+               button_help, button_doct,
                button_browse]
 
 for item in list_button:
@@ -1256,7 +1266,7 @@ def animate(item):
     
 def make_ani(locFig, locInt_samples, locInt_fps):
     """
-    .. make_ani :
+    .. _make_ani :
     
     This function is a wrapper for matplotlib's "animation.FuncAnimation".
     
@@ -1686,13 +1696,15 @@ def video_save(event, locObj_animation,
                                                           str_ini_file_path))
     """
     
-    # save user configurations
-    locStr_ini = collect_tb(locList_textbox)   # collect all the content of the text boxes
-    
-    locStr_ini = '[User configurations]\n' + locStr_ini
-    
-    # write them to INI file
-    write_ini(locIni_file_path, locStr_ini)    
+# =============================================================================
+#     # save user configurations
+#     locStr_ini = collect_tb(locList_textbox)   # collect all the content of the text boxes
+#     
+#     locStr_ini = '[User configurations]\n' + locStr_ini
+#     
+#     # write them to INI file
+#     write_ini(locIni_file_path, locStr_ini)    
+# =============================================================================
      
     # prompt save video message box, yes/no
     
@@ -1768,6 +1780,14 @@ def video_save(event, locObj_animation,
         
         locFFwriter = animation.FFMpegWriter(fps=locInt_fps, extra_args=['-vcodec', 'libx264'])
         
+        # save user configurations
+        locStr_ini = collect_tb(locList_textbox)   # collect all the content of the text boxes
+        
+        locStr_ini = '[User configurations]\n' + locStr_ini
+        
+        # write them to INI file
+        write_ini(locIni_file_path, locStr_ini)   
+        
         # hide text box       
         for item in locList_textbox:
             
@@ -1804,7 +1824,7 @@ def video_save(event, locObj_animation,
         # if cancelled
         if len(locStr_video_path) == 0:
             
-            print('Save cancelled')
+            print(date_time_now() + 'Save cancelled')
             
             return None
         
@@ -1865,7 +1885,7 @@ def video_save(event, locObj_animation,
         # if running in terminal, try to restart (this is only guess work)
         else:
             
-            print('Trying to restart script')
+            print(date_time_now() + 'Trying to restart script')
             
             locTemp_python = sys.executable
             
@@ -1922,6 +1942,84 @@ def help_on_clicked(event, locFig_help):
 
 # =============================================================================
 # </Function: "Help" button on_clicked event handler>      
+# =============================================================================
+    
+# =============================================================================
+# <Function: "DOCT" button on_clicked event handler>
+# =============================================================================
+
+def doct_on_clicked(event, locStr_doct_filename):
+    
+    """
+    .. _doct_on_clicked :
+    
+    This function calls the function "search_file_and_start" to try to open the 
+    documentation file.
+    
+    Reference for using "lambda" : https://goo.gl/zDmGPR
+
+    Parameters
+    ----------
+    event : event
+        The event that triggers this function.
+        
+    locStr_doct_filename : str
+        The documentation filename (with extension)
+            
+    Returns
+    -------
+    bool
+        Returns True if documentation file found. Returns False if documentation
+        file not found.
+
+    Examples
+    --------
+    
+    .. code:: python
+    
+        button_doct.on_clicked(lambda x: doct_on_clicked(x, CONST_STR_DOCT_FILENAME))
+    """
+    
+    print(date_time_now() + 'The documentation file is "' + locStr_doct_filename + '"')
+    
+    int_index = locStr_doct_filename.rfind('.')
+        
+    if int_index != (-1):
+        
+        str_extent = locStr_doct_filename[(int_index + 1):]
+        
+        str_pattern = '.' + os.sep + '**' + os.sep + '*.' + str_extent
+        
+    else:
+        
+        str_pattern = '.' + os.sep + '**' + os.sep + '*.*'
+
+    print(date_time_now() + 'Looking for the documentation')
+    
+    bool_found = search_file_and_start(str_pattern, locStr_doct_filename)
+    
+    if bool_found == True:
+        
+        print(date_time_now() + 'Documentation found')
+        
+        return True
+        
+    else:
+            
+        locRoot = tk.Tk()
+         
+        locRoot.withdraw()
+         
+        msgbox.showerror('File not found', 'Documentation file not found')
+         
+        locRoot.destroy()  
+         
+        print(date_time_now() + 'Documentation not found')
+         
+        return False
+    
+# =============================================================================
+# </Function: "DOCT" button on_clicked event handler>      
 # =============================================================================
 
         
@@ -1992,6 +2090,8 @@ button_save_video.on_clicked(lambda x: video_save(x, ani, textbox_fps,
                                                   str_ini_file_path))
 
 button_help.on_clicked(lambda x: help_on_clicked(x, fig_help))
+
+button_doct.on_clicked(lambda x: doct_on_clicked(x, CONST_STR_DOCT_FILENAME))
 
 button_browse.on_clicked(lambda x: load_ffmpeg_on_clicked(x, ani,                                                            
                                                           textbox_ffmpeg_path))
