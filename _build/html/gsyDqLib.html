@@ -1,0 +1,839 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. Main Library : gsyDqLib &mdash; Dynamic Visualisation for Clarke and Park Transforms 0.1.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Dynamic Visualisation for Clarke and Park Transforms 0.1.1 documentation" href="index.html"/>
+        <link rel="next" title="4. Support Library : gsyIO" href="gsyIO.html"/>
+        <link rel="prev" title="2. Main Script : gsyDqMain" href="gsyDqMain.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Dynamic Visualisation for Clarke and Park Transforms
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gsyDqMain.html">2. Main Script : gsyDqMain</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Main Library : gsyDqLib</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#list-of-functions">3.1. List of functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#function-definitions">3.2. Function definitions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gsyIO.html">4. Support Library : gsyIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gsyINI.html">5. Support Library : gsyINI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gsyBio.html">6. Biography</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Dynamic Visualisation for Clarke and Park Transforms</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>3. Main Library : gsyDqLib</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/gsyDqLib.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-gsyDqLib">
+<span id="main-library-gsydqlib"></span><h1>3. Main Library : gsyDqLib<a class="headerlink" href="#module-gsyDqLib" title="Permalink to this headline">¶</a></h1>
+<p>Custom module for supporting gsyDqMain.py</p>
+<p>Author : 高斯羽 博士 (Dr. GAO, Siyu)</p>
+<p>Version : 0.1.2</p>
+<p>Last modified : 2017-11-24</p>
+<div class="section" id="list-of-functions">
+<h2>3.1. List of functions<a class="headerlink" href="#list-of-functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="#cal-abdq">cal_ABDQ</a></li>
+<li><a class="reference internal" href="#check-file-saved">check_file_saved</a></li>
+<li><a class="reference internal" href="#collect-tb">collect_tb</a></li>
+<li><a class="reference internal" href="#date-time-now">date_time_now</a></li>
+<li><a class="reference internal" href="#find-pll-direction">find_pll_direction</a></li>
+<li><a class="reference internal" href="#find-sequences">find_sequences</a></li>
+<li><a class="reference internal" href="#load-ffmpeg">load_ffmpeg</a></li>
+<li><a class="reference internal" href="#save-animation-to-disk">save_animation_to_disk</a></li>
+<li><a class="reference internal" href="#set-font-size">set_font_size</a></li>
+</ul>
+</div>
+<div class="section" id="function-definitions">
+<h2>3.2. Function definitions<a class="headerlink" href="#function-definitions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="gsyDqLib.cal_ABDQ">
+<code class="descclassname">gsyDqLib.</code><code class="descname">cal_ABDQ</code><span class="sig-paren">(</span><em>locInt_Samples</em>, <em>locDbl_base_freq</em>, <em>locDbl_harmonic_order</em>, <em>locDbl_pll_order</em><span class="sig-paren">)</span><a class="headerlink" href="#gsyDqLib.cal_ABDQ" title="Permalink to this definition">¶</a></dt>
+<dd><p id="cal-abdq">Calculates the Clarke Transform (amplitude invariant) and the Park Transform.</p>
+<dl class="docutils">
+<dt>Returns the following arrays:</dt>
+<dd><div class="first last line-block">
+<div class="line">time, theta, </div>
+<div class="line">Clarke’s <em>α</em> component, Clarke’s <em>β</em> component,   </div>
+<div class="line">Park’s <em>d</em> component, Park’s <em>q</em> component, </div>
+<div class="line">the rotating <em>d</em> axis’ projection on the x, y axes,</div>
+<div class="line">the rotating <em>q</em> axis’ projection on the x, y axes,</div>
+<div class="line">the d component’s projection on the x, y axes,</div>
+<div class="line">the q component’s projection on the x, y axes.</div>
+</div>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>locInt_Samples</strong> : int</p>
+<blockquote>
+<div><p>The number of samples to be taken during one base period.</p>
+</div></blockquote>
+<p><strong>locDbl_base_freq</strong> : float</p>
+<blockquote>
+<div><p>The base frequency of the system, e.g., 50 or 60 (Hz).</p>
+</div></blockquote>
+<p><strong>locDbl_harmonic_order</strong> : float</p>
+<blockquote>
+<div><p>The order of harmonic to be used to calculate Clarke and Park from. 1st harmonic
+is the fundamental. Interharmonics are allowed, e.g., 1.3 order. abs() is applied
+on this parameter.</p>
+</div></blockquote>
+<p><strong>locDbl_pll_order</strong> : float</p>
+<blockquote>
+<div><p>The parameter decides the PLL’s rotational direction and frequency. The parameter’s sign, 
+i.e., positve or negative, decides the rotational direction. Positive means anti-clockwise.
+Negative means clockwise. The absolute value of the parameter decides how many times the base
+frequency that the PLL is rotating.</p>
+<dl class="docutils">
+<dt>E.g. <span class="classifier-delimiter">:</span> <span class="classifier"></span></dt>
+<dd><div class="first last line-block">
+<div class="line">1    means the PLL is rotating anti-clockwise and at 1 times the base frequency.     </div>
+<div class="line"><br /></div>
+<div class="line">2.7  means the PLL is rotating anti-clockwise and at 2.7 times the base frequency.            </div>
+<div class="line"><br /></div>
+<div class="line">-2   means the PLL is rotating clock-wise and at 2 times the base frequency.                        </div>
+<div class="line"><br /></div>
+<div class="line">-3.3 means the PLL is rotating clock-wise and at 3.3 times the base frequency.</div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>locTime</strong> : array</p>
+<blockquote>
+<div><p>1d array according to the base frequency and the samples taken within the base period.</p>
+</div></blockquote>
+<p><strong>locTheta</strong> : array</p>
+<blockquote>
+<div><p>Angel calculated according to the time array and the base frequency. (<span class="math">\(θ = 2πft\)</span>).</p>
+</div></blockquote>
+<p><strong>locAlpha_vector</strong> : array</p>
+<blockquote>
+<div><p><em>α</em> component of the amplitude invariant Clarke Transform.</p>
+</div></blockquote>
+<p><strong>locBeta_vector</strong> : array</p>
+<blockquote>
+<div><p><em>β</em> component of the amplitude invariant Clarke Transform.</p>
+</div></blockquote>
+<p><strong>locD_vector</strong> : array</p>
+<blockquote>
+<div><p><em>d</em> component of the Park Transform.</p>
+</div></blockquote>
+<p><strong>locQ_vector</strong> : array</p>
+<blockquote>
+<div><p><em>q</em> component of the Park Transform.</p>
+</div></blockquote>
+<p><strong>locD_ax_on_x</strong> : array</p>
+<blockquote>
+<div><p>The rotating <em>d</em> axis’ projection on the x axis.</p>
+</div></blockquote>
+<p><strong>locD_ax_on_y</strong> : array</p>
+<blockquote>
+<div><p>The rotating <em>d</em> axis’ projection on the y axis.</p>
+</div></blockquote>
+<p><strong>locQ_ax_on_x</strong> : array</p>
+<blockquote>
+<div><p>The rotating <em>q</em> axis’ projection on the x axis.</p>
+</div></blockquote>
+<p><strong>locQ_ax_on_y</strong> : array</p>
+<blockquote>
+<div><p>The rotating <em>q</em> axis’ projection on the y axis.</p>
+</div></blockquote>
+<p><strong>locD_vector_on_x</strong> : array</p>
+<blockquote>
+<div><p><em>d</em> component’s projection on the x axis.</p>
+</div></blockquote>
+<p><strong>locD_vector_on_y</strong> : array</p>
+<blockquote>
+<div><p><em>d</em> component’s projection on the y axis.</p>
+</div></blockquote>
+<p><strong>locQ_vector_on_x</strong> : array</p>
+<blockquote>
+<div><p><em>q</em> component’s projection on the x axis.</p>
+</div></blockquote>
+<p><strong>locQ_vector_on_y</strong> : array</p>
+<blockquote class="last">
+<div><p><em>q</em> component’s projection on the y axis.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> 
+ <span class="n">alpha_vector</span><span class="p">,</span> <span class="n">beta_vector</span><span class="p">,</span> 
+<span class="n">d_vector</span><span class="p">,</span> <span class="n">q_vector</span><span class="p">,</span>
+<span class="n">d_ax_on_x</span><span class="p">,</span> <span class="n">d_ax_on_y</span><span class="p">,</span> 
+<span class="n">q_ax_on_x</span><span class="p">,</span> <span class="n">q_ax_on_y</span><span class="p">,</span> 
+<span class="n">d_vector_on_x</span><span class="p">,</span> <span class="n">d_vector_on_y</span><span class="p">,</span> 
+<span class="n">q_vector_on_x</span><span class="p">,</span> <span class="n">q_vector_on_y</span><span class="p">)</span> <span class="o">=</span> <span class="n">cal_ABDQ</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="gsyDqLib.check_file_saved">
+<code class="descclassname">gsyDqLib.</code><code class="descname">check_file_saved</code><span class="sig-paren">(</span><em>locStr_file_path</em>, <em>locInt_timeout=36000</em><span class="sig-paren">)</span><a class="headerlink" href="#gsyDqLib.check_file_saved" title="Permalink to this definition">¶</a></dt>
+<dd><p id="check-file-saved">This function checks whether the file specificed in the given path exists
+or not every two seconds until the file exists or the function is timeouted.
+The default timeout time is 36000 seconds (10 hours). Note that when timeouted,
+this function would only return a boolean “False” and would not do anything else.</p>
+<p>This function is intended to be used with threadings. I.e., one thread saves
+the file with a temporary name (so that this function thinks the file is not
+saved). After that function finished saving the file, it should change the 
+temporary filename to the real one, so that this function could find it 
+and considers the file saved and exit.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>locStr_file_path</strong> : str</p>
+<blockquote>
+<div><p>The file path to be checked (the real one).</p>
+</div></blockquote>
+<p><strong>locInt_timeout</strong> : int</p>
+<blockquote>
+<div><p>Timeout in seconds. Default is 36000 (10 hours).</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">bool</p>
+<blockquote class="last">
+<div><p>Return True when file path is a file. Return False on timeout.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">thread_checker</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">check_file_saved</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">locStr_video_path</span><span class="p">,))</span>
+
+<span class="c1"># do some foo()</span>
+
+<span class="n">thread_checker</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="c1"># do some bar()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="gsyDqLib.collect_tb">
+<code class="descclassname">gsyDqLib.</code><code class="descname">collect_tb</code><span class="sig-paren">(</span><em>locList_textbox</em><span class="sig-paren">)</span><a class="headerlink" href="#gsyDqLib.collect_tb" title="Permalink to this definition">¶</a></dt>
+<dd><p id="collect-tb">Collect the input textboxes’ labels and texts, replace some chars in the 
+labels and form a big string delimited by line breaks.</p>
+<p>Bascially, this function is used to form the mainbody of an INI file.</p>
+<p>White spaces, ‘\n’ and ‘\r’ in the textbox labels would be replced by empty
+strings. The colon (“:”) would be replaced by “=”.</p>
+<p>If a textbox’s label is “I am god:” and its text is “I rule the world.” Then
+this function would turn it into ‘Iamgod=I rule the world\n’.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>locList_textbox</strong> : list (containing all the matplotlib textboxes)</p>
+<blockquote>
+<div><p>A list of matplotlib textboxes used in the figure</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>locStr_textbox</strong> : str</p>
+<blockquote class="last">
+<div><p>Formatted string for INI elements.</p>
+<dl class="docutils">
+<dt>E.g.:</dt>
+<dd><p class="first last">‘InputHarmonicOrder=1.3\nInputPLLOrder=1\nSamples=200\nFPS=30\nBaseFreq=50\nFFmpegpath=\n’</p>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">collect_tb</span><span class="p">(</span><span class="n">list_textbox</span><span class="p">)</span>
+<span class="go">2017-11-21, 15:57:06:Collecting text from text boxes</span>
+<span class="go">2017-11-21, 15:57:06:Collection complete</span>
+<span class="go">InputHarmonicOrder=2.2</span>
+<span class="go">InputPLLOrder=1</span>
+<span class="go">Samples=200</span>
+<span class="go">FPS=30</span>
+<span class="go">BaseFreq=50</span>
+<span class="go">FFmpegpath=</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="gsyDqLib.date_time_now">
+<code class="descclassname">gsyDqLib.</code><code class="descname">date_time_now</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gsyDqLib.date_time_now" title="Permalink to this definition">¶</a></dt>
+<dd><p id="date-time-now">Return the system date and time as a string.</p>
+<p>Return format: ‘yyyy-mm-dd, HH:MM:SS:’</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>None</strong></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>locStr_time_date</strong> : str</p>
+<blockquote class="last">
+<div><p>Formatted system date time string in ‘yyyy-mm-dd, HH:MM:SS:’. 
+The last colon is intended for printing to the console (or making logs).</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">date_time_now</span><span class="p">()</span>
+<span class="go">&#39;2017-11-20, 15:14:42:&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="gsyDqLib.find_pll_direction">
+<code class="descclassname">gsyDqLib.</code><code class="descname">find_pll_direction</code><span class="sig-paren">(</span><em>locDbl_base_freq</em>, <em>locDbl_pll_order</em><span class="sig-paren">)</span><a class="headerlink" href="#gsyDqLib.find_pll_direction" title="Permalink to this definition">¶</a></dt>
+<dd><p id="find-pll-direction">Determin the PLL is rotating anti-clockwise (positive) or clockwise (negative).</p>
+<p>Returns a formatted string.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>locDbl_base_freq</strong> : float</p>
+<blockquote>
+<div><p>The system base frequency.</p>
+</div></blockquote>
+<p><strong>locDbl_pll_order</strong> : float</p>
+<blockquote>
+<div><p>The parameter decides the PLL’s rotational direction and frequency. The parameter’s sign, 
+i.e., positve or negative, decides the rotational direction. Positive means anti-clockwise.
+Negative means clockwise. The absolute value of the parameter decides how many times the base
+frequency that the PLL is rotating.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>locStr_freq_pll</strong> : string</p>
+<blockquote class="last">
+<div><p>A formatted string descripes the PLL rotational direction and the frequency.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">find_pll_direction</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">&#39;$f_{PLL} = 1\times 50\ Hz$\n\$Anti-Clockwise$\n$Rotating,$\n$i.e.,$\n$Positively \ Rotating $&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">find_pll_direction</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">&#39;$f_{PLL} = -1\times 50\ Hz$\n$Clockwise \ Rotating,$\n$i.e.,$\n$Negatively \ Rotating $&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="gsyDqLib.find_sequences">
+<code class="descclassname">gsyDqLib.</code><code class="descname">find_sequences</code><span class="sig-paren">(</span><em>locDbl_base_freq</em>, <em>locDbl_harmonic_order</em>, <em>locDbl_pll_order</em><span class="sig-paren">)</span><a class="headerlink" href="#gsyDqLib.find_sequences" title="Permalink to this definition">¶</a></dt>
+<dd><p id="find-sequences">Decides the input harmonic sequence (zero, positive, negative). Calculates
+the frequencies of the input harmonic, the Clarke components, the Park components.
+Calculates the periods of the Clarke components and the Park components.</p>
+<p>Converting frequencies to periods could lead to zero divition. To deal with this,
+if the frequency is zero, then the period would be set to zero.</p>
+<p>The sequence of the input harmonic is calculated by:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">locInt_remainder</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">locDbl_harmonic_order</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><strong>If locInt_remainder == 0, then it is a zero sequence.</strong></div>
+<div class="line"><strong>If locInt_remainder == 1, then it is a positive sequence.</strong></div>
+<div class="line"><strong>If locInt_remainder == 2, then it is a negative sequence.</strong></div>
+<div class="line"><br /></div>
+</div>
+<p>If locInt_remainder is not an integer, i.e., it is a decimal number, then
+the input harmonic is an interharmonic and the definition of sequences does 
+not apply.</p>
+<p>For Clarke Transform components, their frequencies are always equal to the
+input harmonic’s. For positive sequneces, <em>α</em> leads <em>β</em> by 90°. 
+For negative sequneces, <em>α</em> lags <em>β</em> by 90°.</p>
+<p>For Park Transform components, their frequencies are related to how the input
+harmonic rotates and how the PLL rotates. The rule is, the frequencies of the 
+Park Transform components are equal to the relative angular frequency between
+the input harmonic and the PLL. The phases between <em>d</em> and <em>q</em> are the same
+as the corresponding <em>α</em> and <em>β</em>. I.e., if <em>α</em> leads <em>β</em>, then <em>d</em> leads <em>q</em>
+and vice versa.</p>
+<p>Note that the aforementioned rule is only true when locInt_remainder
+is an integer. For interharmonics, this rule does not apply.</p>
+<dl class="docutils">
+<dt>E.g.:        </dt>
+<dd><div class="first last line-block">
+<div class="line">locDbl_harmonic_order = 1 (positive sequence)</div>
+<div class="line">locDbl_pll_order      = 1</div>
+<div class="line">The relative angular frequency is <span class="math">\((1 - 1)·*ω* = 0\)</span>, thus <em>d</em>, <em>q</em> are DC</div>
+<div class="line"><br /></div>
+<div class="line">locDbl_harmonic_order = 2 (negative sequence)</div>
+<div class="line">locDbl_pll_order      = 1</div>
+<div class="line">The relative angular frequency is <span class="math">\((-2 - 1)·*ω* = -3\)</span>, thus <em>d</em>, <em>q</em> are
+of 3 times the base frequency and <em>d</em> lags <em>q</em> by 90°.</div>
+<div class="line"><br /></div>
+<div class="line">Note that this function would take abs() on locDbl_harmonic_order and then
+calcualte its sequence and then to automatically assign the right sign
+to it to calculate the Park components’ frequencies. </div>
+<div class="line"><br /></div>
+<div class="line">Therefore there is no need to input a negative number for a negative 
+sequence. The abs() would get rid of it anyway.</div>
+</div>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>locDbl_base_freq</strong> : float</p>
+<blockquote>
+<div><p>Base frequency of the system, e.g., 50 or 60 (Hz)</p>
+</div></blockquote>
+<p><strong>locDbl_harmonic_order</strong> : str</p>
+<blockquote>
+<div><p>Order of harmonic to be analysis, e.g., 1 (fundamental), 2, 2.3…</p>
+</div></blockquote>
+<p><strong>locDbl_pll_order</strong> : float</p>
+<blockquote>
+<div><p>The PLL rotational direction and frequency as multiples of the base
+frequency.</p>
+<dl class="docutils">
+<dt>E.g.,: </dt>
+<dd><div class="first last line-block">
+<div class="line">1 (locked on to the fundamental)</div>
+<div class="line">1.3 (anti-clockwise at 1.3 times the base frequency)</div>
+<div class="line">-2 (locked on the 2nd harmonic, negative sign due to 2nd harmonic
+is a negative sequence)</div>
+<div class="line">-3.6 (clockwise at 3.6 times the base frequency)</div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>locStr_freq_harmonic</strong> : str</p>
+<blockquote>
+<div><p>string containing information of the input harmonic’s frequency</p>
+</div></blockquote>
+<p><strong>locStr_freq_clarke</strong> : str</p>
+<blockquote>
+<div><p>string containing information of the Clarke components’ frequencies</p>
+</div></blockquote>
+<p><strong>locStr_freq_park</strong> : str</p>
+<blockquote>
+<div><p>string containing information of the Park components’ frequencies</p>
+</div></blockquote>
+<p><strong>locDbl_period_clarke</strong> : float</p>
+<blockquote>
+<div><p>Period of the Clarke components</p>
+</div></blockquote>
+<p><strong>locDbl_period_park</strong> : float</p>
+<blockquote class="last">
+<div><p>Period of the Park components</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span> <span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="n">find_sequences</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">2017-11-21, 08:59:44:Haromnic Order = 1, Positive Sequence</span>
+<span class="go">Out[10]: </span>
+<span class="go">(&#39;$ f_{Harmoic} = \ 1\times 50\ Hz$\n$Positive-Sequence,$\n$Anti-Clockwise$\n$Rotating, \ i.e.,$\n$Positively \ Rotating$&#39;,</span>
+<span class="go"> &#39;$ f_{\alpha\beta} = 1\times 50\  Hz$\n$\alpha  \  is  \   leading$\n$\beta \  by \  90^{\circ}$&#39;,</span>
+<span class="go"> &#39;$f_{dq} = 0.0\times 50\ Hz$&#39;,</span>
+<span class="go"> 0.02,</span>
+<span class="go"> 0)</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="n">find_sequences</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">2017-11-21, 09:03:04:Haromnic Order = 2, Negative Sequence</span>
+<span class="go">Out[11]: </span>
+<span class="go">(&#39;$ f_{Harmoic} = \ 2\times 50\ Hz$\n$Negative-Sequence,$\n$Clockwise \ Rotating,$\n$i.e.,$\n$Negatively \ Rotating$&#39;,</span>
+<span class="go"> &#39;$f_{\alpha\beta} = 2\times 50\ Hz$\n$\alpha \ is \ lagging$\n$\beta \ by \ 90^{\circ}$&#39;,</span>
+<span class="go"> &#39;$f_{dq} = 0.0000\times 50\ Hz$&#39;,</span>
+<span class="go"> 0.01,</span>
+<span class="go"> 0)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="gsyDqLib.load_ffmpeg">
+<code class="descclassname">gsyDqLib.</code><code class="descname">load_ffmpeg</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gsyDqLib.load_ffmpeg" title="Permalink to this definition">¶</a></dt>
+<dd><p id="load-ffmpeg">This function prompts a file open dialog to allow the user to select the 
+FFmpeg binary (“ffmpeg.exe”) and ONLY this binary.</p>
+<p>This is to prevent selection error.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>None</strong></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>locStr_ffmpeg_path</strong> : str</p>
+<blockquote class="last">
+<div><p>The path of the FFmpeg binary. If the select file path does not end with
+“ffmpeg.exe” or “ffmpeg”, this would be an empty string.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">load_ffmpeg</span><span class="p">()</span>
+<span class="go">&#39;C:\ffmpeg&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="gsyDqLib.save_animation_to_disk">
+<code class="descclassname">gsyDqLib.</code><code class="descname">save_animation_to_disk</code><span class="sig-paren">(</span><em>locObj_animation</em>, <em>locStr_video_temp_path</em>, <em>locStr_video_path</em>, <em>locFFwriter</em><span class="sig-paren">)</span><a class="headerlink" href="#gsyDqLib.save_animation_to_disk" title="Permalink to this definition">¶</a></dt>
+<dd><p id="save-animation-to-disk">This function saves the matplotlib animation object as an animation to the 
+harddrive.</p>
+<p>It would firstly save the video using the temporary path, and then rename
+the file to the real path after the animation is saved.</p>
+<p>If any of the files already exist, this function would attempt to delete the one/s
+found.</p>
+<p>The animation is saved using the given writer information. Although the
+arguments of this function suggests FFmpeg, any valid writer should work but
+only FFmpeg is tested due to hardware limitaions.</p>
+<p>This function is bascially a wrapper for the “save” method of matplotlib
+animation object.</p>
+<p>This functin would prompt a message box on exceptions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>locObj_animation</strong> : object, matplotlib animation object</p>
+<blockquote>
+<div><p>The matplotlib animation object to be used to save as video.</p>
+</div></blockquote>
+<p><strong>locStr_video_temp_path</strong> : str</p>
+<blockquote>
+<div><p>The temporary path for the video to be saved.</p>
+</div></blockquote>
+<p><strong>locStr_video_path</strong> : str</p>
+<blockquote>
+<div><p>The intended path for the video to be saved.</p>
+</div></blockquote>
+<p><strong>locFFwriter</strong> : object, matplotlib video writer object</p>
+<blockquote>
+<div><p>The intened video writer object. See matplolib’s documentation for 
+details: <a class="reference external" href="https://goo.gl/oUCEVH">https://goo.gl/oUCEVH</a></p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">bool</p>
+<blockquote class="last">
+<div><p>If no exception, returns True. If exception, returns False.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.animation</span> <span class="k">as</span> <span class="nn">animation</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;animation.ffmpeg_path&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;c:/ffmpeg.exe&#39;</span>
+
+<span class="n">obj_ffwriter</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FFMpegWriter</span><span class="p">(</span><span class="n">fps</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">extra_args</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;-vcodec&#39;</span><span class="p">,</span> <span class="s1">&#39;libx264&#39;</span><span class="p">])</span>
+
+<span class="c1"># =============================================================================</span>
+<span class="c1"># plot something and write the &quot;init&quot; and &quot;animate&quot; functions. </span>
+<span class="c1"># &quot;init&quot; is the initialising function. &quot;animate&quot; is the update function.</span>
+<span class="c1"># Example : https://goo.gl/niHc9S</span>
+<span class="c1"># =============================================================================</span>
+
+<span class="n">str_video_temp_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;c:/temp_video.mp4&#39;</span>
+
+<span class="n">str_video_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;c:/real_video.mp4&#39;</span>
+
+<span class="n">obj_anim</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">animate</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> 
+                      <span class="n">interval</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">30</span><span class="o">*</span><span class="mf">1e3</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">init_func</span><span class="o">=</span><span class="n">init</span><span class="p">)</span>        
+
+<span class="n">save_animation_to_disk</span><span class="p">(</span><span class="n">obj_anim</span><span class="p">,</span> <span class="n">str_video_temp_path</span><span class="p">,</span> <span class="n">str_video_path</span><span class="p">,</span> <span class="n">obj_ffwriter</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="gsyDqLib.set_font_size">
+<code class="descclassname">gsyDqLib.</code><code class="descname">set_font_size</code><span class="sig-paren">(</span><em>locDbl_harmonic_order</em><span class="sig-paren">)</span><a class="headerlink" href="#gsyDqLib.set_font_size" title="Permalink to this definition">¶</a></dt>
+<dd><p id="set-font-size">Decrese the font size with increased harmonic order.</p>
+<p>A deadband is included (between 4 pt and 10 pt).</p>
+<p>Equation for calculation:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">locDbl_font_size</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">locDbl_harmonic_order</span><span class="p">)</span> <span class="o">+</span> <span class="mi">11</span>    
+</pre></div>
+</div>
+<p>If the input harmonic order is bigger than 15, the font size would be set
+to 1e-6.</p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/set_font_size.svg"><img alt="Font size vs Input harmonic order" src="_images/set_font_size.svg" width="500" /></a>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>locDbl_harmonic_order</strong> : float</p>
+<blockquote>
+<div><p>The input harmonic order</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>locDbl_font_size</strong> : float</p>
+<blockquote class="last">
+<div><p>The calculated font size.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">set_font_size</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">10.0</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">set_font_size</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="go">4.0</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">set_font_size</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+<span class="go">1e-06</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="gsyIO.html" class="btn btn-neutral float-right" title="4. Support Library : gsyIO" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="gsyDqMain.html" class="btn btn-neutral" title="2. Main Script : gsyDqMain" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Dr. GAO, Siyu. 高斯羽 博士.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

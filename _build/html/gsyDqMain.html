@@ -1,0 +1,647 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. Main Script : gsyDqMain &mdash; Dynamic Visualisation for Clarke and Park Transforms 0.1.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Dynamic Visualisation for Clarke and Park Transforms 0.1.1 documentation" href="index.html"/>
+        <link rel="next" title="3. Main Library : gsyDqLib" href="gsyDqLib.html"/>
+        <link rel="prev" title="1. Introduction" href="intro.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Dynamic Visualisation for Clarke and Park Transforms
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Main Script : gsyDqMain</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#list-of-functions">2.1. List of functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#function-definitions">2.2. Function definitions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gsyDqLib.html">3. Main Library : gsyDqLib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gsyIO.html">4. Support Library : gsyIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gsyINI.html">5. Support Library : gsyINI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gsyBio.html">6. Biography</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Dynamic Visualisation for Clarke and Park Transforms</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>2. Main Script : gsyDqMain</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/gsyDqMain.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-gsyDqMain">
+<span id="main-script-gsydqmain"></span><h1>2. Main Script : gsyDqMain<a class="headerlink" href="#module-gsyDqMain" title="Permalink to this headline">¶</a></h1>
+<p>Main script for dynamic visualisation of Clarke and Park Transforms.</p>
+<p>Author : 高斯羽 博士 (Dr. GAO, Siyu)</p>
+<p>Version : 0.1.2</p>
+<p>Last modified : 2017-11-24</p>
+<div class="section" id="list-of-functions">
+<h2>2.1. List of functions<a class="headerlink" href="#list-of-functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="#animate">animate</a></li>
+<li><a class="reference internal" href="#help-on-clicked">help_on_clicked</a></li>
+<li><a class="reference internal" href="#init">init</a></li>
+<li><a class="reference internal" href="#load-ffmpeg-on-clicked">load_ffmpeg_on_clicked</a></li>
+<li><a class="reference internal" href="#make-ani">make_ani</a></li>
+<li><a class="reference internal" href="#video-play-on-clicked">video_play_on_clicked</a></li>
+<li><a class="reference internal" href="#video-save-on-clicked">video_save_on_clicked</a></li>
+<li><a class="reference internal" href="#video-stop-on-clicked">video_stop_on_clicked</a></li>
+</ul>
+</div>
+<div class="section" id="function-definitions">
+<h2>2.2. Function definitions<a class="headerlink" href="#function-definitions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="gsyDqMain.animate">
+<code class="descclassname">gsyDqMain.</code><code class="descname">animate</code><span class="sig-paren">(</span><em>item</em><span class="sig-paren">)</span><a class="headerlink" href="#gsyDqMain.animate" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p id="animate">matplotlib’s documentation:
+<a class="reference external" href="https://matplotlib.org/api/animation_api.html">https://matplotlib.org/api/animation_api.html</a></p>
+<p>This function updates the animation.</p>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>item</strong> : int</p>
+<blockquote>
+<div><p>This parameter is used as a frame number to update the animation.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="nb">tuple</span><span class="p">(</span><span class="n">ax2_period_lines</span><span class="p">)</span> <span class="p">:</span> <span class="n">a</span> <span class="nb">tuple</span> <span class="n">of</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="nb">tuple</span><span class="p">(</span><span class="n">ax2_period_text</span><span class="p">)</span>  <span class="p">:</span> <span class="n">a</span> <span class="nb">tuple</span> <span class="n">of</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="nb">tuple</span><span class="p">(</span><span class="n">ax3_period_lines</span><span class="p">)</span> <span class="p">:</span> <span class="n">a</span> <span class="nb">tuple</span> <span class="n">of</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="nb">tuple</span><span class="p">(</span><span class="n">ax3_period_text</span><span class="p">)</span>  <span class="p">:</span> <span class="n">a</span> <span class="nb">tuple</span> <span class="n">of</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="n">ax1_text_info</span>           <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">text</span> <span class="nb">object</span>
+<span class="n">ax1_text_pll_locked</span>     <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">text</span> <span class="nb">object</span>
+<span class="n">ax1_d_ax_pos</span>            <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">annotatiton</span> <span class="nb">object</span>
+<span class="n">ax1_d_ax_neg</span>            <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">annotatiton</span> <span class="nb">object</span>
+<span class="n">ax1_d_label</span>             <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">text</span> <span class="nb">object</span>
+<span class="n">ax1_q_ax_pos</span>            <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">annotatiton</span> <span class="nb">object</span>
+<span class="n">ax1_q_ax_neg</span>            <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">annotatiton</span> <span class="nb">object</span>
+<span class="n">ax1_q_label</span>             <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">text</span> <span class="nb">object</span>
+<span class="n">ax1_alpha_arrow</span>         <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">annotatiton</span> <span class="nb">object</span>
+<span class="n">ax1_beta_arrow</span>          <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">annotatiton</span> <span class="nb">object</span>
+<span class="n">ax1_harmonic_arrow</span>      <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">annotatiton</span> <span class="nb">object</span>
+<span class="n">ax1_d_vector_arrow</span>      <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">annotatiton</span> <span class="nb">object</span>
+<span class="n">ax1_q_vector_arrow</span>      <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">annotatiton</span> <span class="nb">object</span>
+<span class="n">ax1_help_line_alpha</span>     <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="n">ax1_help_line_beta</span>      <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="n">ax1_help_line_d</span>         <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="n">ax1_ellipse</span>             <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="n">ax2_alpha_vs_time</span>       <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="n">ax2_beta_vs_time</span>        <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="n">ax2_alpha_help_line</span>     <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="n">ax2_beta_help_line</span>      <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="n">ax3_d_vs_time</span>           <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="n">ax3_q_vs_time</span>           <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="n">ax3_d_help_line</span>         <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="n">ax3_q_help_line</span>         <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="n">ax3_text_pll_locked</span>     <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">text</span> <span class="nb">object</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">locFig</span><span class="p">,</span> <span class="n">animate</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">locInt_samples</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">interval</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">locInt_fps</span><span class="o">*</span><span class="mf">1e3</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">init_func</span><span class="o">=</span><span class="n">init</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="gsyDqMain.doct_on_clicked">
+<code class="descclassname">gsyDqMain.</code><code class="descname">doct_on_clicked</code><span class="sig-paren">(</span><em>event</em>, <em>locStr_doct_filename</em><span class="sig-paren">)</span><a class="headerlink" href="#gsyDqMain.doct_on_clicked" title="Permalink to this definition">¶</a></dt>
+<dd><p id="doct-on-clicked">This function calls the function “search_file_and_start” to try to open the 
+documentation file.</p>
+<p>Reference for using “lambda” : <a class="reference external" href="https://goo.gl/zDmGPR">https://goo.gl/zDmGPR</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>event</strong> : event</p>
+<blockquote>
+<div><p>The event that triggers this function.</p>
+</div></blockquote>
+<p><strong>locStr_doct_filename</strong> : str</p>
+<blockquote>
+<div><p>The documentation filename (with extension)</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">bool</p>
+<blockquote class="last">
+<div><p>Returns True if documentation file found. Returns False if documentation
+file not found.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">button_doct</span><span class="o">.</span><span class="n">on_clicked</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">doct_on_clicked</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">CONST_STR_DOCT_FILENAME</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="gsyDqMain.help_on_clicked">
+<code class="descclassname">gsyDqMain.</code><code class="descname">help_on_clicked</code><span class="sig-paren">(</span><em>event</em>, <em>locFig_help</em><span class="sig-paren">)</span><a class="headerlink" href="#gsyDqMain.help_on_clicked" title="Permalink to this definition">¶</a></dt>
+<dd><p id="help-on-clicked">This function triggers the help figure to be displayed.</p>
+<p>Reference for using “lambda” : <a class="reference external" href="https://goo.gl/zDmGPR">https://goo.gl/zDmGPR</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>event</strong> : event</p>
+<blockquote>
+<div><p>The event that triggers this function.</p>
+</div></blockquote>
+<p><strong>locFig_help</strong> : matplotlib figure</p>
+<blockquote>
+<div><p>The figure to be display. This is bascially a simple hack. 
+I put a serise of strings into a maplotlib textbox and put that textbox
+into the help figure. When this help figure is displayed, the user would
+see the help text.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">button_help</span><span class="o">.</span><span class="n">on_clicked</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">help_on_clicked</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fig_help</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="gsyDqMain.init">
+<code class="descclassname">gsyDqMain.</code><code class="descname">init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gsyDqMain.init" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p id="init">matplotlib’s documentation:
+<a class="reference external" href="https://matplotlib.org/api/animation_api.html">https://matplotlib.org/api/animation_api.html</a></p>
+<p>This function initialise the animation.</p>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>None</strong></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="nb">tuple</span><span class="p">(</span><span class="n">ax2_period_lines</span><span class="p">)</span> <span class="p">:</span> <span class="n">a</span> <span class="nb">tuple</span> <span class="n">of</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="nb">tuple</span><span class="p">(</span><span class="n">ax2_period_text</span><span class="p">)</span>  <span class="p">:</span> <span class="n">a</span> <span class="nb">tuple</span> <span class="n">of</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="nb">tuple</span><span class="p">(</span><span class="n">ax3_period_lines</span><span class="p">)</span> <span class="p">:</span> <span class="n">a</span> <span class="nb">tuple</span> <span class="n">of</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="nb">tuple</span><span class="p">(</span><span class="n">ax3_period_text</span><span class="p">)</span>  <span class="p">:</span> <span class="n">a</span> <span class="nb">tuple</span> <span class="n">of</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="n">ax1_text_info</span>           <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">text</span> <span class="nb">object</span>
+<span class="n">ax1_text_pll_locked</span>     <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">text</span> <span class="nb">object</span>
+<span class="n">ax1_d_ax_pos</span>            <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">annotatiton</span> <span class="nb">object</span>
+<span class="n">ax1_d_ax_neg</span>            <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">annotatiton</span> <span class="nb">object</span>
+<span class="n">ax1_d_label</span>             <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">text</span> <span class="nb">object</span>
+<span class="n">ax1_q_ax_pos</span>            <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">annotatiton</span> <span class="nb">object</span>
+<span class="n">ax1_q_ax_neg</span>            <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">annotatiton</span> <span class="nb">object</span>
+<span class="n">ax1_q_label</span>             <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">text</span> <span class="nb">object</span>
+<span class="n">ax1_alpha_arrow</span>         <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">annotatiton</span> <span class="nb">object</span>
+<span class="n">ax1_beta_arrow</span>          <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">annotatiton</span> <span class="nb">object</span>
+<span class="n">ax1_harmonic_arrow</span>      <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">annotatiton</span> <span class="nb">object</span>
+<span class="n">ax1_d_vector_arrow</span>      <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">annotatiton</span> <span class="nb">object</span>
+<span class="n">ax1_q_vector_arrow</span>      <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">annotatiton</span> <span class="nb">object</span>
+<span class="n">ax1_help_line_alpha</span>     <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="n">ax1_help_line_beta</span>      <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="n">ax1_help_line_d</span>         <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="n">ax1_ellipse</span>             <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="n">ax2_alpha_vs_time</span>       <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="n">ax2_beta_vs_time</span>        <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="n">ax2_alpha_help_line</span>     <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="n">ax2_beta_help_line</span>      <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="n">ax3_d_vs_time</span>           <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="n">ax3_q_vs_time</span>           <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="n">ax3_d_help_line</span>         <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="n">ax3_q_help_line</span>         <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">plot</span> <span class="nb">object</span>
+<span class="n">ax3_text_pll_locked</span>     <span class="p">:</span> <span class="n">matplotlib</span> <span class="n">text</span> <span class="nb">object</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">locFig</span><span class="p">,</span> <span class="n">animate</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">locInt_samples</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">interval</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">locInt_fps</span><span class="o">*</span><span class="mf">1e3</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">init_func</span><span class="o">=</span><span class="n">init</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="gsyDqMain.load_ffmpeg_on_clicked">
+<code class="descclassname">gsyDqMain.</code><code class="descname">load_ffmpeg_on_clicked</code><span class="sig-paren">(</span><em>event</em>, <em>locObj_animation</em>, <em>locTextbox</em><span class="sig-paren">)</span><a class="headerlink" href="#gsyDqMain.load_ffmpeg_on_clicked" title="Permalink to this definition">¶</a></dt>
+<dd><p id="load-ffmpeg-on-clicked">This function calls the “load_ffmpeg” function to load the FFmpeg exectuable
+binary.</p>
+<p>Reference for using “lambda” : <a class="reference external" href="https://goo.gl/zDmGPR">https://goo.gl/zDmGPR</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>event</strong> : event</p>
+<blockquote>
+<div><p>The event that triggers this function.</p>
+</div></blockquote>
+<p><strong>locObj_animation</strong> : matplotlib animation object</p>
+<blockquote>
+<div><p>Used to stop/start the animation.</p>
+</div></blockquote>
+<p><strong>locTextbox</strong> :  matplotlib textbox object</p>
+<blockquote>
+<div><p>Textbox used to display the FFmpeg exectutable binary’s path.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">button_browse</span><span class="o">.</span><span class="n">on_clicked</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">load_ffmpeg_on_clicked</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ani</span><span class="p">,</span>
+                                                          <span class="n">textbox_ffmpeg_path</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="gsyDqMain.make_ani">
+<code class="descclassname">gsyDqMain.</code><code class="descname">make_ani</code><span class="sig-paren">(</span><em>locFig</em>, <em>locInt_samples</em>, <em>locInt_fps</em><span class="sig-paren">)</span><a class="headerlink" href="#gsyDqMain.make_ani" title="Permalink to this definition">¶</a></dt>
+<dd><p id="make-ani">This function is a wrapper for matplotlib’s “animation.FuncAnimation”.</p>
+<p>Reference for using “lambda” : <a class="reference external" href="https://goo.gl/zDmGPR">https://goo.gl/zDmGPR</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>locFig</strong> : matplotlib figure object</p>
+<blockquote>
+<div><p>The matplotlib figure object to be animated.</p>
+</div></blockquote>
+<p><strong>locInt_samples</strong> : int</p>
+<blockquote>
+<div><p>The total number of samples. Equal to the total frames of the animation.</p>
+</div></blockquote>
+<p><strong>locInt_fps</strong> : int</p>
+<blockquote>
+<div><p>The frame per second for the anmation. Note that higher frame may not be
+realised due to intense computation in real time.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>locAnim</strong> : matplotlib animation object</p>
+<blockquote class="last">
+<div><p>The animation object return by “animation.FuncAnimation”.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">ani</span> <span class="o">=</span> <span class="n">make_ani</span><span class="p">(</span><span class="n">fig_main</span><span class="p">,</span> <span class="n">int_samples</span><span class="p">,</span> <span class="n">int_fps</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="gsyDqMain.video_play_on_clicked">
+<code class="descclassname">gsyDqMain.</code><code class="descname">video_play_on_clicked</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="headerlink" href="#gsyDqMain.video_play_on_clicked" title="Permalink to this definition">¶</a></dt>
+<dd><p id="video-play-on-clicked">This function refresh the animation according to current user configurations.</p>
+<p>Reference for using “lambda” : <a class="reference external" href="https://goo.gl/zDmGPR">https://goo.gl/zDmGPR</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>event</strong> : event</p>
+<blockquote>
+<div><p>The event that trigger this function.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">button_play</span><span class="o">.</span><span class="n">on_clicked</span><span class="p">(</span><span class="n">video_play_on_clicked</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="gsyDqMain.video_save_on_clicked">
+<code class="descclassname">gsyDqMain.</code><code class="descname">video_save_on_clicked</code><span class="sig-paren">(</span><em>event</em>, <em>locObj_animation</em>, <em>locTextbox_fps</em>, <em>locTextbox_ffmpeg_path</em>, <em>locList_textbox</em>, <em>locList_button</em>, <em>locIni_file_path</em><span class="sig-paren">)</span><a class="headerlink" href="#gsyDqMain.video_save_on_clicked" title="Permalink to this definition">¶</a></dt>
+<dd><p id="video-save-on-clicked">This function saves the animation to the harddrive.</p>
+<p>If the given FFmpeg’s path is not valid, a file dialogue would prompted to 
+allow the user to select the FFmpeg’s exectuable binary.</p>
+<p>A file dialogue would be prompted to allow user to save the video.</p>
+<p>The animation object’s figure would be closed during save. Limited saving
+progress info would be printed to the console.</p>
+<p>After the video is saved, the script would try to restart if it is run in 
+“python.exe” (run rom terminal or cmd). If this script is run in IDLE 
+(run by “pythonw.exe”), then you need to manually restart the script 
+(otherwise the kernel is very likely to crash).</p>
+<p>Reference for using “lambda” : <a class="reference external" href="https://goo.gl/zDmGPR">https://goo.gl/zDmGPR</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>event</strong> : event</p>
+<blockquote>
+<div><p>The event that triggers this function.</p>
+</div></blockquote>
+<p><strong>locObj_animation</strong> : matplotlib animation object</p>
+<blockquote>
+<div><p>The animation to be saved.</p>
+</div></blockquote>
+<p><strong>locTextbox_fps</strong> : int</p>
+<blockquote>
+<div><p>The frame per second for the anmation. This parameter would be passed
+to the video writer.</p>
+</div></blockquote>
+<p><strong>locTextbox_ffmpeg_path</strong> : str</p>
+<blockquote>
+<div><p>Path of FFmepg executable binary.</p>
+</div></blockquote>
+<p><strong>locList_textbox</strong> : list of matplotlib textbox objects</p>
+<blockquote>
+<div><p>These textboxes would be hidden.</p>
+</div></blockquote>
+<p><strong>locList_button</strong> : list of matplotlib button objects</p>
+<blockquote>
+<div><p>These buttons would be hidden.</p>
+</div></blockquote>
+<p><strong>locIni_file_path</strong> : str</p>
+<blockquote>
+<div><p>The INI file path to be used to save user configurations.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">button_save_video</span><span class="o">.</span><span class="n">on_clicked</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">video_save_on_clicked</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> 
+                                                             <span class="n">ani</span><span class="p">,</span> 
+                                                             <span class="n">textbox_fps</span><span class="p">,</span>
+                                                             <span class="n">textbox_ffmpeg_path</span><span class="p">,</span> 
+                                                             <span class="n">list_textbox</span><span class="p">,</span> 
+                                                             <span class="n">list_button</span><span class="p">,</span> 
+                                                             <span class="n">str_ini_file_path</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="gsyDqMain.video_stop_on_clicked">
+<code class="descclassname">gsyDqMain.</code><code class="descname">video_stop_on_clicked</code><span class="sig-paren">(</span><em>event</em>, <em>locObj_animation</em><span class="sig-paren">)</span><a class="headerlink" href="#gsyDqMain.video_stop_on_clicked" title="Permalink to this definition">¶</a></dt>
+<dd><p id="video-stop-on-clicked">This function stops the animation.</p>
+<p>Reference for using “lambda” : <a class="reference external" href="https://goo.gl/zDmGPR">https://goo.gl/zDmGPR</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>event</strong> : event</p>
+<blockquote>
+<div><p>The event that triggers this function.</p>
+</div></blockquote>
+<p><strong>locObj_animation</strong> : matplotlib animation object</p>
+<blockquote>
+<div><p>The animation to be stopped.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Ref : https://goo.gl/zDmGPR         </span>
+
+<span class="n">button_stop</span><span class="o">.</span><span class="n">on_clicked</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">video_stop_on_clicked</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ani</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="gsyDqLib.html" class="btn btn-neutral float-right" title="3. Main Library : gsyDqLib" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="intro.html" class="btn btn-neutral" title="1. Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Dr. GAO, Siyu. 高斯羽 博士.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
