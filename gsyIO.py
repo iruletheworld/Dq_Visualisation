@@ -218,7 +218,7 @@ def search_file_and_start(str_pattern, str_filename):
     
     The search is recursive. 
     
-    This function uses glob for search.
+    This function uses "glob" for search.
         
     .. code :: python
     

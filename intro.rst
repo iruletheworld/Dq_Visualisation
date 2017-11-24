@@ -91,13 +91,13 @@ User Interface
 
 |  
 
-List of User Configurations
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+List of User Configurations (input fields)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     It is recommended to stop the animation before making changes to the input fields. 
-    Otherwise the UI may not be register the focus.
+    Otherwise the UI may not register the focus.
 
 |  **Input Harmonic Oder :**
-|    The order of harmonic to be analysed. Should be a positive number (unsigned float)		
+|    The order of harmonic to be analysed. Should be a positive read number (unsigned float)		.
 |
 |  **Input PLL Oder :**
 |    The order of the PLL. Positive number means anti-clockwise rotation. Negative number means clockwise rotation. The value of the number means how many times the base frequency the PLL frequency is. Should be a real number (signed float).
@@ -121,49 +121,86 @@ List of User Configurations
    
    The input fields, the buttons and the corresponding labels are hidden in the saved videos.
    
+   FFmpeg is a popular multi-media codec and it is free to download and use.
+   
 List of Dynamic Information
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
     The following information would change dynamically with changes made to the user configurations.
+    
+    Note that these pieces of information would only be refreshed when the "Play" button is clicked.
 
 |  **Information for the input harmonic :**
 |    These pieces of information are displayed in the left top corner, inside the red box. 
+|  
 |    They include: the harmonic frequency, the sequence of the input harmonic, the rotational direction of this input harmonic.
 |  
 |  **Information for the PLL :**
 |    These pieces of information are displayed in the left top middle corner, inside the blue box. 
+|  
 |    They include: frequency of the PLL and the rotational direction of the PLL.
 |  
 |  **Information for the Clarke Transform :**
 |    These pieces of information are displayed in the right top corner. 
+|    
 |    They include: frequency of the Clarke components and the phase relation between them.
 |  
 |  **Information for the Park Transform :**
 |    These pieces of information are displayed in the right middle corner. 
+|  
 |    They include: frequency of the Park components and the phase relation between them.
 |
 
 Demonstration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+.. raw:: html
+    
+    <b>This is a screen recording showing how to use:</b>
+	
+	<br>
+    <br>
+	
+    <video width="100%" height="100%" controls src=".\_video\screen_record.mp4" autoplay loop>
+	
+		Your browser does not support the video tag (HTML5).
+	
+	</video>
+	
 |  
 
 Examples of saved videos
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. raw:: html
     
-    <b>PLL locked on to the fundamental while the input is the fundamental:</b>
+    <b>(1) PLL locked on to the fundamental while the input is the fundamental</b>
+	
+	<br>
+	<br>
     
-    <video width="100%" height="100%" src=".\demo1.mp4" autoplay loop></video>
+    <video width="100%" height="100%" controls src=".\_video\demo1.mp4" autoplay loop>
+	
+		Your browser does not support the video tag (HTML5).
+	
+	</video>
     
     <br>
+	<br>
     
-    <b>PLL locked on to the fundamental while the input is the 2nd harmonic:</b>
+    <b>(2) PLL locked on to the fundamental while the input is the 2nd harmonic</b>
     
-    <video width="100%" height="100%" src=".\demo2.mp4" autoplay loop></video>
+    <video width="100%" height="100%" controls src=".\_video\demo2.mp4" autoplay loop>
+	
+		Your browser does not support the video tag (HTML5).
+	
+	</video>
     
     <br>
+	<br>
     
-    <b>PLL locked on to the fundamental while the input is the 1.3 times harmonic (interharmonic):</b>
+    <b>(3) PLL locked on to the fundamental while the input is the 1.3 times harmonic (interharmonic)</b>
     
-    <video width="100%" height="100%" src=".\demo3.mp4" autoplay loop></video>
+    <video width="100%" height="100%" controls src=".\_video\demo3.mp4" autoplay loop>
+	
+		Your browser does not support the video tag (HTML5).
+	
+	</video>

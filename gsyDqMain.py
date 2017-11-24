@@ -16,9 +16,9 @@ List of functions
 * init_
 * load_ffmpeg_on_clicked_
 * make_ani_
-* video_play_
-* video_save_
-* video_stop_
+* video_play_on_clicked_
+* video_save_on_clicked_
+* video_stop_on_clicked_
 
 Function definitions
 ----------------------
@@ -1355,10 +1355,10 @@ ani = make_ani(fig_main, int_samples, int_fps)
 # <Function: "Play" button on_clicked event handler>
 # =============================================================================
 
-def video_play(event):
+def video_play_on_clicked(event):
     
     """
-    .. _video_play :
+    .. _video_play_on_clicked :
     
     This function refresh the animation according to current user configurations.
     
@@ -1378,7 +1378,7 @@ def video_play(event):
     
     .. code:: python
     
-        button_play.on_clicked(video_play)
+        button_play.on_clicked(video_play_on_clicked)
     """
     
     # I know globals are not good but I haven't found other ways to update the
@@ -1590,10 +1590,10 @@ def video_play(event):
 # <Function: "Stop" button on_clicked event handler>
 # =============================================================================
 
-def video_stop(event, locObj_animation):
+def video_stop_on_clicked(event, locObj_animation):
 
     """
-    .. _video_stop :
+    .. _video_stop_on_clicked :
     
     This function stops the animation.
     
@@ -1618,7 +1618,7 @@ def video_stop(event, locObj_animation):
     
         # Ref : https://goo.gl/zDmGPR         
 
-        button_stop.on_clicked(lambda x: video_stop(x, ani))
+        button_stop.on_clicked(lambda x: video_stop_on_clicked(x, ani))
     """
     # stop the animate
     locObj_animation.event_source.stop()
@@ -1632,12 +1632,12 @@ def video_stop(event, locObj_animation):
 # <Function: "Save video" button on_clicked event handler>    
 # =============================================================================
 
-def video_save(event, locObj_animation, 
+def video_save_on_clicked(event, locObj_animation, 
                locTextbox_fps, locTextbox_ffmpeg_path, 
                locList_textbox, locList_button, locIni_file_path):
     
     """
-    .. _video_save :
+    .. _video_save_on_clicked :
     
     This function saves the animation to the harddrive.
     
@@ -1689,22 +1689,14 @@ def video_save(event, locObj_animation,
     
     .. code:: python
     
-        button_save_video.on_clicked(lambda x: video_save(x, ani, textbox_fps,
-                                                          textbox_ffmpeg_path, 
-                                                          list_textbox, 
-                                                          list_button, 
-                                                          str_ini_file_path))
+        button_save_video.on_clicked(lambda x: video_save_on_clicked(x, 
+                                                                     ani, 
+                                                                     textbox_fps,
+                                                                     textbox_ffmpeg_path, 
+                                                                     list_textbox, 
+                                                                     list_button, 
+                                                                     str_ini_file_path))
     """
-    
-# =============================================================================
-#     # save user configurations
-#     locStr_ini = collect_tb(locList_textbox)   # collect all the content of the text boxes
-#     
-#     locStr_ini = '[User configurations]\n' + locStr_ini
-#     
-#     # write them to INI file
-#     write_ini(locIni_file_path, locStr_ini)    
-# =============================================================================
      
     # prompt save video message box, yes/no
     
@@ -1763,6 +1755,7 @@ def video_save(event, locObj_animation,
             locRoot.destroy()
         
             locTextbox_ffmpeg_path.set_val(locStr_ffmpeg_path)
+            
         
         if os.path.isfile(locStr_ffmpeg_path) == False:
             
@@ -2080,14 +2073,16 @@ def load_ffmpeg_on_clicked(event, locObj_animation, locTextbox):
 
 # https://goo.gl/zDmGPR         
        
-button_play.on_clicked(video_play)
+button_play.on_clicked(video_play_on_clicked)
 
-button_stop.on_clicked(lambda x: video_stop(x, ani)) 
+button_stop.on_clicked(lambda x: video_stop_on_clicked(x, ani)) 
 
-button_save_video.on_clicked(lambda x: video_save(x, ani, textbox_fps,
-                                                  textbox_ffmpeg_path, 
-                                                  list_textbox, list_button, 
-                                                  str_ini_file_path))
+button_save_video.on_clicked(lambda x: video_save_on_clicked(x,
+                                                             ani,
+                                                             textbox_fps,
+                                                             textbox_ffmpeg_path, 
+                                                             list_textbox, list_button, 
+                                                             str_ini_file_path))
 
 button_help.on_clicked(lambda x: help_on_clicked(x, fig_help))
 

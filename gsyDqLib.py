@@ -57,7 +57,7 @@ def date_time_now():
     -------
     locStr_time_date : str
         Formatted system date time string in 'yyyy-mm-dd, HH:MM:SS:'. 
-        The last colon is intended for print to the console (or making logs).
+        The last colon is intended for printing to the console (or making logs).
 
     Examples
     --------
@@ -114,9 +114,12 @@ def cal_ABDQ(locInt_Samples, locDbl_base_freq, locDbl_harmonic_order, locDbl_pll
         frequency that the PLL is rotating.
         
         E.g. : 
-            |  1    means the PLL is rotating anti-clockwise and at 1 times the base frequency.            
+            |  1    means the PLL is rotating anti-clockwise and at 1 times the base frequency.     
+            |  
             |  2.7  means the PLL is rotating anti-clockwise and at 2.7 times the base frequency.            
+            |  
             |  -2   means the PLL is rotating clock-wise and at 2 times the base frequency.                        
+            |  
             |  -3.3 means the PLL is rotating clock-wise and at 3.3 times the base frequency.
     
     
@@ -263,7 +266,7 @@ def find_pll_direction(locDbl_base_freq, locDbl_pll_order):
     
     Determin the PLL is rotating anti-clockwise (positive) or clockwise (negative).
 
-    Return a formatted string.
+    Returns a formatted string.
 
     Parameters
     ----------
@@ -336,26 +339,30 @@ def find_sequences(locDbl_base_freq, locDbl_harmonic_order, locDbl_pll_order):
     """
     .. _find_sequences :    
     
-    Decide the input harmonic sequence (zero, positive, negative). Calculate
+    Decides the input harmonic sequence (zero, positive, negative). Calculates
     the frequencies of the input harmonic, the Clarke components, the Park components.
-    Calculate the periods of the Clarke components and the Park components.
+    Calculates the periods of the Clarke components and the Park components.
 
-    Conversion frequencies to periods could lead to zero divition. To deal with this,
+    Converting frequencies to periods could lead to zero divition. To deal with this,
     if the frequency is zero, then the period would be set to zero.
     
     The sequence of the input harmonic is calculated by:  
+        
+    .. code:: python
+    
         locInt_remainder = np.mod(locDbl_harmonic_order, 3)
             
-    |  If locInt_remainder == 0, then it is a zero sequence.
-    |  If locInt_remainder == 1, then it is a positive sequence.
-    |  If locInt_remainder == 2, then it is a negative sequence.
+    |  **If locInt_remainder == 0, then it is a zero sequence.**
+    |  **If locInt_remainder == 1, then it is a positive sequence.**
+    |  **If locInt_remainder == 2, then it is a negative sequence.**
+    |  
     
     If locInt_remainder is not an integer, i.e., it is a decimal number, then
-    the input harmonic is an interharmonic and the definition of sequence does not 
-    apply.
+    the input harmonic is an interharmonic and the definition of sequences does 
+    not apply.
     
     For Clarke Transform components, their frequencies are always equal to the
-    input harmonic. For positive sequneces, *α* leads *β* by 90°. 
+    input harmonic's. For positive sequneces, *α* leads *β* by 90°. 
     For negative sequneces, *α* lags *β* by 90°.
         
     For Park Transform components, their frequencies are related to how the input
@@ -371,11 +378,11 @@ def find_sequences(locDbl_base_freq, locDbl_harmonic_order, locDbl_pll_order):
     E.g.:        
         |  locDbl_harmonic_order = 1 (positive sequence)
         |  locDbl_pll_order      = 1
-        |  The relative angular frequency is (1 - 1)·*ω* = 0, thus *d*, *q* are DC
+        |  The relative angular frequency is :math:`(1 - 1)·*ω* = 0`, thus *d*, *q* are DC
         |  
         |  locDbl_harmonic_order = 2 (negative sequence)
         |  locDbl_pll_order      = 1
-        |  The relative angular frequency is (-2 - 1)·*ω* = -3, thus *d*, *q* are
+        |  The relative angular frequency is :math:`(-2 - 1)·*ω* = -3`, thus *d*, *q* are
            of 3 times the base frequency and *d* lags *q* by 90°.
         |
         |  Note that this function would take abs() on locDbl_harmonic_order and then
@@ -397,11 +404,12 @@ def find_sequences(locDbl_base_freq, locDbl_harmonic_order, locDbl_pll_order):
         The PLL rotational direction and frequency as multiples of the base
         frequency.
         
-        E.g., 
-        1 (locked on to the fundamental), 1.3 (anti-clockwise 
-        at 1.3 times the base frequency), -2 (locked on the 2nd harmonic,
-        negative sign due to 2nd harmonic is a negative sequence),
-        -3.6 (clockwise at 3.6 times the base frequency)
+        E.g.,: 
+            |  1 (locked on to the fundamental)
+            |  1.3 (anti-clockwise at 1.3 times the base frequency)
+            |  -2 (locked on the 2nd harmonic, negative sign due to 2nd harmonic
+                   is a negative sequence)
+            |  -3.6 (clockwise at 3.6 times the base frequency)
 
     Returns
     -------
@@ -411,10 +419,10 @@ def find_sequences(locDbl_base_freq, locDbl_harmonic_order, locDbl_pll_order):
     locStr_freq_clarke : str
         string containing information of the Clarke components' frequencies
     ..        
-    locStr_freq_park :str
+    locStr_freq_park : str
         string containing information of the Park components' frequencies
     ..    
-    locDbl_period_clarke :  float
+    locDbl_period_clarke : float
         Period of the Clarke components
     ..        
     locDbl_period_park : float
@@ -617,10 +625,17 @@ def set_font_size(locDbl_harmonic_order):
     A deadband is included (between 4 pt and 10 pt).
     
     Equation for calculation:
+        
+    .. code:: python
+        
         locDbl_font_size = -0.5 * abs(locDbl_harmonic_order) + 11    
         
     If the input harmonic order is bigger than 15, the font size would be set
     to 1e-6.
+    
+    .. figure:: images/set_font_size.svg       
+       :width: 500
+       :alt: Font size vs Input harmonic order
 
     Parameters
     ----------
@@ -751,7 +766,8 @@ def load_ffmpeg():
     Returns
     -------
     locStr_ffmpeg_path : str
-        The path of the FFmpeg binary.
+        The path of the FFmpeg binary. If the select file path does not end with
+        "ffmpeg.exe" or "ffmpeg", this would be an empty string.
 
     Examples
     --------
@@ -773,7 +789,15 @@ def load_ffmpeg():
     # destroy tk main window
     locRoot.destroy()   
     
-    return locStr_ffmpeg_path
+    if locStr_ffmpeg_path.endswith(('ffmpeg.exe', 'ffmpeg')):
+            
+        return locStr_ffmpeg_path
+    
+    else:
+        
+        locStr_ffmpeg_path = ''
+        
+        return locStr_ffmpeg_path
 
 # =============================================================================
 # </Function: load ffmpeg.exe>
@@ -790,7 +814,7 @@ def check_file_saved(locStr_file_path, locInt_timeout=36000):
     
     This function checks whether the file specificed in the given path exists
     or not every two seconds until the file exists or the function is timeouted.
-    The default timeout time is 36000 seconds (10 hours). Note that when timeout,
+    The default timeout time is 36000 seconds (10 hours). Note that when timeouted,
     this function would only return a boolean "False" and would not do anything else.
 
     This function is intended to be used with threadings. I.e., one thread saves
@@ -801,7 +825,7 @@ def check_file_saved(locStr_file_path, locInt_timeout=36000):
 
     Parameters
     ----------
-    locStr_file_path : int
+    locStr_file_path : str
         The file path to be checked (the real one). 
         
     locInt_timeout : int
@@ -809,7 +833,7 @@ def check_file_saved(locStr_file_path, locInt_timeout=36000):
 
     Returns
     -------
-    **bool**
+    bool
         Return True when file path is a file. Return False on timeout.
 
     Examples
@@ -919,13 +943,11 @@ def save_animation_to_disk(locObj_animation, locStr_video_temp_path,
         
     locFFwriter : object, matplotlib video writer object
         The intened video writer object. See matplolib's documentation for 
-        details:
-        
-        https://goo.gl/oUCEVH
+        details: https://goo.gl/oUCEVH
 
     Returns
     -------
-    **bool**
+    bool
         If no exception, returns True. If exception, returns False.
 
     Examples

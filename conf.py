@@ -54,7 +54,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'Visualisation for the Clarkeand the Park Transforms'
+project = 'Dynamic Visualisation for Clarke and Park Transforms'
 copyright = '2017, Dr. GAO, Siyu. 高斯羽 博士'
 author = 'Dr. GAO, Siyu'
 

@@ -3,9 +3,21 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Dynamic Visualisation for Clarke Transform and Park Transform
+Dynamic Visualisation for Clarke and Park Transforms
 =============================================================================
-Dynamic Visualisation for Clarke Transform and Park Transform
+
+The purpose of this project is to dynamically visualise the Clarke Transform and
+the Park Transform. 
+
+The Clarke Transform was invented by `Edith Clarke`_ , who was a remarkable female
+engineer.
+
+The Park Transform was invented by `Robert H. Park`_ .
+
+.. _Edith Clarke: https://en.wikipedia.org/wiki/Edith_Clarke
+
+.. _Robert H. Park: https://en.wikipedia.org/wiki/Robert_H._Park
+
 
 .. toctree::
    :maxdepth: 3

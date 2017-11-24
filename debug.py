@@ -5,15 +5,47 @@ Created on Fri Nov 17 16:03:51 2017
 @author: BachDesktop
 """
 
-import glob
-import os
+import matplotlib as mpl
 
-for filename in glob.iglob('./**/*.html', recursive=True):
-    print(filename)
+import matplotlib.pyplot as plt
+
+import numpy as np
+
+from gsyDqLib import set_font_size
+
+size = np.arange(-1, 20, 0.01)
+
+font_size = []
+
+for i in size:
     
-    if filename.endswith(os.path.join(os.sep , 'index.html')):
-        
-        os.startfile(filename)
+    font_size.append(set_font_size(i))
+
+plt.plot(size, font_size)
+
+plt.xlim([0, 20])
+
+plt.xlabel('Input harmonic order', fontweight='bold', fontsize=15)
+
+plt.ylabel('Font size', fontweight='bold', fontsize=15)
+
+plt.grid()
+
+plt.tight_layout()
+
+plt.show()
+
+# =============================================================================
+# import glob
+# import os
+# 
+# for filename in glob.iglob('./**/*.html', recursive=True):
+#     print(filename)
+#     
+#     if filename.endswith(os.path.join(os.sep , 'index.html')):
+#         
+#         os.startfile(filename)
+# =============================================================================
     
 
 # =============================================================================

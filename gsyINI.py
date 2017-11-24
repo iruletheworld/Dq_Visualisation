@@ -41,7 +41,7 @@ def read_ini(locStr_ini_file_path):
     Returns
     -------
     
-    **bool**
+    bool
         Returns True if read successful (no exception). Returns False on exception.
 
     locConfig : list or int
@@ -127,7 +127,7 @@ def read_ini_to_tb(locStr_ini_file_path, locList_textbox):
     Returns
     -------
     
-    **bool**
+    bool
         Returns True if deemed successful (no exception). Returns False if deemed
         unsuccessful (on exception).
         
@@ -239,7 +239,7 @@ def write_ini(locStr_ini_file_path, locStr_ini):
     Returns
     -------
     
-    **bool**
+    bool
         Returns True if deemed successful (no exception). Returns False if deemed
         unsuccessful (on exception).
 
