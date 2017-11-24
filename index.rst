@@ -12,7 +12,13 @@ the Park Transform.
 The Clarke Transform was invented by `Edith Clarke`_ , who was a remarkable female
 engineer.
 
+.. figure:: images/edith_clarke.jpg
+    :width: 167
+
 The Park Transform was invented by `Robert H. Park`_ .
+
+.. figure:: images/robert_park.jpg
+    :width: 167
 
 .. _Edith Clarke: https://en.wikipedia.org/wiki/Edith_Clarke
 

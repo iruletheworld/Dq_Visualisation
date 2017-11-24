@@ -633,7 +633,7 @@ def set_font_size(locDbl_harmonic_order):
     If the input harmonic order is bigger than 15, the font size would be set
     to 1e-6.
     
-    .. figure:: images/set_font_size.svg       
+    .. figure:: images/set_font_size.svg
        :width: 500
        :alt: Font size vs Input harmonic order
 

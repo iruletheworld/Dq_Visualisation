@@ -53,11 +53,21 @@ Park Transform
 	\left[\begin{matrix} d \\ q \\ Zero \end{matrix}\right] = \left[\begin{matrix} \cos\theta & \sin\theta & 0 \\ -\sin\theta & \cos\theta & 0 \\ 0 & 0 & 1 \end{matrix}\right] \left[\begin{matrix} \alpha \\ \beta \\ Zero \end{matrix}\right]
 	
 .. note::
+    |  :math:`\theta` is usually provided by the Phase-Locked Loop (PLL), which
+     is usually locked on the fundamental. However, it is possible for the PLL 
+     to locked on to other harmonics. When the PLL is locked on, the :math:`d` 
+     and :math:`q` components are DC.
+    |  
+    |  :math:`\theta` has a huge impact on the outputs of the Park Transform.
+    |    
+    |  Usually, there are the following:
+    |  
     |  For **Zero Sequences** :math:`d` and :math:`q` components are zero.
-    |  For **Positive Sequences** :math:`d` **leads** :math:`q` by :math:`90^{\circ}`.
-    |  For **Negative Sequences** :math:`d` **lags** :math:`q` by :math:`90^{\circ}`.
+    |  For **Positive Sequences** :math:`d` **leads** :math:`q` by :math:`90^{\circ}` (if they are not DC).
+    |  For **Negative Sequences** :math:`d` **lags** :math:`q` by :math:`90^{\circ}` (if they are not DC).
     |  
     |  The Park Transform does not alter the phase difference between the components. I.e., if :math:`\alpha` leads :math:`\beta`, then :math:`d` would still lead :math:`q`.
+    |  
     |  However, the Park Transform changes the frequencies. This change is related to the **sequence** of the three-phase inputs. 
     |  
     |  For **Positive Sequences**, the frequencies of the :math:`d` and :math:`q` components would be reduced by 1 order of the base frequency. 
@@ -66,18 +76,19 @@ Park Transform
     |  
     
       Examples :
+        |  
         |  The :math:`d` and :math:`q` components of the 1st order harmonic (the fundamental, Positive Sequences) would be DC components :
         |  
         |  :math:`f_{Park} = (+1 - 1) \cdot f_{base} = 0`
         |
-        |  where :math:`+1` means (**Positive Sequence** and once the base frequency).
+        |  where :math:`+1` means : **Positive Sequence** and once the base frequency.
         |  
         |  The :math:`d` and :math:`q` components of the 2nd order harmonic (Negative Sequences) would 3 times the base frequency : 
         |
         |  :math:`f_{Park} = (-2 - 1) \cdot f_{base} = -3 \cdot f_{base}`
         |
-        |  where ":math:`-2`" means (**Negative Sequence** and twice the base frequency) 
-           and ":math:`-3`" means :math:`d` lags :math:`q` and the frequency of the 
+        |  where ":math:`-2`" means : **Negative Sequence** and twice the base frequency 
+           and ":math:`-3`" means : :math:`d` lags :math:`q` and the frequency of the 
            Park components is 3 times the base frequency.
 
 |  
