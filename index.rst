@@ -34,6 +34,7 @@ The Park Transform was invented by `Robert H. Park`_ .
    gsyDqLib
    gsyIO
    gsyINI
+   gsyBio
    
 
 
