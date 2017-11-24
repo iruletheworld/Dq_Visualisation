@@ -2,11 +2,11 @@
 """
 Custom module for INI file read/write.
 
-Author : 高斯羽 博士 (Dr. Gao, Siyu)
+Author : 高斯羽 博士 (Dr. GAO, Siyu)
 
 Version : 0.1.1
 
-Last Modified : 2017-11-23
+Last Modified : 2017-11-24
 
 List of functions
 ----------------------
@@ -15,7 +15,8 @@ List of functions
 * read_ini_to_tb_
 * write_ini_
 
-**Function definitions**
+Function definitions
+----------------------
 """
 
 from gsyDqLib import date_time_now

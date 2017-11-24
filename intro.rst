@@ -143,12 +143,22 @@ List of Dynamic Information
 |    They include: frequency of the Park components and the phase relation between them.
 |
 
-Demonstration
+Examples of saved videos
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. raw:: html
-
+    
+    <b>PLL locked on to the fundamental while the input is the fundamental:</b>
+    
     <video width="100%" height="100%" src=".\demo1.mp4" autoplay loop></video>
     
+    <br>
+    
+    <b>PLL locked on to the fundamental while the input is the 2nd harmonic:</b>
+    
     <video width="100%" height="100%" src=".\demo2.mp4" autoplay loop></video>
+    
+    <br>
+    
+    <b>PLL locked on to the fundamental while the input is the 1.3 times harmonic (interharmonic):</b>
     
     <video width="100%" height="100%" src=".\demo3.mp4" autoplay loop></video>

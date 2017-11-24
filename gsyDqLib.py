@@ -2,11 +2,11 @@
 """
 Custom module for supporting gsyDqMain.py
 
-Author : 高斯羽 博士 (Dr. Gao, Siyu)
+Author : 高斯羽 博士 (Dr. GAO, Siyu)
 
 Version : 0.1.1
 
-Last modified : 2017-11-23
+Last modified : 2017-11-24
 
 List of functions
 ----------------------
@@ -20,6 +20,9 @@ List of functions
 * load_ffmpeg_
 * save_animation_to_disk_
 * set_font_size_
+
+Function definitions
+----------------------
 
 """
 

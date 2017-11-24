@@ -2,14 +2,26 @@
 """
 Main script for dynamic visualisation of Clarke and Park Transforms.
 
-Author : 高斯羽 博士 (Dr. Gao, Siyu)
+Author : 高斯羽 博士 (Dr. GAO, Siyu)
 
 Version : 0.1.1
 
-Last modified : 2017-11-23
+Last modified : 2017-11-24
 
 List of functions
 ------------------
+
+* animate_
+* help_on_clicked_
+* init_
+* load_ffmpeg_on_clicked_
+* make_ani_
+* video_play_
+* video_save_
+* video_stop_
+
+Function definitions
+----------------------
 
 """
 
@@ -659,6 +671,9 @@ ax3_q_help_line, = ax3.plot([], [],
 def init():   
     """
     .. _init :
+        
+    matplotlib's documentation:
+    https://matplotlib.org/api/animation_api.html
     
     This function initialise the animation.
 
@@ -668,36 +683,37 @@ def init():
 
     Returns
     -------
+::      
     tuple(ax2_period_lines) : a tuple of a list of matplotlib plot object
-    tuple(ax2_period_text) : a tuple of a list of matplotlib plot object
+    tuple(ax2_period_text)  : a tuple of a list of matplotlib plot object
     tuple(ax3_period_lines) : a tuple of a list of matplotlib plot object
-    tuple(ax3_period_text) : a tuple of a list of matplotlib plot object
-    ax1_text_info : matplotlib text object
-    ax1_text_pll_locked : matplotlib text object
-    ax1_d_ax_pos : matplotlib annotatiton object
-    ax1_d_ax_neg : matplotlib annotatiton object
-    ax1_d_label : matplotlib text object
-    ax1_q_ax_pos : matplotlib annotatiton object
-    ax1_q_ax_neg : matplotlib annotatiton object
-    ax1_q_label : matplotlib text object
-    ax1_alpha_arrow : matplotlib annotatiton object
-    ax1_beta_arrow : matplotlib annotatiton object
-    ax1_harmonic_arrow : matplotlib annotatiton object
-    ax1_d_vector_arrow : matplotlib annotatiton object
-    ax1_q_vector_arrow : matplotlib annotatiton object
-    ax1_help_line_alpha : matplotlib plot object
-    ax1_help_line_beta : matplotlib plot object
-    ax1_help_line_d : matplotlib plot object
-    ax1_ellipse : matplotlib plot object
-    ax2_alpha_vs_time : matplotlib plot object
-    ax2_beta_vs_time : matplotlib plot object
-    ax2_alpha_help_line : matplotlib plot object
-    ax2_beta_help_line : matplotlib plot object
-    ax3_d_vs_time : matplotlib plot object
-    ax3_q_vs_time : matplotlib plot object
-    ax3_d_help_line : matplotlib plot object
-    ax3_q_help_line : matplotlib plot object
-    ax3_text_pll_locked : matplotlib text object
+    tuple(ax3_period_text)  : a tuple of a list of matplotlib plot object
+    ax1_text_info           : matplotlib text object
+    ax1_text_pll_locked     : matplotlib text object
+    ax1_d_ax_pos            : matplotlib annotatiton object
+    ax1_d_ax_neg            : matplotlib annotatiton object
+    ax1_d_label             : matplotlib text object
+    ax1_q_ax_pos            : matplotlib annotatiton object
+    ax1_q_ax_neg            : matplotlib annotatiton object
+    ax1_q_label             : matplotlib text object
+    ax1_alpha_arrow         : matplotlib annotatiton object
+    ax1_beta_arrow          : matplotlib annotatiton object
+    ax1_harmonic_arrow      : matplotlib annotatiton object
+    ax1_d_vector_arrow      : matplotlib annotatiton object
+    ax1_q_vector_arrow      : matplotlib annotatiton object
+    ax1_help_line_alpha     : matplotlib plot object
+    ax1_help_line_beta      : matplotlib plot object
+    ax1_help_line_d         : matplotlib plot object
+    ax1_ellipse             : matplotlib plot object
+    ax2_alpha_vs_time       : matplotlib plot object
+    ax2_beta_vs_time        : matplotlib plot object
+    ax2_alpha_help_line     : matplotlib plot object
+    ax2_beta_help_line      : matplotlib plot object
+    ax3_d_vs_time           : matplotlib plot object
+    ax3_q_vs_time           : matplotlib plot object
+    ax3_d_help_line         : matplotlib plot object
+    ax3_q_help_line         : matplotlib plot object
+    ax3_text_pll_locked     : matplotlib text object
 
     Examples
     --------
@@ -863,6 +879,9 @@ def init():
 def animate(item):
     """
     .. _animate :
+        
+    matplotlib's documentation:
+    https://matplotlib.org/api/animation_api.html
     
     This function updates the animation.
 
@@ -873,36 +892,37 @@ def animate(item):
             
     Returns
     -------
+::
     tuple(ax2_period_lines) : a tuple of a list of matplotlib plot object
-    tuple(ax2_period_text) : a tuple of a list of matplotlib plot object
+    tuple(ax2_period_text)  : a tuple of a list of matplotlib plot object
     tuple(ax3_period_lines) : a tuple of a list of matplotlib plot object
-    tuple(ax3_period_text) : a tuple of a list of matplotlib plot object
-    ax1_text_info : matplotlib text object
-    ax1_text_pll_locked : matplotlib text object
-    ax1_d_ax_pos : matplotlib annotatiton object
-    ax1_d_ax_neg : matplotlib annotatiton object
-    ax1_d_label : matplotlib text object
-    ax1_q_ax_pos : matplotlib annotatiton object
-    ax1_q_ax_neg : matplotlib annotatiton object
-    ax1_q_label : matplotlib text object
-    ax1_alpha_arrow : matplotlib annotatiton object
-    ax1_beta_arrow : matplotlib annotatiton object
-    ax1_harmonic_arrow : matplotlib annotatiton object
-    ax1_d_vector_arrow : matplotlib annotatiton object
-    ax1_q_vector_arrow : matplotlib annotatiton object
-    ax1_help_line_alpha : matplotlib plot object
-    ax1_help_line_beta : matplotlib plot object
-    ax1_help_line_d : matplotlib plot object
-    ax1_ellipse : matplotlib plot object
-    ax2_alpha_vs_time : matplotlib plot object
-    ax2_beta_vs_time : matplotlib plot object
-    ax2_alpha_help_line : matplotlib plot object
-    ax2_beta_help_line : matplotlib plot object
-    ax3_d_vs_time : matplotlib plot object
-    ax3_q_vs_time : matplotlib plot object
-    ax3_d_help_line : matplotlib plot object
-    ax3_q_help_line : matplotlib plot object
-    ax3_text_pll_locked : matplotlib text object
+    tuple(ax3_period_text)  : a tuple of a list of matplotlib plot object
+    ax1_text_info           : matplotlib text object
+    ax1_text_pll_locked     : matplotlib text object
+    ax1_d_ax_pos            : matplotlib annotatiton object
+    ax1_d_ax_neg            : matplotlib annotatiton object
+    ax1_d_label             : matplotlib text object
+    ax1_q_ax_pos            : matplotlib annotatiton object
+    ax1_q_ax_neg            : matplotlib annotatiton object
+    ax1_q_label             : matplotlib text object
+    ax1_alpha_arrow         : matplotlib annotatiton object
+    ax1_beta_arrow          : matplotlib annotatiton object
+    ax1_harmonic_arrow      : matplotlib annotatiton object
+    ax1_d_vector_arrow      : matplotlib annotatiton object
+    ax1_q_vector_arrow      : matplotlib annotatiton object
+    ax1_help_line_alpha     : matplotlib plot object
+    ax1_help_line_beta      : matplotlib plot object
+    ax1_help_line_d         : matplotlib plot object
+    ax1_ellipse             : matplotlib plot object
+    ax2_alpha_vs_time       : matplotlib plot object
+    ax2_beta_vs_time        : matplotlib plot object
+    ax2_alpha_help_line     : matplotlib plot object
+    ax2_beta_help_line      : matplotlib plot object
+    ax3_d_vs_time           : matplotlib plot object
+    ax3_q_vs_time           : matplotlib plot object
+    ax3_d_help_line         : matplotlib plot object
+    ax3_q_help_line         : matplotlib plot object
+    ax3_text_pll_locked     : matplotlib text object
 
     Examples
     --------
@@ -1239,6 +1259,8 @@ def make_ani(locFig, locInt_samples, locInt_fps):
     .. make_ani :
     
     This function is a wrapper for matplotlib's "animation.FuncAnimation".
+    
+    Reference for using "lambda" : https://goo.gl/zDmGPR
 
     Parameters
     ----------
@@ -1328,33 +1350,29 @@ def video_play(event):
     """
     .. _video_play :
     
-    This function is a wrapper for matplotlib's "animation.FuncAnimation".
+    This function refresh the animation according to current user configurations.
+    
+    Reference for using "lambda" : https://goo.gl/zDmGPR
 
     Parameters
     ----------
-    locFig : matplotlib figure object
-        The matplotlib figure object to be animated.
-        
-    locInt_samples : int
-        The total number of samples. Equal to the total frames of the animation.    
-        
-    locInt_fps : int
-        The frame per second for the anmation. Note that higher frame may not be
-        realised due to intense computation in real time.
-            
+    event : event
+        The event that trigger this function.
+                
     Returns
     -------
-    locAnim : matplotlib animation object
-        The animation object return by "animation.FuncAnimation".
+    None
 
     Examples
     --------
     
     .. code:: python
     
-        ani = make_ani(fig_main, int_samples, int_fps)
+        button_play.on_clicked(video_play)
     """
     
+    # I know globals are not good but I haven't found other ways to update the
+    # animation
     global str_ini_file_path
     
     global dbl_base_freq, dbl_base_period
@@ -1565,33 +1583,32 @@ def video_play(event):
 def video_stop(event, locObj_animation):
 
     """
-    .. _video_play :
+    .. _video_stop :
     
-    This function is a wrapper for matplotlib's "animation.FuncAnimation".
+    This function stops the animation.
+    
+    Reference for using "lambda" : https://goo.gl/zDmGPR
 
     Parameters
     ----------
-    locFig : matplotlib figure object
-        The matplotlib figure object to be animated.
+    event : event
+        The event that triggers this function.
         
-    locInt_samples : int
-        The total number of samples. Equal to the total frames of the animation.    
-        
-    locInt_fps : int
-        The frame per second for the anmation. Note that higher frame may not be
-        realised due to intense computation in real time.
+    locObj_animation : matplotlib animation object
+        The animation to be stopped.
             
     Returns
     -------
-    locAnim : matplotlib animation object
-        The animation object return by "animation.FuncAnimation".
+    None
 
     Examples
     --------
     
     .. code:: python
     
-        ani = make_ani(fig_main, int_samples, int_fps)
+        # Ref : https://goo.gl/zDmGPR         
+
+        button_stop.on_clicked(lambda x: video_stop(x, ani))
     """
     # stop the animate
     locObj_animation.event_source.stop()
@@ -1610,33 +1627,63 @@ def video_save(event, locObj_animation,
                locList_textbox, locList_button, locIni_file_path):
     
     """
-    .. _video_play :
+    .. _video_save :
     
-    This function is a wrapper for matplotlib's "animation.FuncAnimation".
+    This function saves the animation to the harddrive.
+    
+    If the given FFmpeg's path is not valid, a file dialogue would prompted to 
+    allow the user to select the FFmpeg's exectuable binary.
+    
+    A file dialogue would be prompted to allow user to save the video.
+    
+    The animation object's figure would be closed during save. Limited saving
+    progress info would be printed to the console.
+    
+    After the video is saved, the script would try to restart if it is run in 
+    "python.exe" (run rom terminal or cmd). If this script is run in IDLE 
+    (run by "pythonw.exe"), then you need to manually restart the script 
+    (otherwise the kernel is very likely to crash).
+    
+    Reference for using "lambda" : https://goo.gl/zDmGPR
 
     Parameters
     ----------
-    locFig : matplotlib figure object
-        The matplotlib figure object to be animated.
+    event : event
+        The event that triggers this function.
         
-    locInt_samples : int
-        The total number of samples. Equal to the total frames of the animation.    
+    locObj_animation : matplotlib animation object
+        The animation to be saved.
         
-    locInt_fps : int
-        The frame per second for the anmation. Note that higher frame may not be
-        realised due to intense computation in real time.
+    locTextbox_fps : int
+        The frame per second for the anmation. This parameter would be passed
+        to the video writer.
+        
+    locTextbox_ffmpeg_path : str
+        Path of FFmepg executable binary.
+    
+    locList_textbox : list of matplotlib textbox objects
+        These textboxes would be hidden.
+    
+    locList_button : list of matplotlib button objects
+        These buttons would be hidden.
+    
+    locIni_file_path : str
+        The INI file path to be used to save user configurations.
             
     Returns
     -------
-    locAnim : matplotlib animation object
-        The animation object return by "animation.FuncAnimation".
+    None.
 
     Examples
     --------
     
     .. code:: python
     
-        ani = make_ani(fig_main, int_samples, int_fps)
+        button_save_video.on_clicked(lambda x: video_save(x, ani, textbox_fps,
+                                                          textbox_ffmpeg_path, 
+                                                          list_textbox, 
+                                                          list_button, 
+                                                          str_ini_file_path))
     """
     
     # save user configurations
@@ -1644,18 +1691,19 @@ def video_save(event, locObj_animation,
     
     locStr_ini = '[User configurations]\n' + locStr_ini
     
-    write_ini(locIni_file_path, locStr_ini)    # write them to INI file
+    # write them to INI file
+    write_ini(locIni_file_path, locStr_ini)    
      
     # prompt save video message box, yes/no
     
     locStr_message = ('Do you want to save the video?' 
                       + '\n' + 'This will take a while.'
-                      + '\n' + 'No progress will be shown.'
+                      + '\n' + 'Only limited progress info will be printed to the console.'
                       + '\n' + 'You have to wait.'
                       + '\n' 
                       + '\n' + 'You will get a message when finished.'
                       + '\n' 
-                      + '\n' + 'Also, you need to restart the program afterwards.')
+                      + '\n' + 'Also, you may need to restart the script afterwards.')
     
     locRoot = tk.Tk()
     
@@ -1841,33 +1889,33 @@ def video_save(event, locObj_animation,
 def help_on_clicked(event, locFig_help):
     
     """
-    .. _video_play :
+    .. _help_on_clicked :
     
-    This function is a wrapper for matplotlib's "animation.FuncAnimation".
+    This function triggers the help figure to be displayed.
+    
+    Reference for using "lambda" : https://goo.gl/zDmGPR
 
     Parameters
     ----------
-    locFig : matplotlib figure object
-        The matplotlib figure object to be animated.
+    event : event
+        The event that triggers this function.
         
-    locInt_samples : int
-        The total number of samples. Equal to the total frames of the animation.    
-        
-    locInt_fps : int
-        The frame per second for the anmation. Note that higher frame may not be
-        realised due to intense computation in real time.
+    locFig_help : matplotlib figure
+        The figure to be display. This is bascially a simple hack. 
+        I put a serise of strings into a maplotlib textbox and put that textbox
+        into the help figure. When this help figure is displayed, the user would
+        see the help text.
             
     Returns
     -------
-    locAnim : matplotlib animation object
-        The animation object return by "animation.FuncAnimation".
+    None.
 
     Examples
     --------
     
     .. code:: python
     
-        ani = make_ani(fig_main, int_samples, int_fps)
+        button_help.on_clicked(lambda x: help_on_clicked(x, fig_help))
     """
     
     locFig_help.show()
@@ -1884,33 +1932,35 @@ def help_on_clicked(event, locFig_help):
 def load_ffmpeg_on_clicked(event, locObj_animation, locTextbox):
     
     """
-    .. _video_play :
+    .. _load_ffmpeg_on_clicked :
     
-    This function is a wrapper for matplotlib's "animation.FuncAnimation".
+    This function calls the "load_ffmpeg" function to load the FFmpeg exectuable
+    binary.
+    
+    Reference for using "lambda" : https://goo.gl/zDmGPR
 
     Parameters
     ----------
-    locFig : matplotlib figure object
-        The matplotlib figure object to be animated.
+    event : event
+        The event that triggers this function.
         
-    locInt_samples : int
-        The total number of samples. Equal to the total frames of the animation.    
+    locObj_animation : matplotlib animation object
+        Used to stop/start the animation.
         
-    locInt_fps : int
-        The frame per second for the anmation. Note that higher frame may not be
-        realised due to intense computation in real time.
+    locTextbox :  matplotlib textbox object
+        Textbox used to display the FFmpeg exectutable binary's path.
             
     Returns
     -------
-    locAnim : matplotlib animation object
-        The animation object return by "animation.FuncAnimation".
+    None.
 
     Examples
     --------
     
     .. code:: python
     
-        ani = make_ani(fig_main, int_samples, int_fps)
+        button_browse.on_clicked(lambda x: load_ffmpeg_on_clicked(x, ani,
+                                                                  textbox_ffmpeg_path))
     """
     
     locObj_animation.event_source.stop()
