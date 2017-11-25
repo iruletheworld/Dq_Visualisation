@@ -25,7 +25,7 @@ This should let Python to run the main script.
 * glob
 
 
-Anaconda 5.0.1 should have everything.
+[Anaconda](https://www.anaconda.com/download/) 5.0.1 should have everything.
 
 
 ### Installing
