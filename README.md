@@ -24,9 +24,9 @@ This should let Python to run the main script.
 * sys
 * glob
 
-```
+
 Anaconda 5.0.1 should have everything.
-```
+
 
 ### Installing
 
@@ -49,57 +49,33 @@ Here are two useful links for using sphinx:
 A detailed how to use can be found in the [documentation](documentation/html/index.html).
 
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Spyder](http://pythonhosted.org/spyder/) - The IDE used
+* [Anaconda](https://www.anaconda.com/download/) - The Python distributio used
+* [Sphinx](http://www.sphinx-doc.org/en/stable/) - Used to automatically generate documentations
+* [Read the Docs](https://github.com/rtfd/sphinx_rtd_theme) - The theme for Sphinx
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+**Dr. GAO, Siyu**
+
+This project is out of personal interest mainly.
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+I use the GitHub web app and [TortoiseSVN](https://tortoisesvn.net/).
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+**Dr. GAO, Siyu**
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under Apache 2.0 License - see the [LICENSE.md](LICENSE.md) file for details. But I would really hate it if any one want to use any of my code for commercial gain. 
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+* Edith Clarke
+* Robert H. Park
 
