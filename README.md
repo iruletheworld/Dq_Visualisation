@@ -58,7 +58,7 @@ A detailed how to use can be found in the [documentation](documentation/html/ind
 
 ## Contributing
 
-**Dr. GAO, Siyu**
+**高斯羽 博士** (**Dr. GAO, Siyu**)
 
 This project is out of personal interest mainly.
 
@@ -68,7 +68,7 @@ I use the GitHub web app and [TortoiseSVN](https://tortoisesvn.net/).
 
 ## Authors
 
-**Dr. GAO, Siyu**
+**高斯羽 博士** (**Dr. GAO, Siyu**)
 
 ## License
 
