@@ -23,9 +23,10 @@ This should let Python to run the main script.
 * os
 * sys
 * glob
+* FFmpeg
 
 
-[Anaconda](https://www.anaconda.com/download/) 5.0.1 should have everything.
+[Anaconda](https://www.anaconda.com/download/) 5.0.1 should have everything except FFmpeg. You can get at [here](https://www.ffmpeg.org/download.html)
 
 
 ### Installing
