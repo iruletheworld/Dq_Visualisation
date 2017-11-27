@@ -1,19 +1,22 @@
 # Dynamic Visualisation for Clarke and Park Transforms
 
-The purpose of this project is to provide an graphic based UI for the user to dynamically visualise and analyse the Clarke Transform and Park Transform for balanced three-phase inputs. 
+The purpose of this project is to provide an graphic based UI for the user to dynamically visualise and analyse the Clarke Transform and Park Transform for balanced three-phase inputs.
 
 ## Getting Started
 
 Type the following in your terminal:
 
 ```python
-	python gsyDqMain.py
+    python gsyDqMain.py
 ```
+
 This should let Python to run the main script.
 
 Or, you might need the following:
+
 ```python
-	python3 gsyDqMain.py
+
+    python3 gsyDqMain.py
 ```
 
 ### Prerequisites
@@ -29,15 +32,13 @@ Or, you might need the following:
 * glob
 * FFmpeg
 
-
 [Anaconda](https://www.anaconda.com/download/) 5.0.1 should have everything except FFmpeg. You can get at [here](https://www.ffmpeg.org/download.html)
 
 I tried to make this project os independent, but since I only have a Windows machine, I have not been able to test it on any Linux systems.
 
-
 ### Installing
 
-You must install Python first. And then download the whole master trunk to your local machine. 
+You must install Python first. And then download the whole master trunk to your local machine.
 
 Make sure you have the following file:
 
@@ -55,7 +56,6 @@ Here are two useful links for using sphinx:
 
 A detailed how to use can be found in the [documentation](documentation/html/index.html).
 
-
 ## Built With
 
 * [Spyder](http://pythonhosted.org/spyder/) - The IDE used
@@ -64,11 +64,9 @@ A detailed how to use can be found in the [documentation](documentation/html/ind
 * [Read the Docs](https://github.com/rtfd/sphinx_rtd_theme) - The theme for Sphinx
 * [FFmpeg](https://www.ffmpeg.org/download.html) - Codec for saving animations as videos
 
-# Preview
+## Preview
 
 ![UI image](documentation/html/_images/Visualisation_of_Clarke_and_Park_Transforms.svg)
-
-
 
 ## Contributing
 
@@ -86,10 +84,13 @@ I use the GitHub web app and [TortoiseSVN](https://tortoisesvn.net/).
 
 ## License
 
-This project is licensed under Apache 2.0 License - see the [LICENSE.md](LICENSE.md) file for details. But I would really hate it if any one want to use any of my code for commercial gain. 
+This project is licensed under Apache 2.0 License - see the [LICENSE.md](LICENSE.md) file for details. But I would really hate it if any one want to use any of my code for commercial gain.
 
 ## Acknowledgments
 
 * Edith Clarke
 * Robert H. Park
 
+## Special Thanks
+
+**王文元 博士** (**Dr. WANG, Wenyuan**)
