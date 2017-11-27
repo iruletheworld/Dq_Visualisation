@@ -4,9 +4,9 @@ Custom module for genreal IO.
 
 Author : 高斯羽 博士 (Dr. GAO, Siyu)
 
-Version : 0.1.1
+Version : 0.1.3
 
-Last Modified : 2017-11-24
+Last Modified : 2017-11-27
 
 List of functions
 ----------------------

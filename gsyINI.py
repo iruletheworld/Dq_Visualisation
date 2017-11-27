@@ -4,9 +4,9 @@ Custom module for INI file read/write.
 
 Author : 高斯羽 博士 (Dr. GAO, Siyu)
 
-Version : 0.1.2
+Version : 0.1.3
 
-Last Modified : 2017-11-24
+Last Modified : 2017-11-27
 
 List of functions
 ----------------------
