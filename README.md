@@ -2,6 +2,10 @@
 
 The purpose of this project is to provide an graphic based UI for the user to dynamically visualise and analyse the Clarke Transform and Park Transform for balanced three-phase inputs.
 
+!!Warning!!
+
+DO NOT use matplotlib 3.0.2, it causes errors. A working version is 2.3.3.
+
 ## Getting Started
 
 Type the following in your terminal:
