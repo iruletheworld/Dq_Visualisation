@@ -2,11 +2,15 @@
 """
 Main script for dynamic visualisation of Clarke and Park Transforms.
 
+Note that DO NOT USE matplotlib 3.0.2. It causes errors.
+
+A working matplotlib version is 2.3.3.
+
 Author : 高斯羽 博士 (Dr. GAO, Siyu)
 
-Version : 0.1.3
+Version : 0.2.0
 
-Last modified : 2017-11-27
+Last modified : 2019-02-28
 
 List of functions
 ------------------
@@ -865,7 +869,8 @@ def init():
              + tuple(ax3_period_lines) 
              + tuple(ax3_period_text) 
              + (ax1_text_info, ax1_text_pll_locked,
-                ax1_d_ax_pos, ax1_d_ax_neg, ax1_d_label,
+                ax1_d_ax_pos,
+                ax1_d_ax_neg, ax1_d_label,
                 ax1_q_ax_pos, ax1_q_ax_neg, ax1_q_label,
                 ax1_alpha_arrow, ax1_beta_arrow, ax1_harmonic_arrow,
                 ax1_d_vector_arrow, ax1_q_vector_arrow,
@@ -1236,17 +1241,22 @@ def animate(item):
         ax3_text_pll_locked.set_text('')
     
     # return, the order of return affects the layers
-    return (tuple(ax2_period_lines) 
-            + tuple(ax2_period_text) 
+    return (
+            tuple(ax2_period_lines) 
+            + 
+            tuple(ax2_period_text) 
             + tuple(ax3_period_lines) 
             + tuple(ax3_period_text) 
             + (ax1_text_info, ax1_text_pll_locked,
-               ax1_d_ax_pos, ax1_d_ax_neg, ax1_d_label,
+               ax1_d_ax_pos,
+               ax1_d_ax_neg, ax1_d_label,
                ax1_q_ax_pos, ax1_q_ax_neg, ax1_q_label,
                ax1_help_line_alpha, ax1_help_line_beta, 
                ax1_help_line_d, ax1_help_line_q,
                ax1_ellipse,
-               ax1_alpha_arrow, ax1_beta_arrow, ax1_harmonic_arrow,
+               ax1_alpha_arrow, 
+               ax1_beta_arrow, 
+               ax1_harmonic_arrow,
                ax1_d_vector_arrow, ax1_q_vector_arrow,
                ax1_origin, 
                ax2_alpha_vs_time, ax2_beta_vs_time,             
