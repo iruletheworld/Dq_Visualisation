@@ -70,6 +70,8 @@ A detailed how to use can be found in the [documentation](documentation/html/ind
 
 ## Preview
 
+**Click to play the videos**
+
 * PLL locked on
 
 <a href="https://youtu.be/2oeq4zbtlhw" target="_blank"><img src="documentation/html/_video/demo1.png" alt="PLL locked on" height="400.5" border="10" /></a>
