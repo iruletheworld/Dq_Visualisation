@@ -70,7 +70,9 @@ A detailed how to use can be found in the [documentation](documentation/html/ind
 
 ## Preview
 
-![UI image](documentation/html/_images/Visualisation_of_Clarke_and_Park_Transforms.svg)
+<!-- ![UI image](documentation/html/_images/Visualisation_of_Clarke_and_Park_Transforms.svg) -->
+
+[![UI image](documentation/html/_images/Visualisation_of_Clarke_and_Park_Transforms.svg)](./documentation/html/_video/demo1.mp4)
 
 ## Contributing
 
