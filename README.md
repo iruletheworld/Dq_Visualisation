@@ -76,11 +76,11 @@ A detailed how to use can be found in the [documentation](documentation/html/ind
 
 <a href="https://youtu.be/2oeq4zbtlhw" target="_blank"><img src="documentation/html/_video/demo1.png" alt="PLL locked on" height="400.5" border="10" /></a>
 
-* PLL locked on to 2nd order harmonic
+* PLL locked onto the fundamental when the input is the 2nd order harmonic
 
 <a href="https://youtu.be/mL6ikK-dby4" target="_blank"><img src="documentation/html/_video/demo2.png" alt="PLL locked on" height="400.5" border="10" /></a>
 
-* PLL locked on to a inter-harmonic
+* PLL locked onto the fundamental when the input is a inter-harmonic
 
 <a href="https://youtu.be/UelJGybYO2A" target="_blank"><img src="documentation/html/_video/demo3.png" alt="PLL locked on" height="400.5" border="10" /></a>
 
